@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="KanbanBoard.App/KanbanBoard.App.csproj" />
+  <Project Path="KanbanBoard.Core/KanbanBoard.Core.csproj" />
+  <Project Path="KanbanBoard.Infrastructure/KanbanBoard.Infrastructure.csproj" />
+  <Project Path="KanbanBoard.Tests/KanbanBoard.Tests.csproj" />
+</Solution>
