@@ -4,11 +4,29 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KanbanBoard.App"
+        xmlns:models="clr-namespace:KanbanBoard.Core.Models;assembly=KanbanBoard.Core"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        
+        <!-- Left Side: Card-List -->
         <ListBox ItemsSource="{Binding Cards}"
                  DisplayMemberPath="Title"
                  Margin="10"/>
+        
+        <!-- Right Side: Details -->
+        <StackPanel Grid.Column="1" Margin="10">
+            <TextBlock Text="Titel" FontWeight="Bold"/>
+            <TextBox Text="{Binding SelectedCard.Title}" Margin="0,5,0,10"/>
+
+            <TextBlock Text="Status" FontWeight="Bold"/>
+            <ComboBox ItemsSource="{Binding StatusValues}"
+                      SelectedItem="{Binding SelectedCard.Status}"
+                      Margin="0,5,0,10"/>
+        </StackPanel>
     </Grid>
 </Window>
