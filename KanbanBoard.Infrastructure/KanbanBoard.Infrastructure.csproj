@@ -10,8 +10,4 @@
     <ProjectReference Include="..\KanbanBoard.Core\KanbanBoard.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Persistence\" />
-  </ItemGroup>
-
 </Project>
