@@ -3,6 +3,14 @@ namespace KanbanBoard.Core.Models;
 
 public class CardItem
 {
+    public Guid Id { get; }
+    public string Title { get; set; }
+    public CardStatus Status {  get; set; }
+    public DateTime CreatedAt { get; }
+    public DateTime UpdatedAt {  get; set; }
+    public DateTime DueDate { get; set; }
+    public List<string> Tags {  get; set; }
+
     public CardItem(string title)
     {
         Id = Guid.NewGuid();
@@ -12,12 +20,4 @@ public class CardItem
         UpdatedAt = CreatedAt;
         Tags = new List<string>();
     }
-
-    public Guid Id { get; }
-    public string Title { get; set; }
-    public CardStatus Status {  get; set; }
-    public DateTime CreatedAt { get; }
-    public DateTime UpdatedAt {  get; set; }
-    public DateTime DueDate { get; set; }
-    public List<string> Tags {  get; set; }
 }
