@@ -17,6 +17,12 @@ public class MainViewModel
 
         var board = _repository.Load();
 
+        if (!board.Cards.Any())
+        {
+            board.Cards.Add(new CardItem("Erste Testkarte"));
+            board.Cards.Add(new CardItem("Zweite Testkarte"));
+        }
+
         Cards = new ObservableCollection<CardItem>(board.Cards);
     }
 }
