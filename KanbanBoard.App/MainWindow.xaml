@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:KanbanBoard.App"
         xmlns:models="clr-namespace:KanbanBoard.Core.Models;assembly=KanbanBoard.Core"
         mc:Ignorable="d"
-        Title="KanbanBoard" Height="450" Width="800">
+        Title="KanbanBoard" Height="600" Width="800">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVisibility"/>
     </Window.Resources>
@@ -36,6 +36,29 @@
             <ComboBox ItemsSource="{Binding StatusValues}"
                       SelectedItem="{Binding SelectedCard.Status}"
                       Margin="0,5,0,15"/>
+
+            <TextBlock Text="Beschreibung" FontWeight="Bold"/>
+            <TextBox Text="{Binding SelectedCard.Description, UpdateSourceTrigger=PropertyChanged}"
+                     AcceptsReturn="True"
+                     Height="100"
+                     TextWrapping="Wrap"
+                     Margin="0,5,0,15"/>
+            
+            <TextBlock Text="Fällig am" FontWeight="Bold"/>
+            <DatePicker SelectedDate="{Binding SelectedCard.DueDate}"
+                     Margin="0,5,370,15"/>
+
+            <TextBlock Text="Tags" FontWeight="Bold"/>
+            <TextBox Text="{Binding SelectedCard.Tags}"
+                     Margin="0,5,0,35"/>
+
+            <TextBlock Text="Erstellt am" FontWeight="Bold"/>
+            <TextBlock Text="{Binding SelectedCard.CreatedAt, StringFormat='{}{0:dd.MM.yyyy HH:mm}'}"
+                     Margin="0,5,350,15"/>
+
+            <TextBlock Text="Zuletzt geändert" FontWeight="Bold"/>
+            <TextBlock Text="{Binding SelectedCard.UpdatedAt, StringFormat='{}{0:dd.MM.yyyy HH:mm}'}"
+                       Margin="0,5,350,0"/>
         </StackPanel>
     </Grid>
 </Window>
