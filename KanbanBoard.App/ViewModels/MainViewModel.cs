@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Windows.Input;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using KanbanBoard.App.Commands;
 using KanbanBoard.Core.Models;
 using KanbanBoard.Infrastructure.Persistence;
 
@@ -17,9 +19,6 @@ public class MainViewModel : INotifyPropertyChanged
 
     public Array StatusValues => Enum.GetValues(typeof(CardStatus));
 
-    private readonly InMemoryBoardRepository _repository;
-
-    public ObservableCollection<CardItem> Cards { get; }
 
     private CardItem? _selectedCard;
     public CardItem? SelectedCard
@@ -32,6 +31,13 @@ public class MainViewModel : INotifyPropertyChanged
             OnPropertyChanged(); 
         }
     }
+
+
+    private readonly InMemoryBoardRepository _repository;
+    public ObservableCollection<CardItem> Cards { get; }
+
+    public ICommand CreateCardCommand { get; }
+
 
     public MainViewModel()
     {
@@ -46,5 +52,15 @@ public class MainViewModel : INotifyPropertyChanged
         }
 
         Cards = new ObservableCollection<CardItem>(board.Cards);
+
+        CreateCardCommand = new RelayCommand(_ => CreateCard());
+    }
+
+
+    private void CreateCard()
+    {
+        var card = new CardItem("neue Karte");
+        Cards.Add(card);
+        SelectedCard = card;
     }
 }
