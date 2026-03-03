@@ -23,21 +23,19 @@
 
 
         <!-- Left Side: Card-List -->
-        <DockPanel Grid.Column="0" VerticalAlignment="Top" HorizontalAlignment="Center">
-            <Button Grid.Row="0"
-            Content="Neue Karte"
-            Command="{Binding CreateCardCommand}"
-            Width="100"
-            Height="30"
-            Margin="10"/>
+        <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Horizontal" Margin="10,0,10,0">
+            <Button Content="Neue Karte"                 
+                    Command="{Binding CreateCardCommand}" 
+                    Width="100"
+                    Height="30"
+                    Margin="10"/>
 
-            <Button Grid.Row="1"
-            Content="lösche Karte"
-            Command="{Binding DeleteCardCommand}"
-            Width="100"
-            Height="30"
-            Margin="10"/>
-        </DockPanel>
+            <Button Content="lösche Karte"
+                    Command="{Binding DeleteCardCommand}"
+                    Width="100"
+                    Height="30"
+                    Margin="10"/>
+        </StackPanel>
 
         <ListBox Grid.Column="0" Grid.Row="1"
                  ItemsSource="{Binding Cards}"

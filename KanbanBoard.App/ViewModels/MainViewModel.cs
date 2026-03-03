@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using KanbanBoard.App.Commands;
 using KanbanBoard.Core.Models;
+using KanbanBoard.Core.Interfaces;
 using KanbanBoard.Infrastructure.Persistence;
 
 
@@ -21,6 +22,11 @@ public class MainViewModel : INotifyPropertyChanged
     public Array StatusValues => Enum.GetValues(typeof(CardStatus));
 
 
+ 
+    private readonly IBoardRepository _repository;
+    public ObservableCollection<CardItem> Cards { get; }
+    //private readonly Board board;
+
     private CardItem? _selectedCard;
     public CardItem? SelectedCard
     {
@@ -35,12 +41,11 @@ public class MainViewModel : INotifyPropertyChanged
     }
 
 
-    private readonly InMemoryBoardRepository _repository;
-    public ObservableCollection<CardItem> Cards { get; }
 
     public ICommand CreateCardCommand { get; }
     public ICommand DeleteCardCommand { get; }
 
+    
 
     public MainViewModel()
     {
@@ -48,34 +53,42 @@ public class MainViewModel : INotifyPropertyChanged
 
         var board = _repository.Load();
 
-        if (!board.Cards.Any())
-        {
-            board.Cards.Add(new CardItem("Erste Testkarte"));
-            board.Cards.Add(new CardItem("Zweite Testkarte"));
-        }
-
         Cards = new ObservableCollection<CardItem>(board.Cards);
 
-        CreateCardCommand = new RelayCommand(execute => CreateCard(board));
-        DeleteCardCommand = new RelayCommand(execute => DeleteCard(board), canExecute => SelectedCard != null);
+        if (!Cards.Any())
+        {
+            Cards.Add(new CardItem("Erste Testkarte"));
+            Cards.Add(new CardItem("Zweite Testkarte"));
+            SaveCurrentBoard();
+        }
+
+        CreateCardCommand = new RelayCommand(execute => CreateCard());
+        DeleteCardCommand = new RelayCommand(execute => DeleteCard(), canExecute => SelectedCard != null);
     }
 
 
-    private void CreateCard(Board board)
+    private void CreateCard()
     {
         var card = new CardItem("neue Karte");
-        board.Cards.Add(card);        
+        Cards.Add(card);
         SelectedCard = card;
-        _repository.Save(board);
+        SaveCurrentBoard();
     }
 
-    private void DeleteCard(Board board)
+    private void DeleteCard()
     {
         if (SelectedCard != null)
         {
-            board.Cards.Remove(SelectedCard);
+            Cards.Remove(SelectedCard);
             SelectedCard = null;
-            _repository.Save(board);
+            SaveCurrentBoard();
         }
+    }
+
+    private void SaveCurrentBoard()
+    {
+        var board = new Board();
+        board.Cards = Cards.ToList();
+        _repository.Save(board);
     }
 }
