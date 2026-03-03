@@ -16,28 +16,44 @@
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
 
         <!-- Left Side: Card-List -->
-        <StackPanel HorizontalAlignment="Left" Margin="10">
-            <Button Grid.Column="0" Grid.Row="0"
-                    Content="Neue Karte"
-                    Command="{Binding CreateCardCommand}"
-                    Width="100"
-                    Height="30"
-                    Margin="10"/>
-        </StackPanel>
+        <DockPanel Grid.Column="0" VerticalAlignment="Top" HorizontalAlignment="Center">
+            <Button Grid.Row="0"
+            Content="Neue Karte"
+            Command="{Binding CreateCardCommand}"
+            Width="100"
+            Height="30"
+            Margin="10"/>
+
+            <Button Grid.Row="1"
+            Content="lösche Karte"
+            Command="{Binding DeleteCardCommand}"
+            Width="100"
+            Height="30"
+            Margin="10"/>
+        </DockPanel>
 
         <ListBox Grid.Column="0" Grid.Row="1"
                  ItemsSource="{Binding Cards}"
                  SelectedItem="{Binding SelectedCard}"
                  DisplayMemberPath="Title"
-                 Margin="10,80,10,10"/>
+                 Margin="10"/>
         
         <!-- Right Side: Details -->
-        <StackPanel Grid.Column="1" Margin="20">
-            <TextBlock Text="DETAILS" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
-            
+        <TextBlock Grid.Column="1" Grid.Row="0"
+                   Text="DETAILS" 
+                   FontWeight="Bold" 
+                   FontSize="16" 
+                   VerticalAlignment="Center" 
+                   Margin="10"/>
+
+        <StackPanel Grid.Column="1" Grid.Row="1"  Margin="20,10,20,20">
             <TextBlock Text="Titel" FontWeight="Bold"/>
             <TextBox Text="{Binding SelectedCard.Title, UpdateSourceTrigger=PropertyChanged}"
                      Margin="0,5,0,15"/>

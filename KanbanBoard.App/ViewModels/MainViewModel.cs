@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Input;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -28,7 +29,8 @@ public class MainViewModel : INotifyPropertyChanged
         {
             if (_selectedCard == value) return;
             _selectedCard = value;
-            OnPropertyChanged(); 
+            OnPropertyChanged();
+            CommandManager.InvalidateRequerySuggested();
         }
     }
 
@@ -37,6 +39,7 @@ public class MainViewModel : INotifyPropertyChanged
     public ObservableCollection<CardItem> Cards { get; }
 
     public ICommand CreateCardCommand { get; }
+    public ICommand DeleteCardCommand { get; }
 
 
     public MainViewModel()
@@ -53,14 +56,26 @@ public class MainViewModel : INotifyPropertyChanged
 
         Cards = new ObservableCollection<CardItem>(board.Cards);
 
-        CreateCardCommand = new RelayCommand(_ => CreateCard());
+        CreateCardCommand = new RelayCommand(execute => CreateCard(board));
+        DeleteCardCommand = new RelayCommand(execute => DeleteCard(board), canExecute => SelectedCard != null);
     }
 
 
-    private void CreateCard()
+    private void CreateCard(Board board)
     {
         var card = new CardItem("neue Karte");
-        Cards.Add(card);
+        board.Cards.Add(card);        
         SelectedCard = card;
+        _repository.Save(board);
+    }
+
+    private void DeleteCard(Board board)
+    {
+        if (SelectedCard != null)
+        {
+            board.Cards.Remove(SelectedCard);
+            SelectedCard = null;
+            _repository.Save(board);
+        }
     }
 }
