@@ -1,27 +1,26 @@
-# Kanban Board (WPF)
+# Kanban Board (WPF Desktop App)
 
 Ein einfaches Kanban-Board als Desktop-Anwendung, entwickelt mit C# und WPF.
 
 Das Projekt dient dazu, grundlegende Konzepte der Anwendungsentwicklung zu üben,
 z. B. Benutzeroberflächen, Datenstruktur und Zustandsverwaltung.
 
-## Features
+## Funktionen
 
-- Create tasks
-- Change task status (Todo / In Progress / Done)
-- Edit completion date
-- Track creation and update timestamps
-- Delete tasks
+- Karten erstellen
+- Status einer Karte ändern (Todo / In Progress / Done)
+- Fertigstellungsdatum bearbeiten
+- Erstell- und Änderungsdatum anzeigen
+- Karten löschen
 
-## Tech Stack
+## Technologien
 
 - C#
 - .NET
 - WPF
 
-## Planned Improvements
+## Geplante Erweiterungen
 
-- Task descriptions
-- Tags / labels
-- Drag & drop
-- Local data persistence
+- Beschreibung für Karten
+- Tags / Labels
+- Lokale Datenspeicherung (z. B. JSON oder SQLite)
