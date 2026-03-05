@@ -1,9 +1,9 @@
 # Kanban Board (WPF)
 
-A simple Kanban board desktop application built with C# and WPF.
+Ein einfaches Kanban-Board als Desktop-Anwendung, entwickelt mit C# und WPF.
 
-The project was created to practice software development concepts such as
-UI design, state management and data handling.
+Das Projekt dient dazu, grundlegende Konzepte der Anwendungsentwicklung zu üben,
+z. B. Benutzeroberflächen, Datenstruktur und Zustandsverwaltung.
 
 ## Features
 
