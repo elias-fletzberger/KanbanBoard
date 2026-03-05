@@ -1,5 +1,9 @@
 # Kanban Board (WPF Desktop App)
 
+![.NET](https://img.shields.io/badge/.NET-8.0-blue)
+![Platform](https://img.shields.io/badge/platform-Windows-lightgrey)
+![License](https://img.shields.io/badge/license-MIT-green)
+
 Ein einfaches Kanban-Board als Desktop-Anwendung, entwickelt mit C# und WPF.
 
 Das Projekt dient dazu, grundlegende Konzepte der Anwendungsentwicklung zu üben,
