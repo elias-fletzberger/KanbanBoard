@@ -13,6 +13,15 @@ z. B. Benutzeroberflächen, Datenstruktur und Zustandsverwaltung.
 - Erstell- und Änderungsdatum anzeigen
 - Karten löschen
 
+## Projektstruktur
+
+Das Projekt ist in mehrere Schichten unterteilt:
+
+- **App** – Benutzeroberfläche und Anwendungseinstieg
+- **Core** – Domänenlogik und Datenmodelle
+- **Infrastructure** – technische Implementierungen
+- **Tests** – erste Tests für zentrale Funktionen
+  
 ## Technologien
 
 - C#
