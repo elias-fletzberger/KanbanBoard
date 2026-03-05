@@ -1,4 +1,13 @@
-﻿using System;
+﻿
+/// <summary>
+/// Main view model of the application.
+/// Handles UI interaction, exposes commands for creating and deleting cards
+/// and coordinates loading and saving through the repository.
+/// </summary>
+
+
+
+using System;
 using System.Linq;
 using System.Windows.Input;
 using System.Collections.ObjectModel;

@@ -1,4 +1,13 @@
 ﻿
+
+/// <summary>
+/// Represents a single task card on the Kanban board.
+/// Contains the domain data such as title, status, description,
+/// tags and timestamps.
+/// </summary>
+
+
+
 namespace KanbanBoard.Core.Models;
 
 public class CardItem
