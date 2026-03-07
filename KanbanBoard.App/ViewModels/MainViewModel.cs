@@ -8,14 +8,15 @@
 
 
 using System;
-using System.Linq;
-using System.Windows.Input;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Windows.Input;
+using System.Windows.Threading;
 using KanbanBoard.App.Commands;
-using KanbanBoard.Core.Models;
 using KanbanBoard.Core.Interfaces;
+using KanbanBoard.Core.Models;
 using KanbanBoard.Infrastructure.Persistence;
 
 
@@ -28,15 +29,20 @@ public class MainViewModel : INotifyPropertyChanged
     private void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
-    public Array StatusValues => Enum.GetValues(typeof(CardStatus));
-
 
  
     private readonly IBoardRepository _repository;
-    public ObservableCollection<CardItem> Cards { get; }
-    //private readonly Board board;
+
+    private readonly DispatcherTimer _autoSaveTimer;
 
     private CardItem? _selectedCard;
+    
+
+
+    public Array StatusValues => Enum.GetValues(typeof(CardStatus));
+
+    public ObservableCollection<CardItem> Cards { get; }
+
     public CardItem? SelectedCard
     {
         get => _selectedCard;
@@ -59,7 +65,7 @@ public class MainViewModel : INotifyPropertyChanged
     public MainViewModel()
     {
         _repository = new InMemoryBoardRepository();
-
+        
         var board = _repository.Load();
 
         Cards = new ObservableCollection<CardItem>(board.Cards);
@@ -70,10 +76,16 @@ public class MainViewModel : INotifyPropertyChanged
             Cards.Add(new CardItem("Zweite Testkarte"));
             SaveCurrentBoard();
         }
+                
 
         CreateCardCommand = new RelayCommand(execute => CreateCard());
         DeleteCardCommand = new RelayCommand(execute => DeleteCard(), canExecute => SelectedCard != null);
+
+        _autoSaveTimer = new DispatcherTimer();
+        _autoSaveTimer.Interval = TimeSpan.FromSeconds(1);
+        _autoSaveTimer.Tick += AutoSaveTimer_Tick;
     }
+
 
 
     private void CreateCard()
@@ -99,5 +111,17 @@ public class MainViewModel : INotifyPropertyChanged
         var board = new Board();
         board.Cards = Cards.ToList();
         _repository.Save(board);
+    }
+
+    private void ScheduleAutoSave()
+    {
+        _autoSaveTimer.Stop();
+        _autoSaveTimer.Start();
+    }
+
+    private void AutoSaveTimer_Tick(object? sender, EventArgs e)
+    {
+        _autoSaveTimer.Stop();
+        SaveCurrentBoard();        
     }
 }
