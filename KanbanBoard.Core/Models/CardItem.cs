@@ -119,5 +119,6 @@ public class CardItem : INotifyPropertyChanged
         _description = string.Empty;
         _tags = new List<string>();
         CreatedAt = DateTime.Now;
+        UpdatedAt =CreatedAt;
     }
 }
