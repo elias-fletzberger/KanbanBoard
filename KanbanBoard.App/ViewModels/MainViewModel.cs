@@ -1,12 +1,4 @@
 ﻿
-/// <summary>
-/// Main view model of the application.
-/// Handles UI interaction, exposes commands for creating and deleting cards
-/// and coordinates loading and saving through the repository.
-/// </summary>
-
-
-
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -19,9 +11,14 @@ using KanbanBoard.Core.Interfaces;
 using KanbanBoard.Core.Models;
 using KanbanBoard.Infrastructure.Persistence;
 
-
 namespace KanbanBoard.App.ViewModels;
 
+
+/// <summary>
+/// Main view model of the application.
+/// Handles UI interaction, exposes commands for creating and deleting cards
+/// and coordinates loading and saving through the repository.
+/// </summary>
 public class MainViewModel : INotifyPropertyChanged
 {
     public event PropertyChangedEventHandler? PropertyChanged;
