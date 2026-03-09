@@ -20,10 +20,10 @@ public class CardItem : INotifyPropertyChanged
 
     private string _title;
     private CardStatus _status;
-    private string? _description;
+    private string _description;
     private List<string> _tags;
     private DateTime _updatedAt;
-    private DateTime _dueDate;
+    private DateTime? _dueDate;
     
 
 
@@ -58,7 +58,7 @@ public class CardItem : INotifyPropertyChanged
             OnPropertyChanged(nameof(UpdatedAt));
         }
     }
-    public string? Description
+    public string Description
     {
         get => _description;
         set
@@ -92,9 +92,9 @@ public class CardItem : INotifyPropertyChanged
     public DateTime UpdatedAt
     {
         get => _updatedAt;
-        set => _updatedAt = value;
+        private set => _updatedAt = value;
     }
-    public DateTime DueDate
+    public DateTime? DueDate
     {
         get => _dueDate;
         set
@@ -114,11 +114,9 @@ public class CardItem : INotifyPropertyChanged
     public CardItem(string title)
     {
         Id = Guid.NewGuid();
-        Title = title;
-        Status = CardStatus.ToDo;
-        Tags = new List<string>();
+        _title = title;
+        _status = CardStatus.ToDo;
+        _tags = new List<string>();
         CreatedAt = DateTime.Now;
-        UpdatedAt = CreatedAt;
-        DueDate = CreatedAt;
     }
 }
