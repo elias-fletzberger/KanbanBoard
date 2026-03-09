@@ -1,8 +1,9 @@
+
 using KanbanBoard.Core.Models;
 using Xunit;
 
-
 namespace KanbanBoard.Tests;
+
 
 public class CardItemTests
 {

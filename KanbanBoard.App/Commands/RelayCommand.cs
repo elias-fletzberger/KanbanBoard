@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Windows.Input;
 
-
 namespace KanbanBoard.App.Commands;
+
 
 internal class RelayCommand : ICommand
 {
