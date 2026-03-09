@@ -46,7 +46,19 @@ public class MainViewModel : INotifyPropertyChanged
         set
         {
             if (_selectedCard == value) return;
+
+            if (_selectedCard is not null)
+            {
+                _selectedCard.PropertyChanged -= SelectedCard_PropertyChanged;
+            }
+
             _selectedCard = value;
+            
+            if (_selectedCard is not null)
+            {
+                _selectedCard.PropertyChanged += SelectedCard_PropertyChanged;
+            }
+
             OnPropertyChanged();
             CommandManager.InvalidateRequerySuggested();
         }
@@ -120,5 +132,10 @@ public class MainViewModel : INotifyPropertyChanged
     {
         _autoSaveTimer.Stop();
         SaveCurrentBoard();        
+    }
+
+    private void SelectedCard_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        ScheduleAutoSave();        
     }
 }
