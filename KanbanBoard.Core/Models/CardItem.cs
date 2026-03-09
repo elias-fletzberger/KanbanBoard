@@ -116,6 +116,7 @@ public class CardItem : INotifyPropertyChanged
         Id = Guid.NewGuid();
         _title = title;
         _status = CardStatus.ToDo;
+        _description = string.Empty;
         _tags = new List<string>();
         CreatedAt = DateTime.Now;
     }
