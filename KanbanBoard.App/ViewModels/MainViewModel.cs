@@ -73,7 +73,7 @@ public class MainViewModel : INotifyPropertyChanged
 
     public MainViewModel()
     {
-        _repository = new InMemoryBoardRepository();
+        _repository = new JsonBoardRepository();
         
         var board = _repository.Load();
 
@@ -81,8 +81,13 @@ public class MainViewModel : INotifyPropertyChanged
 
         if (!Cards.Any())
         {
-            Cards.Add(new CardItem("Erste Testkarte"));
-            Cards.Add(new CardItem("Zweite Testkarte"));
+            CardItem card;
+            card = new CardItem();
+            card.Title = "Erste Testkarte";
+            Cards.Add(card);
+            card = new CardItem();
+            card.Title = "Zweite Testkarte";
+            Cards.Add(new CardItem());
             SaveCurrentBoard();
         }
                 
@@ -99,7 +104,7 @@ public class MainViewModel : INotifyPropertyChanged
 
     private void CreateCard()
     {
-        var card = new CardItem("neue Karte");
+        var card = new CardItem();
         Cards.Add(card);
         SelectedCard = card;
         SaveCurrentBoard();

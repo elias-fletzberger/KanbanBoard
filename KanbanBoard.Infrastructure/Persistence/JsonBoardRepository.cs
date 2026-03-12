@@ -22,33 +22,20 @@ public class JsonBoardRepository : IBoardRepository
 
     public Board Load()
     {
-        Board board = new Board();
-
-        if (File.Exists(_filePath))
+        if (!File.Exists(_filePath))
         {
-            string cardJson = File.ReadAllText(_filePath);
-            board = JsonSerializer.Deserialize<Board>(cardJson);
-
-            if (board == null)
-            {
-                return board = new Board();
-            }
-            else
-            {
-                return board;
-            }
+            return new Board();
         }
-        
 
-        return board;
+        string cardJson = File.ReadAllText(_filePath);
+        Board? board = JsonSerializer.Deserialize<Board>(cardJson);
+
+        return board ?? new Board();
     }
 
     public void Save(Board board)
     {
-        if (!File.Exists(_folderPath))
-        {
-            Directory.CreateDirectory(_folderPath);
-        }
+        Directory.CreateDirectory(_folderPath);   
         
         string jsonBoard = JsonSerializer.Serialize<Board>(board, _jsonOptions);
         File.WriteAllText(_filePath, jsonBoard);
