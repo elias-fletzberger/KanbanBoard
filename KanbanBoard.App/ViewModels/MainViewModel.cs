@@ -33,7 +33,8 @@ public class MainViewModel : INotifyPropertyChanged
     private readonly DispatcherTimer _autoSaveTimer;
 
     private CardItem? _selectedCard;
-    
+
+    private string _tagsText;
 
 
     public Array StatusValues => Enum.GetValues(typeof(CardStatus));
@@ -53,7 +54,16 @@ public class MainViewModel : INotifyPropertyChanged
             }
 
             _selectedCard = value;
-            
+            if (_selectedCard is not null)
+            {
+                _tagsText = string.Join(", ", _selectedCard.Tags);
+            }
+            else
+            {
+                _tagsText = string.Empty;
+            }
+            OnPropertyChanged(nameof(TagsText)); 
+
             if (_selectedCard is not null)
             {
                 _selectedCard.PropertyChanged += SelectedCard_PropertyChanged;
@@ -69,7 +79,34 @@ public class MainViewModel : INotifyPropertyChanged
     public ICommand CreateCardCommand { get; }
     public ICommand DeleteCardCommand { get; }
 
+
     
+    public string TagsText 
+    { 
+        get
+        {
+            return _tagsText;
+        }
+        set
+        {
+            if (_tagsText == value) 
+                return;
+
+            _tagsText = value;
+            OnPropertyChanged();
+
+            if (_selectedCard is not null)
+            {
+                SelectedCard.Tags = value
+                    .Split(',')
+                    .Select(tag => tag.Trim())
+                    .Where(tag => !string.IsNullOrWhiteSpace(tag))
+                    .ToList();
+            }
+        }
+    }
+    
+
 
     public MainViewModel()
     {
