@@ -28,16 +28,45 @@ public class JsonBoardRepository : IBoardRepository
         }
 
         string cardJson = File.ReadAllText(_filePath);
-        Board? board = JsonSerializer.Deserialize<Board>(cardJson);
+        if (string.IsNullOrWhiteSpace(cardJson))
+        {  
+            return new Board(); 
+        }
 
-        return board ?? new Board();
+        try
+        {
+            Board? board = JsonSerializer.Deserialize<Board>(cardJson);
+            return board ?? new Board();
+        }
+        catch (JsonException ex)
+        {
+            Console.WriteLine($"JSON load error: {ex.Message}");
+            return new Board();
+        }
+        catch (IOException ex)
+        {
+            Console.WriteLine($"JSON load error: {ex.Message}");
+            return new Board();
+        }
+        
     }
 
     public void Save(Board board)
     {
-        Directory.CreateDirectory(_folderPath);   
-        
-        string jsonBoard = JsonSerializer.Serialize<Board>(board, _jsonOptions);
-        File.WriteAllText(_filePath, jsonBoard);
+        Directory.CreateDirectory(_folderPath);
+
+        try
+        {
+            string jsonBoard = JsonSerializer.Serialize<Board>(board, _jsonOptions);
+            File.WriteAllText(_filePath, jsonBoard);
+        }
+        catch (IOException ex)
+        {
+            Console.WriteLine($"Save failed: {ex.Message}");
+        }
+        catch (UnauthorizedAccessException ex)
+        {
+            Console.WriteLine($"No permission to write file: {ex.Message}");
+        }
     }
 }
