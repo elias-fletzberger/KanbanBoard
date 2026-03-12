@@ -87,7 +87,7 @@ public class MainViewModel : INotifyPropertyChanged
             Cards.Add(card);
             card = new CardItem();
             card.Title = "Zweite Testkarte";
-            Cards.Add(new CardItem());
+            Cards.Add(card);
             SaveCurrentBoard();
         }
                 
