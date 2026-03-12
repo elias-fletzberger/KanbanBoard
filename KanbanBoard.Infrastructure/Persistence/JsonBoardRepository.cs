@@ -8,9 +8,9 @@ namespace KanbanBoard.Infrastructure.Persistence;
 
 
 /// <summary>
-/// JSON implementation of IBoardRepository.
-/// Stores the board data from the current application runtime
-/// to persistent storage.
+/// JSON-based implementation of IBoardRepository.
+/// Loads and saves the board data to a local JSON file
+/// in the user´s application data directory.
 /// </summary>
 public class JsonBoardRepository : IBoardRepository
 {
