@@ -40,6 +40,29 @@ public class MainViewModel : INotifyPropertyChanged
     public Array StatusValues => Enum.GetValues(typeof(CardStatus));
 
     public ObservableCollection<CardItem> Cards { get; }
+    public IEnumerable<CardItem> ToDoCards
+    { 
+        get
+        {
+            return Cards.Where(card => card.Status == CardStatus.ToDo);
+        }
+
+    }
+    public IEnumerable<CardItem> DoingCards
+    {
+        get 
+        { 
+            return Cards.Where(card => card.Status == CardStatus.Doing);
+        }
+    }
+    public IEnumerable<CardItem> DoneCards
+    {
+        get
+        {
+            return Cards.Where(card => card.Status == CardStatus.Done);
+        }
+    }
+
 
     public CardItem? SelectedCard
     {
@@ -143,6 +166,9 @@ public class MainViewModel : INotifyPropertyChanged
     {
         var card = new CardItem();
         Cards.Add(card);
+        OnPropertyChanged(nameof(ToDoCards));
+        OnPropertyChanged(nameof(DoingCards));
+        OnPropertyChanged(nameof(DoneCards));
         SelectedCard = card;
         SaveCurrentBoard();
     }
@@ -152,6 +178,9 @@ public class MainViewModel : INotifyPropertyChanged
         if (SelectedCard != null)
         {
             Cards.Remove(SelectedCard);
+            OnPropertyChanged(nameof(ToDoCards));
+            OnPropertyChanged(nameof(DoingCards));
+            OnPropertyChanged(nameof(DoneCards));
             SelectedCard = null;
             SaveCurrentBoard();
         }
@@ -178,6 +207,9 @@ public class MainViewModel : INotifyPropertyChanged
 
     private void SelectedCard_PropertyChanged(object? sender, PropertyChangedEventArgs e)
     {
+        OnPropertyChanged(nameof(ToDoCards));
+        OnPropertyChanged(nameof(DoingCards));
+        OnPropertyChanged(nameof(DoneCards));
         ScheduleAutoSave();        
     }
 }

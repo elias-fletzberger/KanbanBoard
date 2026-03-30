@@ -13,10 +13,10 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="300"/>
-            <ColumnDefinition Width="300"/>
-            <ColumnDefinition Width="300"/>
-            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
@@ -26,13 +26,13 @@
 
         <!-- Left Side: Card-List -->
         <TextBlock Grid.Column="0" Grid.Row="0"
-                   Text="Do"
+                   Text="To Do"
                    FontWeight="Bold"
                    FontSize="20"
                    HorizontalAlignment="Center"
                    Margin="10"/>
         <ListBox Grid.Column="0" Grid.Row="1"
-                 ItemsSource="{Binding Cards}"
+                 ItemsSource="{Binding ToDoCards}"
                  SelectedItem="{Binding SelectedCard}"
                  DisplayMemberPath="Title"
                  Margin="10"/>
@@ -44,7 +44,7 @@
                    HorizontalAlignment="Center"
                    Margin="10"/>
         <ListBox Grid.Column="1" Grid.Row="1"
-                 ItemsSource="{Binding Cards}"
+                 ItemsSource="{Binding DoingCards}"
                  SelectedItem="{Binding SelectedCard}"
                  DisplayMemberPath="Title"
                  Margin="10"/>
@@ -56,14 +56,14 @@
                    HorizontalAlignment="Center"
                    Margin="10"/>
         <ListBox Grid.Column="2" Grid.Row="1"
-                 ItemsSource="{Binding Cards}"
+                 ItemsSource="{Binding DoneCards}"
                  SelectedItem="{Binding SelectedCard}"
                  DisplayMemberPath="Title"
                  Margin="10"/>
         
         
         <!-- Right Side: Details -->
-        <StackPanel Grid.Column="4" Grid.Row="0" Orientation="Horizontal" Margin="10,0,10,0">
+        <StackPanel Grid.Column="3" Grid.Row="0" Orientation="Horizontal" Margin="10,0,10,0">
             <TextBlock Grid.Column="1" Grid.Row="0"
                        Text="DETAILS"
                        FontWeight="Bold"
@@ -84,15 +84,15 @@
             Margin="10"/>
         </StackPanel>
         
-        <StackPanel Grid.Column="4" Grid.Row="1"  Margin="20,10,20,20">
+        <StackPanel Grid.Column="3" Grid.Row="1"  Margin="20,10,20,20">
             <TextBlock Text="Titel" FontWeight="Bold"/>
             <TextBox Text="{Binding SelectedCard.Title, UpdateSourceTrigger=PropertyChanged}"
                      Margin="0,5,0,15"/>
 
             <TextBlock Text="Status" FontWeight="Bold"/>
             <ComboBox ItemsSource="{Binding StatusValues}"
-                      SelectedItem="{Binding SelectedCard.Status}"
-                      Margin="0,5,0,15"/>
+                     SelectedItem="{Binding SelectedCard.Status}"
+                     Margin="0,5,0,15"/>
 
             <TextBlock Text="Beschreibung" FontWeight="Bold"/>
             <TextBox Text="{Binding SelectedCard.Description, UpdateSourceTrigger=PropertyChanged}"
@@ -107,16 +107,17 @@
             
             <TextBlock Text="Fällig am" FontWeight="Bold"/>
             <DatePicker SelectedDate="{Binding SelectedCard.DueDate}"
-                     Margin="0,5,370,25"/>
+                     Padding="5,0,5,0"
+                     Margin="0,5,250,25"/>
 
 
             <TextBlock Text="Erstellt am" FontWeight="Bold"/>
             <TextBlock Text="{Binding SelectedCard.CreatedAt, StringFormat='{}{0:dd.MM.yyyy HH:mm}'}"
-                     Margin="0,5,350,15"/>
+                     Margin="0,5,250,15"/>
 
             <TextBlock Text="Zuletzt geändert" FontWeight="Bold"/>
             <TextBlock Text="{Binding SelectedCard.UpdatedAt, StringFormat='{}{0:dd.MM.yyyy HH:mm}'}"
-                       Margin="0,5,350,0"/>
+                     Margin="0,5,250,0"/>
         </StackPanel>
     </Grid>
 </Window>
