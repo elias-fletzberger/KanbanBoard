@@ -166,9 +166,7 @@ public class MainViewModel : INotifyPropertyChanged
     {
         var card = new CardItem();
         Cards.Add(card);
-        OnPropertyChanged(nameof(ToDoCards));
-        OnPropertyChanged(nameof(DoingCards));
-        OnPropertyChanged(nameof(DoneCards));
+        RefreshBoardColumns();
         SelectedCard = card;
         SaveCurrentBoard();
     }
@@ -178,9 +176,7 @@ public class MainViewModel : INotifyPropertyChanged
         if (SelectedCard != null)
         {
             Cards.Remove(SelectedCard);
-            OnPropertyChanged(nameof(ToDoCards));
-            OnPropertyChanged(nameof(DoingCards));
-            OnPropertyChanged(nameof(DoneCards));
+            RefreshBoardColumns();
             SelectedCard = null;
             SaveCurrentBoard();
         }
@@ -207,9 +203,14 @@ public class MainViewModel : INotifyPropertyChanged
 
     private void SelectedCard_PropertyChanged(object? sender, PropertyChangedEventArgs e)
     {
+        RefreshBoardColumns();
+        ScheduleAutoSave();        
+    }
+
+    private void RefreshBoardColumns()
+    {
         OnPropertyChanged(nameof(ToDoCards));
         OnPropertyChanged(nameof(DoingCards));
         OnPropertyChanged(nameof(DoneCards));
-        ScheduleAutoSave();        
     }
 }
