@@ -24,7 +24,7 @@
         </Grid.RowDefinitions>
 
 
-        <!-- Left Side: Card-List -->
+        <!-- Left Side: Card-Lists ToDo / Doing / Done -->
         <TextBlock Grid.Column="0" Grid.Row="0"
                    Text="To Do"
                    FontWeight="Bold"
@@ -34,8 +34,31 @@
         <ListBox Grid.Column="0" Grid.Row="1"
                  ItemsSource="{Binding ToDoCards}"
                  SelectedItem="{Binding SelectedCard}"
-                 DisplayMemberPath="Title"
-                 Margin="10"/>
+                 Margin="10">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="LightGray"
+                            Background="LightPink"
+                            BorderThickness="1"
+                            CornerRadius="4"
+                            Width="243"
+                            Padding="8"
+                            Margin="4">
+                        <StackPanel>
+                            <TextBlock Text="{Binding Title}"
+                                       FontWeight="Bold"
+                                       FontSize="13"
+                                       HorizontalAlignment="Center"/>
+                            <TextBlock Text="{Binding Description}"
+                                       TextWrapping="Wrap"
+                                       MaxHeight="40"
+                                       TextTrimming="CharacterEllipsis"/>
+                            <TextBlock Text="{Binding DueDate, StringFormat='Fällig: {0:dd.MM.yyyy}'}"/>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
 
         <TextBlock Grid.Column="1" Grid.Row="0"
                    Text="Doing"
@@ -46,8 +69,31 @@
         <ListBox Grid.Column="1" Grid.Row="1"
                  ItemsSource="{Binding DoingCards}"
                  SelectedItem="{Binding SelectedCard}"
-                 DisplayMemberPath="Title"
-                 Margin="10"/>
+                 Margin="10">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="LightGray"
+                    Background="LightSkyBlue"
+                    BorderThickness="1"
+                    CornerRadius="4"
+                    Width="243"
+                    Padding="8"
+                    Margin="4">
+                        <StackPanel>
+                            <TextBlock Text="{Binding Title}"
+                               FontWeight="Bold"
+                               FontSize="13"
+                               HorizontalAlignment="Center"/>
+                            <TextBlock Text="{Binding Description}"
+                               TextWrapping="Wrap"
+                               MaxHeight="40"
+                               TextTrimming="CharacterEllipsis"/>
+                            <TextBlock Text="{Binding DueDate, StringFormat='Fällig: {0:dd.MM.yyyy}'}"/>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
 
         <TextBlock Grid.Column="2" Grid.Row="0"
                    Text="Done"
@@ -58,10 +104,33 @@
         <ListBox Grid.Column="2" Grid.Row="1"
                  ItemsSource="{Binding DoneCards}"
                  SelectedItem="{Binding SelectedCard}"
-                 DisplayMemberPath="Title"
-                 Margin="10"/>
-        
-        
+                 Margin="10">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="LightGray"
+                    Background="LightSeaGreen"
+                    BorderThickness="1"
+                    CornerRadius="4"
+                    Width="243"
+                    Padding="8"
+                    Margin="4">
+                        <StackPanel>
+                            <TextBlock Text="{Binding Title}"
+                               FontWeight="Bold"
+                               FontSize="13"
+                               HorizontalAlignment="Center"/>
+                            <TextBlock Text="{Binding Description}"
+                               TextWrapping="NoWrap"
+                               MaxHeight="40"
+                               TextTrimming="CharacterEllipsis"/>
+                            <TextBlock Text="{Binding DueDate, StringFormat='Fällig: {0:dd.MM.yyyy}'}"/>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+
         <!-- Right Side: Details -->
         <StackPanel Grid.Column="3" Grid.Row="0" Orientation="Horizontal" Margin="10,0,10,0">
             <TextBlock Grid.Column="1" Grid.Row="0"
@@ -83,7 +152,7 @@
             Height="30"
             Margin="10"/>
         </StackPanel>
-        
+
         <StackPanel Grid.Column="3" Grid.Row="1"  Margin="20,10,20,20">
             <TextBlock Text="Titel" FontWeight="Bold"/>
             <TextBox Text="{Binding SelectedCard.Title, UpdateSourceTrigger=PropertyChanged}"
@@ -104,7 +173,7 @@
             <TextBlock Text="Tags" FontWeight="Bold"/>
             <TextBox Text="{Binding TagsText, UpdateSourceTrigger=PropertyChanged}"
                      Margin="0,5,0,35"/>
-            
+
             <TextBlock Text="Fällig am" FontWeight="Bold"/>
             <DatePicker SelectedDate="{Binding SelectedCard.DueDate}"
                      Padding="5,0,5,0"
