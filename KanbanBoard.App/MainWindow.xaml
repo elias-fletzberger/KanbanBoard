@@ -34,26 +34,37 @@
         <ListBox Grid.Column="0" Grid.Row="1"
                  ItemsSource="{Binding ToDoCards}"
                  SelectedItem="{Binding SelectedCard}"
-                 Margin="10">
+                 Margin="10"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="Margin" Value="2"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                </Style>
+            </ListBox.ItemContainerStyle>
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Border BorderBrush="LightGray"
                             Background="LightPink"
                             BorderThickness="1"
                             CornerRadius="4"
-                            Width="243"
                             Padding="8"
                             Margin="4">
                         <StackPanel>
                             <TextBlock Text="{Binding Title}"
                                        FontWeight="Bold"
                                        FontSize="13"
-                                       HorizontalAlignment="Center"/>
+                                       TextWrapping="Wrap"
+                                       MaxHeight="40"
+                                       HorizontalAlignment="Center"
+                                       Margin="0,0,0,4"/>
                             <TextBlock Text="{Binding Description}"
                                        TextWrapping="Wrap"
                                        MaxHeight="40"
                                        TextTrimming="CharacterEllipsis"/>
-                            <TextBlock Text="{Binding DueDate, StringFormat='Fällig: {0:dd.MM.yyyy}'}"/>
+                            <TextBlock Text="{Binding DueDate, StringFormat='Fällig: {0:dd.MM.yyyy}'}"
+                                       FontSize="11"
+                                       Foreground="Gray"/>
                         </StackPanel>
                     </Border>
                 </DataTemplate>
@@ -69,26 +80,37 @@
         <ListBox Grid.Column="1" Grid.Row="1"
                  ItemsSource="{Binding DoingCards}"
                  SelectedItem="{Binding SelectedCard}"
-                 Margin="10">
+                 Margin="10"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="Margin" Value="2"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                </Style>
+            </ListBox.ItemContainerStyle>
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Border BorderBrush="LightGray"
-                    Background="LightSkyBlue"
-                    BorderThickness="1"
-                    CornerRadius="4"
-                    Width="243"
-                    Padding="8"
-                    Margin="4">
+                            Background="LightSkyBlue"
+                            BorderThickness="1"
+                            CornerRadius="4"
+                            Padding="8"
+                            Margin="4">
                         <StackPanel>
                             <TextBlock Text="{Binding Title}"
-                               FontWeight="Bold"
-                               FontSize="13"
-                               HorizontalAlignment="Center"/>
+                                       FontWeight="Bold"
+                                       FontSize="13"
+                                       TextWrapping="Wrap"
+                                       MaxHeight="40"
+                                       HorizontalAlignment="Center"
+                                       Margin="0,0,0,4"/>
                             <TextBlock Text="{Binding Description}"
-                               TextWrapping="Wrap"
-                               MaxHeight="40"
-                               TextTrimming="CharacterEllipsis"/>
-                            <TextBlock Text="{Binding DueDate, StringFormat='Fällig: {0:dd.MM.yyyy}'}"/>
+                                       TextWrapping="Wrap"
+                                       MaxHeight="40"
+                                       TextTrimming="CharacterEllipsis"/>
+                            <TextBlock Text="{Binding DueDate, StringFormat='Fällig: {0:dd.MM.yyyy}'}"
+                                       FontSize="11"
+                                       Foreground="Gray"/>
                         </StackPanel>
                     </Border>
                 </DataTemplate>
@@ -104,26 +126,37 @@
         <ListBox Grid.Column="2" Grid.Row="1"
                  ItemsSource="{Binding DoneCards}"
                  SelectedItem="{Binding SelectedCard}"
-                 Margin="10">
+                 Margin="10"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="Margin" Value="2"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                </Style>
+            </ListBox.ItemContainerStyle>
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Border BorderBrush="LightGray"
-                    Background="LightSeaGreen"
-                    BorderThickness="1"
-                    CornerRadius="4"
-                    Width="243"
-                    Padding="8"
-                    Margin="4">
+                            Background="LightSeaGreen"
+                            BorderThickness="1"
+                            CornerRadius="4"
+                            Padding="8"
+                            Margin="4">
                         <StackPanel>
                             <TextBlock Text="{Binding Title}"
-                               FontWeight="Bold"
-                               FontSize="13"
-                               HorizontalAlignment="Center"/>
+                                       FontWeight="Bold"
+                                       FontSize="13"
+                                       TextWrapping="NoWrap"
+                                       MaxHeight="40"
+                                       HorizontalAlignment="Center"
+                                       Margin="0,0,0,4"/>
                             <TextBlock Text="{Binding Description}"
-                               TextWrapping="NoWrap"
-                               MaxHeight="40"
-                               TextTrimming="CharacterEllipsis"/>
-                            <TextBlock Text="{Binding DueDate, StringFormat='Fällig: {0:dd.MM.yyyy}'}"/>
+                                       TextWrapping="NoWrap"
+                                       MaxHeight="40"
+                                       TextTrimming="CharacterEllipsis"/>
+                            <TextBlock Text="{Binding DueDate, StringFormat='Fällig: {0:dd.MM.yyyy}'}"
+                                       FontSize="11"
+                                       Foreground="Gray"/>
                         </StackPanel>
                     </Border>
                 </DataTemplate>
