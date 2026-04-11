@@ -9,6 +9,44 @@
         Title="KanbanBoard" Height="600" Width="1300">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVisibility"/>
+
+        <DataTemplate x:Key="CardTemplate">
+            <Border x:Name="ItemBorder"
+                    Background="White"
+                    BorderBrush="LightGray"
+                    BorderThickness="1"
+                    CornerRadius="4"
+                    Padding="8"
+                    Margin="4">
+                <StackPanel>
+                    <TextBlock Text="{Binding Title}"
+                               FontWeight="Bold"
+                               FontSize="13"
+                               TextWrapping="Wrap"                       
+                               MaxHeight="40"                       
+                               HorizontalAlignment="Center"                      
+                               Margin="0,0,0,4"/>
+                    <TextBlock Text="{Binding Description}"                       
+                               TextWrapping="Wrap"                       
+                               MaxHeight="40"                       
+                               TextTrimming="CharacterEllipsis"/>
+                    <TextBlock Text="{Binding DueDate, StringFormat='Fällig: {0:dd.MM.yyyy}'}"                       
+                               FontSize="11"                       
+                               Foreground="Gray"/>
+                </StackPanel>
+            </Border>
+            <DataTemplate.Triggers>
+                <DataTrigger Binding="{Binding Status}" Value="{x:Static models:CardStatus.ToDo}">
+                    <Setter TargetName="ItemBorder" Property="Background" Value="LightPink"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Status}" Value="{x:Static models:CardStatus.Doing}">
+                    <Setter TargetName="ItemBorder" Property="Background" Value="LightSkyBlue"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Status}" Value="{x:Static models:CardStatus.Done}">
+                    <Setter TargetName="ItemBorder" Property="Background" Value="LightSeaGreen"/>
+                </DataTrigger>
+            </DataTemplate.Triggers>
+        </DataTemplate>
     </Window.Resources>
 
     <Grid>
@@ -34,6 +72,7 @@
         <ListBox Grid.Column="0" Grid.Row="1"
                  ItemsSource="{Binding ToDoCards}"
                  SelectedItem="{Binding SelectedCard}"
+                 ItemTemplate="{StaticResource CardTemplate}"
                  Margin="10"
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListBox.ItemContainerStyle>
@@ -42,33 +81,6 @@
                     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
                 </Style>
             </ListBox.ItemContainerStyle>
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Border BorderBrush="LightGray"
-                            Background="LightPink"
-                            BorderThickness="1"
-                            CornerRadius="4"
-                            Padding="8"
-                            Margin="4">
-                        <StackPanel>
-                            <TextBlock Text="{Binding Title}"
-                                       FontWeight="Bold"
-                                       FontSize="13"
-                                       TextWrapping="Wrap"
-                                       MaxHeight="40"
-                                       HorizontalAlignment="Center"
-                                       Margin="0,0,0,4"/>
-                            <TextBlock Text="{Binding Description}"
-                                       TextWrapping="Wrap"
-                                       MaxHeight="40"
-                                       TextTrimming="CharacterEllipsis"/>
-                            <TextBlock Text="{Binding DueDate, StringFormat='Fällig: {0:dd.MM.yyyy}'}"
-                                       FontSize="11"
-                                       Foreground="Gray"/>
-                        </StackPanel>
-                    </Border>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
         </ListBox>
 
         <TextBlock Grid.Column="1" Grid.Row="0"
@@ -78,43 +90,17 @@
                    HorizontalAlignment="Center"
                    Margin="10"/>
         <ListBox Grid.Column="1" Grid.Row="1"
-                 ItemsSource="{Binding DoingCards}"
-                 SelectedItem="{Binding SelectedCard}"
-                 Margin="10"
-                 ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+         ItemsSource="{Binding DoingCards}"
+         SelectedItem="{Binding SelectedCard}"
+         ItemTemplate="{StaticResource CardTemplate}"
+         Margin="10"
+         ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
                     <Setter Property="Margin" Value="2"/>
                     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
                 </Style>
             </ListBox.ItemContainerStyle>
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Border BorderBrush="LightGray"
-                            Background="LightSkyBlue"
-                            BorderThickness="1"
-                            CornerRadius="4"
-                            Padding="8"
-                            Margin="4">
-                        <StackPanel>
-                            <TextBlock Text="{Binding Title}"
-                                       FontWeight="Bold"
-                                       FontSize="13"
-                                       TextWrapping="Wrap"
-                                       MaxHeight="40"
-                                       HorizontalAlignment="Center"
-                                       Margin="0,0,0,4"/>
-                            <TextBlock Text="{Binding Description}"
-                                       TextWrapping="Wrap"
-                                       MaxHeight="40"
-                                       TextTrimming="CharacterEllipsis"/>
-                            <TextBlock Text="{Binding DueDate, StringFormat='Fällig: {0:dd.MM.yyyy}'}"
-                                       FontSize="11"
-                                       Foreground="Gray"/>
-                        </StackPanel>
-                    </Border>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
         </ListBox>
 
         <TextBlock Grid.Column="2" Grid.Row="0"
@@ -124,43 +110,17 @@
                    HorizontalAlignment="Center"
                    Margin="10"/>
         <ListBox Grid.Column="2" Grid.Row="1"
-                 ItemsSource="{Binding DoneCards}"
-                 SelectedItem="{Binding SelectedCard}"
-                 Margin="10"
-                 ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+         ItemsSource="{Binding DoneCards}"
+         SelectedItem="{Binding SelectedCard}"
+         ItemTemplate="{StaticResource CardTemplate}"
+         Margin="10"
+         ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
                     <Setter Property="Margin" Value="2"/>
                     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
                 </Style>
             </ListBox.ItemContainerStyle>
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Border BorderBrush="LightGray"
-                            Background="LightSeaGreen"
-                            BorderThickness="1"
-                            CornerRadius="4"
-                            Padding="8"
-                            Margin="4">
-                        <StackPanel>
-                            <TextBlock Text="{Binding Title}"
-                                       FontWeight="Bold"
-                                       FontSize="13"
-                                       TextWrapping="NoWrap"
-                                       MaxHeight="40"
-                                       HorizontalAlignment="Center"
-                                       Margin="0,0,0,4"/>
-                            <TextBlock Text="{Binding Description}"
-                                       TextWrapping="NoWrap"
-                                       MaxHeight="40"
-                                       TextTrimming="CharacterEllipsis"/>
-                            <TextBlock Text="{Binding DueDate, StringFormat='Fällig: {0:dd.MM.yyyy}'}"
-                                       FontSize="11"
-                                       Foreground="Gray"/>
-                        </StackPanel>
-                    </Border>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
         </ListBox>
 
 
