@@ -17,6 +17,10 @@ z. B. Benutzeroberflächen, Datenstruktur, MVVM Architektur, Zustandsverwaltung 
 - Details einer Karte ändern (Titel, Status, Beschreibung, Fälligkeitsdatum)
 - MVVM Architektur
 - Repository Pattern für Datenpersistenz
+- Beschreibung für Karten erstellbar
+- Tags können Karten hinzugefügt werden
+- Lokale Datenspeicherung (z. B. JSON oder SQLite)
+- Kanban Layout (ToDo / Doing / Done)
 
 ## Projektstruktur
 
@@ -35,9 +39,5 @@ Das Projekt ist in mehrere Schichten unterteilt:
 
 ## Geplante Erweiterungen
 
-- Beschreibung für Karten
-- Tags / Labels
-- Lokale Datenspeicherung (z. B. JSON oder SQLite)
 - UI und Bedienbarkeit verbessern
-- Kanban Layout (ToDo / Doing / Done)
 - Drag & Drop Bedienung
