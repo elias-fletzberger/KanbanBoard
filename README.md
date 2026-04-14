@@ -9,7 +9,7 @@ Ein einfaches Kanban-Board als Desktop-Anwendung, entwickelt mit C# und WPF.
 Das Projekt dient dazu, grundlegende Konzepte der Anwendungsentwicklung zu üben,
 z. B. Benutzeroberflächen, Datenstruktur, MVVM Architektur, Zustandsverwaltung und Unit tests.
 
-[KanbanBoard Screenshot](docs/screenshots/main-window.png)
+![KanbanBoard Screenshot](docs/screenshots/main-window.png)
 
 ## Funktionen
 
