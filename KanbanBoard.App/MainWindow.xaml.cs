@@ -30,4 +30,9 @@ public partial class MainWindow : Window
             }
         }
     }
+
+    private void ListBox_Drop(object sender, DragEventArgs e)
+    {
+
+    }
 }
