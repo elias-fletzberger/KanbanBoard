@@ -91,11 +91,12 @@
                    HorizontalAlignment="Center"
                    Margin="10"/>
         <ListBox Grid.Column="1" Grid.Row="1"
-         ItemsSource="{Binding DoingCards}"
-         SelectedItem="{Binding SelectedCard}"
-         ItemTemplate="{StaticResource CardTemplate}"
-         Margin="10"
-         ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                 ItemsSource="{Binding DoingCards}"
+                 SelectedItem="{Binding SelectedCard}"
+                 ItemTemplate="{StaticResource CardTemplate}"
+                 Margin="10"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                 PreviewMouseMove="ListBox_PreviewMouseMove">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
                     <Setter Property="Margin" Value="2"/>
@@ -111,11 +112,12 @@
                    HorizontalAlignment="Center"
                    Margin="10"/>
         <ListBox Grid.Column="2" Grid.Row="1"
-         ItemsSource="{Binding DoneCards}"
-         SelectedItem="{Binding SelectedCard}"
-         ItemTemplate="{StaticResource CardTemplate}"
-         Margin="10"
-         ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                 ItemsSource="{Binding DoneCards}"
+                 SelectedItem="{Binding SelectedCard}"
+                 ItemTemplate="{StaticResource CardTemplate}"
+                 Margin="10"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                 PreviewMouseMove="ListBox_PreviewMouseMove">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
                     <Setter Property="Margin" Value="2"/>
