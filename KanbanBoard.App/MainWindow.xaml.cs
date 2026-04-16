@@ -33,6 +33,38 @@ public partial class MainWindow : Window
 
     private void ListBox_Drop(object sender, DragEventArgs e)
     {
+        if (e.Data.GetDataPresent(typeof(CardItem)))
+        {
+            if (sender is ListBox listBox)
+            {
+                var card = e.Data.GetData(typeof(CardItem)) as CardItem;
+                var column = Grid.GetColumn(listBox);
 
+                if (card is not null)
+                {
+                    var newStatus = card.Status;
+
+                    switch (column)
+                    {
+                        case 0:
+                            newStatus = CardStatus.ToDo;
+                            break;
+                        case 1:
+                            newStatus = CardStatus.Doing;
+                            break;
+                        case 2:
+                            newStatus = CardStatus.Done;
+                            break;
+                        default:
+                            break;
+                    }
+
+                    if(card.Status!= newStatus)
+                    {
+                        card.Status = newStatus;
+                    }
+                }
+            }
+        }
     }
 }
