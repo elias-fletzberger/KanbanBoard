@@ -25,7 +25,12 @@ public partial class MainWindow : Window
             {
                 if (listBox.SelectedItem is CardItem card)
                 {
-                    DragDrop.DoDragDrop(listBox, card, DragDropEffects.Move);
+                    if (listBox.ItemContainerGenerator.ContainerFromItem(card) is ListBoxItem listBoxItem)
+                    {
+                        listBoxItem.Opacity = 0.5;
+                        DragDrop.DoDragDrop(listBox, card, DragDropEffects.Move);
+                        listBoxItem.Opacity = 1.0;
+                    }
                 }
             }
         }
