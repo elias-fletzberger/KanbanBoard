@@ -1,0 +1,53 @@
+﻿using KanbanBoard.Core.Models;
+using System.Windows;
+using System.Windows.Documents;
+using System.Windows.Controls;
+using System.Windows.Media;
+
+namespace KanbanBoard.App.DragDrop;
+
+
+public class DragPreviewAdorner : Adorner
+{
+    //private readonly UIElement _adornedElement;
+    private readonly CardItem _card;
+    private readonly Border _preview;
+    //protected override int VisualChildrenCount => base.VisualChildrenCount;
+
+    public DragPreviewAdorner(UIElement adornedElement, CardItem card) : base(adornedElement)
+    {
+        //_adornedElement = adornedElement;
+        _card = card;
+
+        _preview = new Border();
+        switch (card.Status)
+        {
+            case CardStatus.ToDo:
+                _preview.Background = Brushes.LightPink;
+                break;
+
+            case CardStatus.Doing:
+                _preview.Background = Brushes.LightSkyBlue;
+                break;
+
+            case CardStatus.Done:
+                _preview.Background = Brushes.LightSeaGreen;
+                break;
+        }
+        _preview.BorderBrush = Brushes.LightGray;
+        _preview.BorderThickness = new Thickness(1);
+        _preview.CornerRadius = new CornerRadius(4);
+        _preview.Padding = new Thickness(8);
+        _preview.Opacity = 0.5;
+        _preview.Child = new TextBlock
+        {
+            Text = _card.Title,
+            FontWeight = FontWeights.Bold,
+            FontSize = 13,
+            TextWrapping = TextWrapping.Wrap,
+            MaxHeight = 40,
+            HorizontalAlignment = HorizontalAlignment.Center,
+            Margin = new Thickness(0,0,0,4)
+        };
+    }
+}
