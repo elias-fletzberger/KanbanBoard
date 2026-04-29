@@ -26,6 +26,17 @@ public class DragPreviewAdorner : Adorner
             throw new ArgumentOutOfRangeException(nameof(index));
         }
     }
+    protected override Size MeasureOverride(Size constraint)
+    {
+        _preview.Measure(constraint);
+        return _preview.DesiredSize;
+    }
+    protected override Size ArrangeOverride(Size finalSize)
+    {
+        Rect previewRect = new Rect(10, 10, _preview.DesiredSize.Width, _preview.DesiredSize.Height);
+        _preview.Arrange(previewRect);
+        return finalSize;
+    }
 
     public DragPreviewAdorner(UIElement adornedElement, CardItem card) : base(adornedElement)
     {
