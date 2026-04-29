@@ -13,7 +13,10 @@ public class DragPreviewAdorner : Adorner
     //private readonly UIElement _adornedElement;
     private readonly CardItem _card;
     private readonly Border _preview;
+    private double _left;
+    private double _top;
     
+
     protected override int VisualChildrenCount => 1;
     protected override Visual GetVisualChild(int index)
     {
@@ -26,17 +29,31 @@ public class DragPreviewAdorner : Adorner
             throw new ArgumentOutOfRangeException(nameof(index));
         }
     }
+
+
     protected override Size MeasureOverride(Size constraint)
     {
         _preview.Measure(constraint);
         return _preview.DesiredSize;
     }
+
     protected override Size ArrangeOverride(Size finalSize)
     {
-        Rect previewRect = new Rect(10, 10, _preview.DesiredSize.Width, _preview.DesiredSize.Height);
+        Rect previewRect = new Rect(_left, _top, _preview.DesiredSize.Width, _preview.DesiredSize.Height);
         _preview.Arrange(previewRect);
         return finalSize;
     }
+
+    public void UpdatePosition(double left, double top)
+    {
+        _left = left;
+        _top = top;
+
+        InvalidateArrange();
+
+        AdornerLayer.GetAdornerLayer(AdornedElement)?.Update(AdornedElement);
+    }
+
 
     public DragPreviewAdorner(UIElement adornedElement, CardItem card) : base(adornedElement)
     {

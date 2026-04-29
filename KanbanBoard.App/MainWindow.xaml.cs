@@ -13,6 +13,8 @@ namespace KanbanBoard.App;
 /// </summary>
 public partial class MainWindow : Window
 {
+    private DragPreviewAdorner? _dragPreview;
+
     public MainWindow()
     {
         InitializeComponent();
@@ -31,12 +33,12 @@ public partial class MainWindow : Window
                     {
                         listBoxItem.Opacity = 0.5;
 
-                        AdornerLayer? adornerLayer = AdornerLayer.GetAdornerLayer(listBox);
-                        DragPreviewAdorner dragPreview = new DragPreviewAdorner(listBox, card);
+                        AdornerLayer? adornerLayer = AdornerLayer.GetAdornerLayer(RootGrid);
+                        _dragPreview = new DragPreviewAdorner(RootGrid, card);
 
                         if (adornerLayer is not null)
                         {
-                            adornerLayer.Add(dragPreview);                          
+                            adornerLayer.Add(_dragPreview);                          
                         }
                         try
                         {
@@ -44,10 +46,12 @@ public partial class MainWindow : Window
                         }
                         finally
                         {
-                            if(adornerLayer is not null)
-                            {  
-                                adornerLayer.Remove(dragPreview);
+                            if (adornerLayer is not null && _dragPreview is not null)
+                            {
+                                adornerLayer.Remove(_dragPreview);
                             }
+
+                            _dragPreview = null;
                             listBoxItem.Opacity = 1.0;
                         }
                     }
@@ -91,5 +95,12 @@ public partial class MainWindow : Window
                 }
             }
         }
+    }
+
+    private void RootGrid_DragOver(object sender, DragEventArgs e)
+    {
+        Point pos = e.GetPosition(RootGrid);
+        _dragPreview?.UpdatePosition(pos.X, pos.Y);
+              
     }
 }
