@@ -10,7 +10,6 @@ namespace KanbanBoard.App.DragAndDrop;
 
 public class DragPreviewAdorner : Adorner
 {
-    //private readonly UIElement _adornedElement;
     private readonly CardItem _card;
     private readonly Border _preview;
     private double _left;
@@ -57,7 +56,6 @@ public class DragPreviewAdorner : Adorner
 
     public DragPreviewAdorner(UIElement adornedElement, CardItem card) : base(adornedElement)
     {
-        //_adornedElement = adornedElement;
         _card = card;
 
         _preview = new Border();

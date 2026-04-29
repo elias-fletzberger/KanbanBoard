@@ -101,6 +101,5 @@ public partial class MainWindow : Window
     {
         Point pos = e.GetPosition(RootGrid);
         _dragPreview?.UpdatePosition(pos.X, pos.Y);
-              
     }
 }
