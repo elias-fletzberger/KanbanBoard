@@ -23,6 +23,8 @@ z. B. Benutzeroberflächen, Datenstruktur, MVVM Architektur, Zustandsverwaltung 
 - Kanban Layout (ToDo / Doing / Done)
 - Drag & Drop Bedienung der Karten
 
+![DragDrop Screenshot](docs/screenshots/DragDrop_cards.png)
+
 ## Projektstruktur
 
 Das Projekt ist in mehrere Schichten unterteilt:
