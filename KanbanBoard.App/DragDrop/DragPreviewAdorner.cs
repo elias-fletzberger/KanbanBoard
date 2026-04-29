@@ -1,4 +1,5 @@
 ﻿using KanbanBoard.Core.Models;
+using System;
 using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Controls;
@@ -12,7 +13,19 @@ public class DragPreviewAdorner : Adorner
     //private readonly UIElement _adornedElement;
     private readonly CardItem _card;
     private readonly Border _preview;
-    //protected override int VisualChildrenCount => base.VisualChildrenCount;
+    
+    protected override int VisualChildrenCount => 1;
+    protected override Visual GetVisualChild(int index)
+    {
+        if (index == 0)
+        {
+            return _preview;
+        }
+        else
+        {
+            throw new ArgumentOutOfRangeException(nameof(index));
+        }
+    }
 
     public DragPreviewAdorner(UIElement adornedElement, CardItem card) : base(adornedElement)
     {
