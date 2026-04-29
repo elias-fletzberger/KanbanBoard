@@ -21,6 +21,7 @@ z. B. Benutzeroberflächen, Datenstruktur, MVVM Architektur, Zustandsverwaltung 
 - Tags können Karten hinzugefügt werden
 - Lokale Datenspeicherung (z. B. JSON oder SQLite)
 - Kanban Layout (ToDo / Doing / Done)
+- Drag & Drop Bedienung der Karten
 
 ## Projektstruktur
 
@@ -39,5 +40,13 @@ Das Projekt ist in mehrere Schichten unterteilt:
 
 ## Geplante Erweiterungen
 
-- UI und Bedienbarkeit verbessern
-- Drag & Drop Bedienung
+- UI
+  - Darkmode
+  - Hover-Effekte für Karten
+  - Spalten bei DragOver hervorheben
+  - Menübar für aktuelle und neue Buttons
+
+- Features
+  - Sortierung der Karten in den Spalten nach CreatedAt / UpdatedAt / DueDate
+  - Ladefehler fixen der CreatedAt und UpdatedAt bei App-Start auf aktuelle Zeit setzt
+  - seperates Fenster zur Bearbeitung von Karten
