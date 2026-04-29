@@ -77,7 +77,7 @@ public class DragPreviewAdorner : Adorner
         _preview.BorderThickness = new Thickness(1);
         _preview.CornerRadius = new CornerRadius(4);
         _preview.Padding = new Thickness(8);
-        _preview.Opacity = 0.5;
+        _preview.Opacity = 1.0;
         _preview.Child = new TextBlock
         {
             Text = _card.Title,
