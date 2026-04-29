@@ -5,7 +5,7 @@ using System.Windows.Documents;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace KanbanBoard.App.DragDrop;
+namespace KanbanBoard.App.DragAndDrop;
 
 
 public class DragPreviewAdorner : Adorner

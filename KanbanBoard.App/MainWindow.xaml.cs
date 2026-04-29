@@ -1,7 +1,9 @@
 ﻿using KanbanBoard.App.ViewModels;
+using KanbanBoard.App.DragAndDrop;
 using KanbanBoard.Core.Models;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Documents;
 using System.Windows.Input;
 
 namespace KanbanBoard.App;
@@ -28,8 +30,26 @@ public partial class MainWindow : Window
                     if (listBox.ItemContainerGenerator.ContainerFromItem(card) is ListBoxItem listBoxItem)
                     {
                         listBoxItem.Opacity = 0.5;
-                        DragDrop.DoDragDrop(listBox, card, DragDropEffects.Move);
-                        listBoxItem.Opacity = 1.0;
+
+                        AdornerLayer? adornerLayer = AdornerLayer.GetAdornerLayer(listBox);
+                        DragPreviewAdorner dragPreview = new DragPreviewAdorner(listBox, card);
+
+                        if (adornerLayer is not null)
+                        {
+                            adornerLayer.Add(dragPreview);                          
+                        }
+                        try
+                        {
+                            DragDrop.DoDragDrop(listBox, card, DragDropEffects.Move);
+                        }
+                        finally
+                        {
+                            if(adornerLayer is not null)
+                            {  
+                                adornerLayer.Remove(dragPreview);
+                            }
+                            listBoxItem.Opacity = 1.0;
+                        }
                     }
                 }
             }
