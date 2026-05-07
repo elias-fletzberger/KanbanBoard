@@ -53,6 +53,7 @@
           AllowDrop="True"
           DragOver="RootGrid_DragOver">
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.5*"/>
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="2*"/>
@@ -63,15 +64,28 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-
-        <!-- Left Side: Card-Lists ToDo / Doing / Done -->
-        <TextBlock Grid.Column="0" Grid.Row="0"
+        <!-- Menu-Bar -->
+        <StackPanel Grid.Column="0" Grid.Row="1" Margin="5,10,5,10">
+            <Button Width="45" Height="45">
+                <StackPanel>
+                    <Image Source="/icons/new_icon_black.png"/>
+                </StackPanel>
+            </Button>
+            <Button Content="löschen"/>
+            <TextBlock Text="Sortieren:"/>
+            <Button Content="Erstellt"/>
+            <Button Content="Aktuallisiert"/>
+            <Button Content="Fälligkeit"/>
+        </StackPanel>
+        
+        <!-- Card-Lists: ToDo / Doing / Done -->
+        <TextBlock Grid.Column="1" Grid.Row="0"
                    Text="To Do"
                    FontWeight="Bold"
                    FontSize="20"
                    HorizontalAlignment="Center"
                    Margin="10"/>
-        <ListBox Grid.Column="0" Grid.Row="1"
+        <ListBox Grid.Column="1" Grid.Row="1"
                  ItemsSource="{Binding ToDoCards}"
                  SelectedItem="{Binding SelectedCard}"
                  ItemTemplate="{StaticResource CardTemplate}"
@@ -88,13 +102,13 @@
             </ListBox.ItemContainerStyle>
         </ListBox>
 
-        <TextBlock Grid.Column="1" Grid.Row="0"
+        <TextBlock Grid.Column="2" Grid.Row="0"
                    Text="Doing"
                    FontWeight="Bold"
                    FontSize="20"
                    HorizontalAlignment="Center"
                    Margin="10"/>
-        <ListBox Grid.Column="1" Grid.Row="1"
+        <ListBox Grid.Column="2" Grid.Row="1"
                  ItemsSource="{Binding DoingCards}"
                  SelectedItem="{Binding SelectedCard}"
                  ItemTemplate="{StaticResource CardTemplate}"
@@ -111,13 +125,13 @@
             </ListBox.ItemContainerStyle>
         </ListBox>
 
-        <TextBlock Grid.Column="2" Grid.Row="0"
+        <TextBlock Grid.Column="3" Grid.Row="0"
                    Text="Done"
                    FontWeight="Bold"
                    FontSize="20"
                    HorizontalAlignment="Center"
                    Margin="10"/>
-        <ListBox Grid.Column="2" Grid.Row="1"
+        <ListBox Grid.Column="3" Grid.Row="1"
                  ItemsSource="{Binding DoneCards}"
                  SelectedItem="{Binding SelectedCard}"
                  ItemTemplate="{StaticResource CardTemplate}"
@@ -136,14 +150,14 @@
 
 
         <!-- Right Side: Details -->
-        <StackPanel Grid.Column="3" Grid.Row="0" Orientation="Horizontal" Margin="10,0,10,0">
+        <StackPanel Grid.Column="4" Grid.Row="0" Orientation="Horizontal" Margin="10,0,10,0">
             <TextBlock Grid.Column="1" Grid.Row="0"
                        Text="DETAILS"
                        FontWeight="Bold"
                        FontSize="16"
                        VerticalAlignment="Center" 
                        Margin="10"/>
-            
+
             <Button Content="Neue Karte"                 
             Command="{Binding CreateCardCommand}" 
             Width="100"
@@ -156,8 +170,7 @@
             Height="30"
             Margin="10"/>
         </StackPanel>
-
-        <StackPanel Grid.Column="3" Grid.Row="1"  Margin="20,10,20,20">
+        <StackPanel Grid.Column="4" Grid.Row="1"  Margin="20,10,20,10">
             <TextBlock Text="Titel" FontWeight="Bold"/>
             <TextBox Text="{Binding SelectedCard.Title, UpdateSourceTrigger=PropertyChanged}"
                      Margin="0,5,0,15"/>

@@ -9,6 +9,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="icons\new_icon_black.png" />
+    <None Remove="icons\new_icon_white.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\KanbanBoard.Core\KanbanBoard.Core.csproj" />
     <ProjectReference Include="..\KanbanBoard.Infrastructure\KanbanBoard.Infrastructure.csproj" />
   </ItemGroup>
@@ -16,6 +21,15 @@
   <ItemGroup>
     <Folder Include="Converts\" />
     <Folder Include="Views\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="icons\new_icon_black.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\new_icon_white.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>
