@@ -52,125 +52,162 @@
     <Grid x:Name="RootGrid"
           AllowDrop="True"
           DragOver="RootGrid_DragOver">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.5*"/>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="3*"/>
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <!-- Menu-Bar -->
-        <StackPanel Grid.Column="0" Grid.Row="1" Margin="5,10,5,10">
-            <Button Width="45" Height="45">
+        <StackPanel Grid.Row="0" 
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    Margin="0,5,0,5">
+            <Button Width="32" Height="32"
+                    BorderThickness="0"
+                    Background="Transparent"
+                    FocusVisualStyle="{x:Null}"
+                    Command="{Binding CreateCardCommand}"
+                    ToolTip="add new card"
+                    Margin="0,0,20,0">
                 <StackPanel>
-                    <Image Source="/icons/new_icon_black.png"/>
+                    <Image Source="/icons/plus-square.png"/>
                 </StackPanel>
             </Button>
-            <Button Content="löschen"/>
-            <TextBlock Text="Sortieren:"/>
-            <Button Content="Erstellt"/>
-            <Button Content="Aktuallisiert"/>
-            <Button Content="Fälligkeit"/>
+            <Button Width="32" Height="32"
+                    BorderThickness="0"
+                    Background="Transparent"
+                    FocusVisualStyle="{x:Null}"
+                    Command="{Binding DeleteCardCommand}"
+                    ToolTip="delete selected card"
+                    Margin="0,0,20,0">
+                <StackPanel>
+                    <Image Source="/icons/trash3.png"/>
+                </StackPanel>
+            </Button>
+            <TextBlock Text="sort cards:"
+                       VerticalAlignment="Center"
+                       Margin="0,0,5,0"/>
+            <Button Content="created at"
+                    Width="60" Height="30"
+                    BorderThickness="0"
+                    Margin="0,0,5,0"/>
+            <Button Content="updated at"
+                    Width="65" Height="30"
+                    BorderThickness="0"
+                    Margin="0,0,5,0"/>
+            <Button Content="due date"
+                    Width="55" Height="30"
+                    BorderThickness="0"
+                    Margin="0,0,0,0"/>
+            
         </StackPanel>
-        
-        <!-- Card-Lists: ToDo / Doing / Done -->
-        <TextBlock Grid.Column="1" Grid.Row="0"
-                   Text="To Do"
-                   FontWeight="Bold"
-                   FontSize="20"
-                   HorizontalAlignment="Center"
-                   Margin="10"/>
-        <ListBox Grid.Column="1" Grid.Row="1"
-                 ItemsSource="{Binding ToDoCards}"
-                 SelectedItem="{Binding SelectedCard}"
-                 ItemTemplate="{StaticResource CardTemplate}"
-                 Margin="10"
-                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                 PreviewMouseMove="ListBox_PreviewMouseMove"
-                 AllowDrop="True"
-                 Drop="ListBox_Drop">
-            <ListBox.ItemContainerStyle>
-                <Style TargetType="ListBoxItem">
-                    <Setter Property="Margin" Value="2"/>
-                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                </Style>
-            </ListBox.ItemContainerStyle>
-        </ListBox>
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    Margin="0,5,30,5">
+            <Button Width="26" Height="26"
+                    BorderThickness="0"
+                    Background="Transparent"
+                    FocusVisualStyle="{x:Null}"
+                    ToolTip="Darkmode"
+                    Margin="0">
+                <StackPanel>
+                    <Image Source="/icons/moon.png"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
 
-        <TextBlock Grid.Column="2" Grid.Row="0"
-                   Text="Doing"
-                   FontWeight="Bold"
-                   FontSize="20"
-                   HorizontalAlignment="Center"
-                   Margin="10"/>
-        <ListBox Grid.Column="2" Grid.Row="1"
-                 ItemsSource="{Binding DoingCards}"
-                 SelectedItem="{Binding SelectedCard}"
-                 ItemTemplate="{StaticResource CardTemplate}"
-                 Margin="10"
-                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                 PreviewMouseMove="ListBox_PreviewMouseMove"
-                 AllowDrop="True"
-                 Drop="ListBox_Drop">
-            <ListBox.ItemContainerStyle>
-                <Style TargetType="ListBoxItem">
-                    <Setter Property="Margin" Value="2"/>
-                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                </Style>
-            </ListBox.ItemContainerStyle>
-        </ListBox>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-        <TextBlock Grid.Column="3" Grid.Row="0"
-                   Text="Done"
-                   FontWeight="Bold"
-                   FontSize="20"
-                   HorizontalAlignment="Center"
-                   Margin="10"/>
-        <ListBox Grid.Column="3" Grid.Row="1"
-                 ItemsSource="{Binding DoneCards}"
-                 SelectedItem="{Binding SelectedCard}"
-                 ItemTemplate="{StaticResource CardTemplate}"
-                 Margin="10"
-                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                 PreviewMouseMove="ListBox_PreviewMouseMove"
-                 AllowDrop="True"
-                 Drop="ListBox_Drop">
-            <ListBox.ItemContainerStyle>
-                <Style TargetType="ListBoxItem">
-                    <Setter Property="Margin" Value="2"/>
-                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                </Style>
-            </ListBox.ItemContainerStyle>
-        </ListBox>
-
-
-        <!-- Right Side: Details -->
-        <StackPanel Grid.Column="4" Grid.Row="0" Orientation="Horizontal" Margin="10,0,10,0">
-            <TextBlock Grid.Column="1" Grid.Row="0"
-                       Text="DETAILS"
+            <!-- Card-Lists: ToDo / Doing / Done -->
+            <TextBlock Grid.Column="0" Grid.Row="0"
+                       Text="To Do"
                        FontWeight="Bold"
-                       FontSize="16"
-                       VerticalAlignment="Center" 
+                       FontSize="20"
+                       HorizontalAlignment="Center"
                        Margin="10"/>
+            <ListBox Grid.Column="0" Grid.Row="1"
+                     ItemsSource="{Binding ToDoCards}"
+                     SelectedItem="{Binding SelectedCard}"
+                     ItemTemplate="{StaticResource CardTemplate}"
+                     Margin="10"
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                     PreviewMouseMove="ListBox_PreviewMouseMove"
+                     AllowDrop="True"
+                     Drop="ListBox_Drop">
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="Margin" Value="2"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+            </ListBox>
 
-            <Button Content="Neue Karte"                 
-            Command="{Binding CreateCardCommand}" 
-            Width="100"
-            Height="30"
-            Margin="40,10,10,10"/>
+            <TextBlock Grid.Column="1" Grid.Row="0"
+                       Text="Doing"
+                       FontWeight="Bold"
+                       FontSize="20"
+                       HorizontalAlignment="Center"
+                       Margin="10"/>
+            <ListBox Grid.Column="1" Grid.Row="1"
+                     ItemsSource="{Binding DoingCards}"
+                     SelectedItem="{Binding SelectedCard}"
+                     ItemTemplate="{StaticResource CardTemplate}"
+                     Margin="10"
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                     PreviewMouseMove="ListBox_PreviewMouseMove"
+                     AllowDrop="True"
+                     Drop="ListBox_Drop">
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="Margin" Value="2"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+            </ListBox>
 
-            <Button Content="lösche Karte"
-            Command="{Binding DeleteCardCommand}"
-            Width="100"
-            Height="30"
-            Margin="10"/>
-        </StackPanel>
-        <StackPanel Grid.Column="4" Grid.Row="1"  Margin="20,10,20,10">
+            <TextBlock Grid.Column="2" Grid.Row="0"
+                       Text="Done"
+                       FontWeight="Bold"
+                       FontSize="20"
+                       HorizontalAlignment="Center"
+                       Margin="10"/>
+            <ListBox Grid.Column="2" Grid.Row="1"
+                     ItemsSource="{Binding DoneCards}"
+                     SelectedItem="{Binding SelectedCard}"
+                     ItemTemplate="{StaticResource CardTemplate}"
+                     Margin="10"
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                     PreviewMouseMove="ListBox_PreviewMouseMove"
+                     AllowDrop="True"
+                     Drop="ListBox_Drop">
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="Margin" Value="2"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+            </ListBox>
+
+
+            <!-- Right Side: Details -->
+            <StackPanel Grid.Column="3" Grid.Row="0" Orientation="Horizontal" Margin="10,0,10,0">
+                <TextBlock Text="DETAILS"
+                           FontWeight="Bold"
+                           FontSize="16"
+                           VerticalAlignment="Center" 
+                           Margin="10"/>
+            </StackPanel>
+            <StackPanel Grid.Column="3" Grid.Row="1"  Margin="20,10,20,10">
             <TextBlock Text="Titel" FontWeight="Bold"/>
             <TextBox Text="{Binding SelectedCard.Title, UpdateSourceTrigger=PropertyChanged}"
                      Margin="0,5,0,15"/>
@@ -205,5 +242,6 @@
             <TextBlock Text="{Binding SelectedCard.UpdatedAt, StringFormat='{}{0:dd.MM.yyyy HH:mm}'}"
                      Margin="0,5,250,0"/>
         </StackPanel>
+        </Grid>
     </Grid>
 </Window>

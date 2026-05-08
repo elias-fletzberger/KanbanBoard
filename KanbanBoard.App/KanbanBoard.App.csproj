@@ -9,8 +9,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="icons\moon-fill.png" />
+    <None Remove="icons\moon.png" />
     <None Remove="icons\new_icon_black.png" />
     <None Remove="icons\new_icon_white.png" />
+    <None Remove="icons\plus-square-fill.png" />
+    <None Remove="icons\plus-square.png" />
+    <None Remove="icons\trash3-fill.png" />
+    <None Remove="icons\trash3.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,10 +30,22 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="icons\new_icon_black.png">
+    <Resource Include="icons\moon-fill.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="icons\new_icon_white.png">
+    <Resource Include="icons\moon.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\plus-square-fill.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\plus-square.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\trash3-fill.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\trash3.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
