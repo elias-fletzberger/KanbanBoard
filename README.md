@@ -53,7 +53,10 @@ Das Projekt ist in mehrere Schichten unterteilt:
   - Ladefehler fixen der CreatedAt und UpdatedAt bei App-Start auf aktuelle Zeit setzt
   - seperates Fenster zur Bearbeitung von Karten
 
+<br>
+<br>
 
-### Hinweis
+#### Hinweis
 Icons by Bootstrap Icons
+<br>
 https://icons.getbootstrap.com/
