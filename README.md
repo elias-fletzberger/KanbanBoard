@@ -22,6 +22,7 @@ z. B. Benutzeroberflächen, Datenstruktur, MVVM Architektur, Zustandsverwaltung 
 - Lokale Datenspeicherung (z. B. JSON oder SQLite)
 - Kanban Layout (ToDo / Doing / Done)
 - Drag & Drop Bedienung der Karten
+- Menübar für aktuelle und neue Buttons
 
 ![DragDrop Screenshot](docs/screenshots/DragDrop_cards.png)
 
@@ -46,9 +47,13 @@ Das Projekt ist in mehrere Schichten unterteilt:
   - Darkmode
   - Hover-Effekte für Karten
   - Spalten bei DragOver hervorheben
-  - Menübar für aktuelle und neue Buttons
 
 - Features
   - Sortierung der Karten in den Spalten nach CreatedAt / UpdatedAt / DueDate
   - Ladefehler fixen der CreatedAt und UpdatedAt bei App-Start auf aktuelle Zeit setzt
   - seperates Fenster zur Bearbeitung von Karten
+
+
+### Hinweis
+Icons by Bootstrap Icons
+https://icons.getbootstrap.com/
