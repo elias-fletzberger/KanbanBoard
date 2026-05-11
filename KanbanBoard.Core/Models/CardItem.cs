@@ -1,6 +1,7 @@
 ﻿
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Text.Json.Serialization;
 
 namespace KanbanBoard.Core.Models;
 
@@ -120,5 +121,26 @@ public class CardItem : INotifyPropertyChanged
         _tags = new List<string>();
         CreatedAt = DateTime.Now;
         UpdatedAt = CreatedAt;
+    }
+
+    [JsonConstructor]
+    public CardItem(
+    Guid id,
+    string title,
+    CardStatus status,
+    string description,
+    List<string>? tags,
+    DateTime createdAt,
+    DateTime updatedAt,
+    DateTime? dueDate)
+    {
+        Id = id == Guid.Empty ? Guid.NewGuid() : id;
+        _title = title ?? string.Empty;
+        _status = status;
+        _description = description ?? string.Empty;
+        _tags = tags ?? new List<string>();
+        CreatedAt = createdAt == default ? DateTime.Now : createdAt;
+        _updatedAt = updatedAt == default ? CreatedAt : updatedAt;
+        _dueDate = dueDate;
     }
 }

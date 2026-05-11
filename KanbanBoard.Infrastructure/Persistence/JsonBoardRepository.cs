@@ -14,7 +14,6 @@ namespace KanbanBoard.Infrastructure.Persistence;
 /// </summary>
 public class JsonBoardRepository : IBoardRepository
 {
-    //private Board _board = new();
     private static readonly string _folderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),"KanbanBoard");
     private readonly string _filePath = Path.Combine(_folderPath, "board.json");
 
