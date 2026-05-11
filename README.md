@@ -19,7 +19,7 @@ z. B. Benutzeroberflächen, Datenstruktur, MVVM Architektur, Zustandsverwaltung 
 - Repository Pattern für Datenpersistenz
 - Beschreibung für Karten erstellbar
 - Tags können Karten hinzugefügt werden
-- Lokale Datenspeicherung (z. B. JSON oder SQLite)
+- Lokale Datenspeicherung (in JSON)
 - Kanban Layout (ToDo / Doing / Done)
 - Drag & Drop Bedienung der Karten
 - Menübar für aktuelle und neue Buttons
@@ -41,7 +41,7 @@ Das Projekt ist in mehrere Schichten unterteilt:
 - .NET 8
 - WPF
 
-## Geplante Erweiterungen
+## Geplante Erweiterungen / Updates
 
 - UI
   - Darkmode
@@ -50,7 +50,6 @@ Das Projekt ist in mehrere Schichten unterteilt:
 
 - Features
   - Sortierung der Karten in den Spalten nach CreatedAt / UpdatedAt / DueDate
-  - Ladefehler fixen der CreatedAt und UpdatedAt bei App-Start auf aktuelle Zeit setzt
   - seperates Fenster zur Bearbeitung von Karten
 
 <br>
