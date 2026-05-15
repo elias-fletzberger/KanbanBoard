@@ -1,10 +1,12 @@
 ﻿using KanbanBoard.App.ViewModels;
 using KanbanBoard.App.DragAndDrop;
+using KanbanBoard.App.Views;
 using KanbanBoard.Core.Models;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
+
 
 namespace KanbanBoard.App;
 
@@ -101,5 +103,18 @@ public partial class MainWindow : Window
     {
         Point pos = e.GetPosition(RootGrid);
         _dragPreview?.UpdatePosition(pos.X, pos.Y);
+    }
+
+    private void ListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+    {
+        if (sender is ListBox listBox)
+        {
+            if (listBox.SelectedItem is CardItem card)
+            {
+                var window = new CardEditWindow(card);
+                window.Owner = this;
+                window.ShowDialog();
+            }
+        }
     }
 }
