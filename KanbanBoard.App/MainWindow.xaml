@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:KanbanBoard.App"
         xmlns:models="clr-namespace:KanbanBoard.Core.Models;assembly=KanbanBoard.Core"
         mc:Ignorable="d"
-        Title="KanbanBoard" Height="600" Width="1300">
+        Title="KanbanBoard" Height="600" Width="1000">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVisibility"/>
 
@@ -116,19 +116,19 @@
             </Button>
         </StackPanel>
 
+        <!-- Card-Lists: ToDo / Doing / Done -->
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <!-- Card-Lists: ToDo / Doing / Done -->
+            <!-- ToDo -->
             <TextBlock Grid.Column="0" Grid.Row="0"
                        Text="To Do"
                        FontWeight="Bold"
@@ -152,7 +152,8 @@
                     </Style>
                 </ListBox.ItemContainerStyle>
             </ListBox>
-
+    
+            <!-- Doing -->
             <TextBlock Grid.Column="1" Grid.Row="0"
                        Text="Doing"
                        FontWeight="Bold"
@@ -176,7 +177,8 @@
                     </Style>
                 </ListBox.ItemContainerStyle>
             </ListBox>
-
+    
+            <!-- Done -->
             <TextBlock Grid.Column="2" Grid.Row="0"
                        Text="Done"
                        FontWeight="Bold"
@@ -200,51 +202,6 @@
                     </Style>
                 </ListBox.ItemContainerStyle>
             </ListBox>
-
-
-            <!-- Right Side: Details -->
-            <StackPanel Grid.Column="3" Grid.Row="0" Orientation="Horizontal" Margin="10,0,10,0">
-                <TextBlock Text="DETAILS"
-                           FontWeight="Bold"
-                           FontSize="16"
-                           VerticalAlignment="Center" 
-                           Margin="10"/>
-            </StackPanel>
-            <StackPanel Grid.Column="3" Grid.Row="1"  Margin="20,10,20,10">
-            <TextBlock Text="Titel" FontWeight="Bold"/>
-            <TextBox Text="{Binding SelectedCard.Title, UpdateSourceTrigger=PropertyChanged}"
-                     Margin="0,5,0,15"/>
-
-            <TextBlock Text="Status" FontWeight="Bold"/>
-            <ComboBox ItemsSource="{Binding StatusValues}"
-                     SelectedItem="{Binding SelectedCard.Status}"
-                     Margin="0,5,0,15"/>
-
-            <TextBlock Text="Beschreibung" FontWeight="Bold"/>
-            <TextBox Text="{Binding SelectedCard.Description, UpdateSourceTrigger=PropertyChanged}"
-                     AcceptsReturn="True"
-                     Height="100"
-                     TextWrapping="Wrap"
-                     Margin="0,5,0,15"/>
-
-            <TextBlock Text="Tags" FontWeight="Bold"/>
-            <TextBox Text="{Binding TagsText, UpdateSourceTrigger=PropertyChanged}"
-                     Margin="0,5,0,35"/>
-
-            <TextBlock Text="Fällig am" FontWeight="Bold"/>
-            <DatePicker SelectedDate="{Binding SelectedCard.DueDate}"
-                     Padding="5,0,5,0"
-                     Margin="0,5,250,25"/>
-
-
-            <TextBlock Text="Erstellt am" FontWeight="Bold"/>
-            <TextBlock Text="{Binding SelectedCard.CreatedAt, StringFormat='{}{0:dd.MM.yyyy HH:mm}'}"
-                     Margin="0,5,250,15"/>
-
-            <TextBlock Text="Zuletzt geändert" FontWeight="Bold"/>
-            <TextBlock Text="{Binding SelectedCard.UpdatedAt, StringFormat='{}{0:dd.MM.yyyy HH:mm}'}"
-                     Margin="0,5,250,0"/>
-        </StackPanel>
         </Grid>
     </Grid>
 </Window>

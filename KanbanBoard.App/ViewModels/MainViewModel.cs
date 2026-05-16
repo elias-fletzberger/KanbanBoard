@@ -85,7 +85,7 @@ public class MainViewModel : INotifyPropertyChanged
             {
                 _tagsText = string.Empty;
             }
-            OnPropertyChanged(nameof(TagsText)); 
+            OnPropertyChanged(nameof(TagsText));
 
             if (_selectedCard is not null)
             {
@@ -103,16 +103,16 @@ public class MainViewModel : INotifyPropertyChanged
     public ICommand DeleteCardCommand { get; }
 
 
-    
-    public string TagsText 
-    { 
+
+    public string TagsText
+    {
         get
         {
             return _tagsText;
         }
         set
         {
-            if (_tagsText == value) 
+            if (_tagsText == value)
                 return;
 
             _tagsText = value;
@@ -128,7 +128,7 @@ public class MainViewModel : INotifyPropertyChanged
             }
         }
     }
-    
+
 
 
     public MainViewModel()
