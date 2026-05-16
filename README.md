@@ -23,6 +23,7 @@ z. B. Benutzeroberflächen, Datenstruktur, MVVM Architektur, Zustandsverwaltung 
 - Kanban Layout (ToDo / Doing / Done)
 - Drag & Drop Bedienung der Karten
 - Menübar für aktuelle und neue Buttons
+- seperates Fenster zur Bearbeitung von Karten
 
 ![DragDrop Screenshot](docs/screenshots/DragDrop_cards.png)
 
@@ -45,12 +46,12 @@ Das Projekt ist in mehrere Schichten unterteilt:
 
 - UI
   - Darkmode
-  - Hover-Effekte für Karten
+  - Hover-Effekte für Karten + Cursor Änderung
   - Spalten bei DragOver hervorheben
 
 - Features
   - Sortierung der Karten in den Spalten nach CreatedAt / UpdatedAt / DueDate
-  - seperates Fenster zur Bearbeitung von Karten
+  
 
 <br>
 <br>
