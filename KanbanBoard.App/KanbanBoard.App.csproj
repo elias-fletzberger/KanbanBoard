@@ -9,6 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="icons\arrow-down-up.png" />
+    <None Remove="icons\caret-down-fill.png" />
+    <None Remove="icons\caret-up-fill.png" />
+    <None Remove="icons\caret-up.png" />
     <None Remove="icons\moon-fill.png" />
     <None Remove="icons\moon.png" />
     <None Remove="icons\new_icon_black.png" />
@@ -29,19 +33,19 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="icons\moon-fill.png">
+    <Resource Include="icons\caret-down-fill.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\caret-up-fill.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\caret-up.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="icons\moon.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="icons\plus-square-fill.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
     <Resource Include="icons\plus-square.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="icons\trash3-fill.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="icons\trash3.png">

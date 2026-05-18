@@ -73,6 +73,7 @@
                     <Image Source="/icons/plus-square.png"/>
                 </StackPanel>
             </Button>
+            
             <Button Width="32" Height="32"
                     BorderThickness="0"
                     Background="Transparent"
@@ -84,23 +85,34 @@
                     <Image Source="/icons/trash3.png"/>
                 </StackPanel>
             </Button>
-            <TextBlock Text="sort cards:"
-                       VerticalAlignment="Center"
-                       Margin="0,0,5,0"/>
-            <Button Content="created at"
-                    Width="60" Height="30"
+
+            <ComboBox Width="100"
+                      Height="28"
+                      FontSize="14"
+                      FontWeight="Bold"
+                      BorderThickness="0"
+                      ToolTip="sort cards"
+                      SelectedIndex="0">
+                <ComboBoxItem Content="created at"
+                              FontSize="12"
+                              FontWeight="Normal"/>
+                <ComboBoxItem Content="updated at"
+                              FontSize="12"
+                              FontWeight="Normal"/>
+                <ComboBoxItem Content="due date"
+                              FontSize="12"
+                              FontWeight="Normal"/>
+            </ComboBox>
+            <Button Width="16" Height="28"
                     BorderThickness="0"
-                    Margin="0,0,5,0"/>
-            <Button Content="updated at"
-                    Width="65" Height="30"
-                    BorderThickness="0"
-                    Margin="0,0,5,0"/>
-            <Button Content="due date"
-                    Width="55" Height="30"
-                    BorderThickness="0"
-                    Margin="0,0,0,0"/>
-            
+                    FocusVisualStyle="{x:Null}"
+                    ToolTip="ascending / descending">
+                <StackPanel>
+                    <Image Source="/icons/caret-down-fill.png"/>
+                </StackPanel>
+            </Button>
         </StackPanel>
+        
         <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Right"
                     Margin="0,5,30,5">
