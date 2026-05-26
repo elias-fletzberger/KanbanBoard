@@ -28,68 +28,71 @@ public class MainViewModel : INotifyPropertyChanged
 
  
     private readonly IBoardRepository _repository;
-
     private readonly DispatcherTimer _autoSaveTimer;
-
     private CardItem? _selectedCard;
-
     private string _tagsText;
-
     private bool _isSortDescending = true;
-
-
-    public bool IsSortDescending
-    {
-        get => _isSortDescending;
-        set
-        {
-            if(_isSortDescending == value) return;
-            _isSortDescending = value;
-            OnPropertyChanged();
-            OnPropertyChanged(nameof(SortDirectionIcon));
-        }
-    }
-
-    public string SortDirectionIcon
-    {
-        get
-        {
-            if (IsSortDescending)
-            {
-                return "/icons/caret-down-fill.png";
-            }
-            else
-            {
-                return "/icons/caret-up-fill.png";
-            }
-        }
-    }
+    private CardSortMode _selectedSortMode = CardSortMode.CreatedAt;
 
     public Array StatusValues => Enum.GetValues(typeof(CardStatus));
+    public Array SortModes => Enum.GetValues(typeof(CardSortMode));
+
 
     public ObservableCollection<CardItem> Cards { get; }
+    private IEnumerable<CardItem> SortCards(IEnumerable<CardItem> cards)
+    {
+        IEnumerable<CardItem> sortedCards;
+
+        switch (SelectedSortMode)
+        {
+            case CardSortMode.CreatedAt:
+                sortedCards = cards.OrderBy(card => card.CreatedAt);
+                break;
+
+            case CardSortMode.UpdatedAt:
+                sortedCards = cards.OrderBy(card => card.UpdatedAt);
+                break;
+
+            case CardSortMode.DueDate:
+                sortedCards = cards.OrderBy(card => card.DueDate);
+                break;
+
+            default:
+                sortedCards = cards;
+                break;
+        }
+
+        if (IsSortDescending)
+        {
+            sortedCards = sortedCards.Reverse();
+        }
+
+        return sortedCards;
+    }
     public IEnumerable<CardItem> ToDoCards
-    { 
+    {
         get
         {
-            return Cards.Where(card => card.Status == CardStatus.ToDo);
+            return SortCards(Cards.Where(card => card.Status == CardStatus.ToDo));
         }
 
     }
     public IEnumerable<CardItem> DoingCards
     {
         get 
-        { 
-            return Cards.Where(card => card.Status == CardStatus.Doing);
+        {
+            return SortCards(Cards.Where(card => card.Status == CardStatus.Doing));
         }
     }
     public IEnumerable<CardItem> DoneCards
     {
         get
         {
-            return Cards.Where(card => card.Status == CardStatus.Done);
+            return SortCards(Cards.Where(card => card.Status == CardStatus.Done));
         }
     }
+    
+    
 
 
     public CardItem? SelectedCard
@@ -156,6 +159,47 @@ public class MainViewModel : INotifyPropertyChanged
         }
     }
 
+    public bool IsSortDescending
+    {
+        get => _isSortDescending;
+        set
+        {
+            if (_isSortDescending == value) return;
+            _isSortDescending = value;
+            OnPropertyChanged();
+            OnPropertyChanged(nameof(SortDirectionIcon));
+        }
+    }
+
+    public string SortDirectionIcon
+    {
+        get
+        {
+            if (IsSortDescending)
+            {
+                return "/icons/caret-down-fill.png";
+            }
+            else
+            {
+                return "/icons/caret-up-fill.png";
+            }
+        }
+    }
+
+    public CardSortMode SelectedSortMode
+    {
+        get => _selectedSortMode;
+        set
+        {
+            if(_selectedSortMode  == value) 
+                return;
+
+            _selectedSortMode = value;
+            
+            OnPropertyChanged();
+            RefreshBoardColumns();
+        }
+    }
 
 
     public MainViewModel()
@@ -245,5 +289,6 @@ public class MainViewModel : INotifyPropertyChanged
     private void ChangeSortDirection()
     {
         IsSortDescending = !IsSortDescending;
+        RefreshBoardColumns();
     }
 }
