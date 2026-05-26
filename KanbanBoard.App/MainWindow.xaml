@@ -94,16 +94,12 @@
                       ItemsSource="{Binding SortModes}"
                       SelectedItem="{Binding SelectedSortMode}"
                       ToolTip="sort cards">
-                <!-- SelectedIndex="0"-->
-                <!-- <ComboBoxItem Content="created at"
-                              FontSize="12"
-                              FontWeight="Normal"/>
-                <ComboBoxItem Content="updated at"
-                              FontSize="12"
-                              FontWeight="Normal"/>
-                <ComboBoxItem Content="due date"
-                              FontSize="12"
-                              FontWeight="Normal"/> -->
+                <ComboBox.ItemContainerStyle>
+                    <Style TargetType="ComboBoxItem">
+                        <Setter Property="FontSize" Value="12"/>
+                        <Setter Property="FontWeight" Value="Normal"/>
+                    </Style>
+                </ComboBox.ItemContainerStyle>
             </ComboBox>
             <Button Width="16" Height="28"
                     BorderThickness="0"
