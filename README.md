@@ -9,7 +9,7 @@ Ein einfaches Kanban-Board als Desktop-Anwendung, entwickelt mit C# und WPF.
 Das Projekt dient dazu, grundlegende Konzepte der Anwendungsentwicklung zu üben,
 z. B. Benutzeroberflächen, Datenstruktur, MVVM Architektur, Zustandsverwaltung und Unit tests.
 
-![KanbanBoard Screenshot](docs/screenshots/main-window_4.png)
+![KanbanBoard Screenshot](docs/screenshots/main-window_5.png)
 
 ## Funktionen
 
@@ -24,6 +24,7 @@ z. B. Benutzeroberflächen, Datenstruktur, MVVM Architektur, Zustandsverwaltung 
 - Drag & Drop Bedienung der Karten
 - Menübar für aktuelle und neue Buttons
 - seperates Fenster zur Bearbeitung von Karten
+- Sortierung der Karten in den Spalten nach CreatedAt / UpdatedAt / DueDate
 
 ![DragDrop Screenshot](docs/screenshots/DragDrop_cards.png)
 
@@ -43,15 +44,11 @@ Das Projekt ist in mehrere Schichten unterteilt:
 - WPF
 
 ## Geplante Erweiterungen / Updates
-
+   
 - UI
   - Darkmode
   - Hover-Effekte für Karten + Cursor Änderung
   - Spalten bei DragOver hervorheben
-
-- Features
-  - Sortierung der Karten in den Spalten nach CreatedAt / UpdatedAt / DueDate
-  
 
 <br>
 <br>
