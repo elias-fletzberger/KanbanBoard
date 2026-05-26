@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -36,6 +35,35 @@ public class MainViewModel : INotifyPropertyChanged
 
     private string _tagsText;
 
+    private bool _isSortDescending = true;
+
+
+    public bool IsSortDescending
+    {
+        get => _isSortDescending;
+        set
+        {
+            if(_isSortDescending == value) return;
+            _isSortDescending = value;
+            OnPropertyChanged();
+            OnPropertyChanged(nameof(SortDirectionIcon));
+        }
+    }
+
+    public string SortDirectionIcon
+    {
+        get
+        {
+            if (IsSortDescending)
+            {
+                return "/icons/caret-down-fill.png";
+            }
+            else
+            {
+                return "/icons/caret-up-fill.png";
+            }
+        }
+    }
 
     public Array StatusValues => Enum.GetValues(typeof(CardStatus));
 
@@ -98,10 +126,9 @@ public class MainViewModel : INotifyPropertyChanged
     }
 
 
-
     public ICommand CreateCardCommand { get; }
     public ICommand DeleteCardCommand { get; }
-
+    public ICommand ChangeSortDirectionCommand { get; }
 
 
     public string TagsText
@@ -154,6 +181,7 @@ public class MainViewModel : INotifyPropertyChanged
 
         CreateCardCommand = new RelayCommand(execute => CreateCard());
         DeleteCardCommand = new RelayCommand(execute => DeleteCard(), canExecute => SelectedCard != null);
+        ChangeSortDirectionCommand = new RelayCommand(execute => ChangeSortDirection());
 
         _autoSaveTimer = new DispatcherTimer();
         _autoSaveTimer.Interval = TimeSpan.FromSeconds(1);
@@ -212,5 +240,10 @@ public class MainViewModel : INotifyPropertyChanged
         OnPropertyChanged(nameof(ToDoCards));
         OnPropertyChanged(nameof(DoingCards));
         OnPropertyChanged(nameof(DoneCards));
+    }
+
+    private void ChangeSortDirection()
+    {
+        IsSortDescending = !IsSortDescending;
     }
 }

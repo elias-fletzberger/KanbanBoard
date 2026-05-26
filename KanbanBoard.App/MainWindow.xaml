@@ -106,9 +106,10 @@
             <Button Width="16" Height="28"
                     BorderThickness="0"
                     FocusVisualStyle="{x:Null}"
+                    Command="{Binding ChangeSortDirectionCommand}"
                     ToolTip="ascending / descending">
                 <StackPanel>
-                    <Image Source="/icons/caret-down-fill.png"/>
+                    <Image Source="{Binding SortDirectionIcon}"/>
                 </StackPanel>
             </Button>
         </StackPanel>
