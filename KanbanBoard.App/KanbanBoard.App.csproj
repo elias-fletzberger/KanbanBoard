@@ -12,13 +12,14 @@
     <None Remove="icons\arrow-down-up.png" />
     <None Remove="icons\caret-down-fill.png" />
     <None Remove="icons\caret-up-fill.png" />
-    <None Remove="icons\caret-up.png" />
     <None Remove="icons\moon-fill.png" />
+    <None Remove="icons\moon-stars.png" />
     <None Remove="icons\moon.png" />
     <None Remove="icons\new_icon_black.png" />
     <None Remove="icons\new_icon_white.png" />
     <None Remove="icons\plus-square-fill.png" />
     <None Remove="icons\plus-square.png" />
+    <None Remove="icons\sun.png" />
     <None Remove="icons\trash3-fill.png" />
     <None Remove="icons\trash3.png" />
   </ItemGroup>
@@ -39,13 +40,16 @@
     <Resource Include="icons\caret-up-fill.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="icons\caret-up.png">
+    <Resource Include="icons\moon-stars.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="icons\moon.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="icons\plus-square.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\sun.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="icons\trash3.png">

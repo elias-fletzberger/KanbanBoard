@@ -33,6 +33,7 @@ public class MainViewModel : INotifyPropertyChanged
     private string _tagsText;
     private bool _isSortDescending = true;
     private CardSortMode _selectedSortMode = CardSortMode.CreatedAt;
+    private bool _isDarkmodeActive = false;
 
     public Array StatusValues => Enum.GetValues(typeof(CardStatus));
     public Array SortModes => Enum.GetValues(typeof(CardSortMode));
@@ -132,6 +133,7 @@ public class MainViewModel : INotifyPropertyChanged
     public ICommand CreateCardCommand { get; }
     public ICommand DeleteCardCommand { get; }
     public ICommand ChangeSortDirectionCommand { get; }
+    public ICommand ChangeDarkmodeCommand { get; }
 
 
     public string TagsText
@@ -201,6 +203,33 @@ public class MainViewModel : INotifyPropertyChanged
         }
     }
 
+    public bool IsDarkmodeActive
+    {
+        get => _isDarkmodeActive;
+        set
+        {
+            if (_isDarkmodeActive == value) return;
+            _isDarkmodeActive = value;
+            OnPropertyChanged();
+            OnPropertyChanged(nameof(DarkmodeIcon));
+        }
+    }
+
+    public string DarkmodeIcon
+    {
+        get
+        {
+            if (IsDarkmodeActive)
+            {
+                return "/icons/sun.png";
+            }
+            else
+            {
+                return "/icons/moon-stars.png";
+            }
+        }
+    }
+
 
     public MainViewModel()
     {
@@ -226,6 +255,7 @@ public class MainViewModel : INotifyPropertyChanged
         CreateCardCommand = new RelayCommand(execute => CreateCard());
         DeleteCardCommand = new RelayCommand(execute => DeleteCard(), canExecute => SelectedCard != null);
         ChangeSortDirectionCommand = new RelayCommand(execute => ChangeSortDirection());
+        ChangeDarkmodeCommand = new RelayCommand(execute => ChangeDarkmode());
 
         _autoSaveTimer = new DispatcherTimer();
         _autoSaveTimer.Interval = TimeSpan.FromSeconds(1);
@@ -290,5 +320,10 @@ public class MainViewModel : INotifyPropertyChanged
     {
         IsSortDescending = !IsSortDescending;
         RefreshBoardColumns();
+    }
+
+    private void ChangeDarkmode()
+    {
+        IsDarkmodeActive = !IsDarkmodeActive;
     }
 }

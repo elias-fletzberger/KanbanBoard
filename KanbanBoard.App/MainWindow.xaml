@@ -119,10 +119,10 @@
                     BorderThickness="0"
                     Background="Transparent"
                     FocusVisualStyle="{x:Null}"
-                    ToolTip="Darkmode"
-                    Margin="0">
+                    Command="{Binding ChangeDarkmodeCommand}"
+                    ToolTip="Darkmode / Whitemode">
                 <StackPanel>
-                    <Image Source="/icons/moon.png"/>
+                    <Image Source="{Binding DarkmodeIcon}"/>
                 </StackPanel>
             </Button>
         </StackPanel>
