@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using System.Windows.Threading;
+using System.Windows.Media;
 using KanbanBoard.App.Commands;
 using KanbanBoard.Core.Interfaces;
 using KanbanBoard.Core.Models;
@@ -34,6 +35,19 @@ public class MainViewModel : INotifyPropertyChanged
     private bool _isSortDescending = true;
     private CardSortMode _selectedSortMode = CardSortMode.CreatedAt;
     private bool _isDarkmodeActive = false;
+
+    //colors
+    private static readonly Brush DarkBackground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#202020"));
+    private static readonly Brush DarkToolbarBackground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#304545"));
+    private static readonly Brush DarkToolbarBorder = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#707070"));
+    private static readonly Brush DarkColumnBackground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#203535"));
+    private static readonly Brush DarkColumnBorder = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#555555"));
+    private static readonly Brush LightBackground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#f7f7f7"));
+    private static readonly Brush LightToolbarBackground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#fcfcfc"));
+    private static readonly Brush LightToolbarBorder = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#e0e0e0"));
+    private static readonly Brush LightColumnBackground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#fcfcfc"));
+    private static readonly Brush LightColumnBorder = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#e0e0e0"));
+    
 
     public Array StatusValues => Enum.GetValues(typeof(CardStatus));
     public Array SortModes => Enum.GetValues(typeof(CardSortMode));
@@ -212,6 +226,12 @@ public class MainViewModel : INotifyPropertyChanged
             _isDarkmodeActive = value;
             OnPropertyChanged();
             OnPropertyChanged(nameof(DarkmodeIcon));
+            OnPropertyChanged(nameof(WindowBackground));
+            OnPropertyChanged(nameof(TextColor));
+            OnPropertyChanged(nameof(ToolbarBackground));
+            OnPropertyChanged(nameof(ToolbarBorder));
+            OnPropertyChanged(nameof(ColumnBackground));
+            OnPropertyChanged(nameof(ColumnBorder));
         }
     }
 
@@ -227,6 +247,54 @@ public class MainViewModel : INotifyPropertyChanged
             {
                 return "/icons/moon-stars.png";
             }
+        }
+    }
+
+    public Brush WindowBackground
+    {
+        get
+        {
+            return IsDarkmodeActive ? DarkBackground : LightBackground;
+        }
+    }
+
+    public Brush TextColor
+    {
+        get
+        {
+            return IsDarkmodeActive ? Brushes.White : Brushes.Black;
+        }
+    }
+
+    public Brush ToolbarBackground
+    {
+        get
+        {
+            return IsDarkmodeActive ? DarkToolbarBackground : LightToolbarBackground;
+        }
+    }
+
+    public Brush ToolbarBorder
+    {
+        get
+        {
+            return IsDarkmodeActive ? DarkToolbarBorder : LightToolbarBorder;
+        }
+    }
+
+    public Brush ColumnBackground
+    {
+        get
+        {
+            return IsDarkmodeActive ? DarkColumnBackground : LightColumnBackground;
+        }
+    }
+
+    public Brush ColumnBorder
+    {
+        get
+        {
+            return IsDarkmodeActive ? DarkColumnBorder : LightColumnBorder;
         }
     }
 
