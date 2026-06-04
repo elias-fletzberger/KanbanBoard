@@ -50,7 +50,7 @@
     </Window.Resources>
 
     <Grid x:Name="RootGrid"
-          Background="{Binding WindowBackground}"
+          Background="{Binding Theme.WindowBackground}"
           AllowDrop="True"
           DragOver="RootGrid_DragOver">
         <Grid.RowDefinitions>
@@ -60,8 +60,8 @@
 
         <!-- Menu-Bar -->
         <Border Grid.Row="0"
-                Background="{Binding ToolbarBackground}"
-                BorderBrush="{Binding ToolbarBorder}"
+                Background="{Binding Theme.ToolbarBackground}"
+                BorderBrush="{Binding Theme.ToolbarBorder}"
                 BorderThickness="0,0,0,2">
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Center"
@@ -128,7 +128,7 @@
                     Command="{Binding ChangeDarkmodeCommand}"
                     ToolTip="Darkmode / Whitemode">
                 <StackPanel>
-                    <Image Source="{Binding DarkmodeIcon}"/>
+                    <Image Source="{Binding Theme.DarkmodeIcon}"/>
                 </StackPanel>
             </Button>
         </StackPanel>
@@ -150,13 +150,13 @@
                        Text="To Do"
                        FontWeight="Bold"
                        FontSize="20"
-                       Foreground="{Binding TextColor}"
+                       Foreground="{Binding Theme.TextColor}"
                        VerticalAlignment="Bottom"
                        HorizontalAlignment="Center"
                        Margin="10,10,10,0"/>
             <ListBox Grid.Column="0" Grid.Row="1"
-                     Background="{Binding ColumnBackground}"
-                     BorderBrush="{Binding ColumnBorder}"
+                     Background="{Binding Theme.ColumnBackground}"
+                     BorderBrush="{Binding Theme.ColumnBorder}"
                      BorderThickness="2"
                      ItemsSource="{Binding ToDoCards}"
                      SelectedItem="{Binding SelectedCard}"
@@ -180,13 +180,13 @@
                        Text="Doing"
                        FontWeight="Bold"
                        FontSize="20"
-                       Foreground="{Binding TextColor}"
+                       Foreground="{Binding Theme.TextColor}"
                        VerticalAlignment="Bottom"
                        HorizontalAlignment="Center"
                        Margin="10,10,10,0"/>
             <ListBox Grid.Column="1" Grid.Row="1"
-                     Background="{Binding ColumnBackground}"
-                     BorderBrush="{Binding ColumnBorder}"
+                     Background="{Binding Theme.ColumnBackground}"
+                     BorderBrush="{Binding Theme.ColumnBorder}"
                      BorderThickness="2"
                      ItemsSource="{Binding DoingCards}"
                      SelectedItem="{Binding SelectedCard}"
@@ -210,13 +210,13 @@
                        Text="Done"
                        FontWeight="Bold"
                        FontSize="20"
-                       Foreground="{Binding TextColor}"
+                       Foreground="{Binding Theme.TextColor}"
                        VerticalAlignment="Bottom"
                        HorizontalAlignment="Center"
                        Margin="10,10,10,0"/>
             <ListBox Grid.Column="2" Grid.Row="1"
-                     Background="{Binding ColumnBackground}"
-                     BorderBrush="{Binding ColumnBorder}"
+                     Background="{Binding Theme.ColumnBackground}"
+                     BorderBrush="{Binding Theme.ColumnBorder}"
                      BorderThickness="2"
                      ItemsSource="{Binding DoneCards}"
                      SelectedItem="{Binding SelectedCard}"

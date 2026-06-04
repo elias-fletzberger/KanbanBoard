@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using System.Windows.Threading;
-using System.Windows.Media;
 using KanbanBoard.App.Commands;
 using KanbanBoard.App.Theme;
 using KanbanBoard.Core.Interfaces;
@@ -35,7 +32,6 @@ public class MainViewModel : INotifyPropertyChanged
     private string _tagsText;
     private bool _isSortDescending = true;
     private CardSortMode _selectedSortMode = CardSortMode.CreatedAt;
-    private bool _isDarkmodeActive = false;
  
 
     public Array StatusValues => Enum.GetValues(typeof(CardStatus));
@@ -205,96 +201,18 @@ public class MainViewModel : INotifyPropertyChanged
             RefreshBoardColumns();
         }
     }
+    
+    public ThemeService Theme { get; }
 
-    public bool IsDarkmodeActive
-    {
-        get => _isDarkmodeActive;
-        set
-        {
-            if (_isDarkmodeActive == value) return;
-            _isDarkmodeActive = value;
-            OnPropertyChanged();
-            OnPropertyChanged(nameof(DarkmodeIcon));
-            OnPropertyChanged(nameof(WindowBackground));
-            OnPropertyChanged(nameof(TextColor));
-            OnPropertyChanged(nameof(ToolbarBackground));
-            OnPropertyChanged(nameof(ToolbarBorder));
-            OnPropertyChanged(nameof(ColumnBackground));
-            OnPropertyChanged(nameof(ColumnBorder));
-        }
-    }
-
-    public string DarkmodeIcon
-    {
-        get
-        {
-            if (IsDarkmodeActive)
-            {
-                return "/icons/sun.png";
-            }
-            else
-            {
-                return "/icons/moon-stars.png";
-            }
-        }
-    }
-
-    public Brush WindowBackground
-    {
-        get
-        {
-            return IsDarkmodeActive ? ThemeColors.DarkBackground : ThemeColors.LightBackground;
-        }
-    }
-
-    public Brush TextColor
-    {
-        get
-        {
-            return IsDarkmodeActive ? ThemeColors.DarkTextColor : ThemeColors.LightTextColor;
-        }
-    }
-
-    public Brush ToolbarBackground
-    {
-        get
-        {
-            return IsDarkmodeActive ? ThemeColors.DarkToolbarBackground : ThemeColors.LightToolbarBackground;
-        }
-    }
-
-    public Brush ToolbarBorder
-    {
-        get
-        {
-            return IsDarkmodeActive ? ThemeColors.DarkToolbarBorder : ThemeColors.LightToolbarBorder;
-        }
-    }
-
-    public Brush ColumnBackground
-    {
-        get
-        {
-            return IsDarkmodeActive ? ThemeColors.DarkColumnBackground : ThemeColors.LightColumnBackground;
-        }
-    }
-
-    public Brush ColumnBorder
-    {
-        get
-        {
-            return IsDarkmodeActive ? ThemeColors.DarkColumnBorder : ThemeColors.LightColumnBorder;
-        }
-    }
 
 
     public MainViewModel()
     {
         _repository = new JsonBoardRepository();
-        
         var board = _repository.Load();
-
         Cards = new ObservableCollection<CardItem>(board.Cards);
+        Theme = new ThemeService();
+
 
         if (!Cards.Any())
         {
@@ -378,9 +296,8 @@ public class MainViewModel : INotifyPropertyChanged
         IsSortDescending = !IsSortDescending;
         RefreshBoardColumns();
     }
-
     private void ChangeDarkmode()
     {
-        IsDarkmodeActive = !IsDarkmodeActive;
+        Theme.ToggleTheme();
     }
 }
