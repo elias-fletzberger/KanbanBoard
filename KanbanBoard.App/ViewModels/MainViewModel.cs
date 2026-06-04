@@ -7,6 +7,7 @@ using System.Windows.Input;
 using System.Windows.Threading;
 using System.Windows.Media;
 using KanbanBoard.App.Commands;
+using KanbanBoard.App.Theme;
 using KanbanBoard.Core.Interfaces;
 using KanbanBoard.Core.Models;
 using KanbanBoard.Infrastructure.Persistence;
@@ -35,19 +36,7 @@ public class MainViewModel : INotifyPropertyChanged
     private bool _isSortDescending = true;
     private CardSortMode _selectedSortMode = CardSortMode.CreatedAt;
     private bool _isDarkmodeActive = false;
-
-    //colors
-    private static readonly Brush DarkBackground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#202020"));
-    private static readonly Brush DarkToolbarBackground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#304545"));
-    private static readonly Brush DarkToolbarBorder = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#707070"));
-    private static readonly Brush DarkColumnBackground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#203535"));
-    private static readonly Brush DarkColumnBorder = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#555555"));
-    private static readonly Brush LightBackground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#f7f7f7"));
-    private static readonly Brush LightToolbarBackground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#fcfcfc"));
-    private static readonly Brush LightToolbarBorder = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#e0e0e0"));
-    private static readonly Brush LightColumnBackground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#fcfcfc"));
-    private static readonly Brush LightColumnBorder = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#e0e0e0"));
-    
+ 
 
     public Array StatusValues => Enum.GetValues(typeof(CardStatus));
     public Array SortModes => Enum.GetValues(typeof(CardSortMode));
@@ -254,7 +243,7 @@ public class MainViewModel : INotifyPropertyChanged
     {
         get
         {
-            return IsDarkmodeActive ? DarkBackground : LightBackground;
+            return IsDarkmodeActive ? ThemeColors.DarkBackground : ThemeColors.LightBackground;
         }
     }
 
@@ -262,7 +251,7 @@ public class MainViewModel : INotifyPropertyChanged
     {
         get
         {
-            return IsDarkmodeActive ? Brushes.White : Brushes.Black;
+            return IsDarkmodeActive ? ThemeColors.DarkTextColor : ThemeColors.LightTextColor;
         }
     }
 
@@ -270,7 +259,7 @@ public class MainViewModel : INotifyPropertyChanged
     {
         get
         {
-            return IsDarkmodeActive ? DarkToolbarBackground : LightToolbarBackground;
+            return IsDarkmodeActive ? ThemeColors.DarkToolbarBackground : ThemeColors.LightToolbarBackground;
         }
     }
 
@@ -278,7 +267,7 @@ public class MainViewModel : INotifyPropertyChanged
     {
         get
         {
-            return IsDarkmodeActive ? DarkToolbarBorder : LightToolbarBorder;
+            return IsDarkmodeActive ? ThemeColors.DarkToolbarBorder : ThemeColors.LightToolbarBorder;
         }
     }
 
@@ -286,7 +275,7 @@ public class MainViewModel : INotifyPropertyChanged
     {
         get
         {
-            return IsDarkmodeActive ? DarkColumnBackground : LightColumnBackground;
+            return IsDarkmodeActive ? ThemeColors.DarkColumnBackground : ThemeColors.LightColumnBackground;
         }
     }
 
@@ -294,7 +283,7 @@ public class MainViewModel : INotifyPropertyChanged
     {
         get
         {
-            return IsDarkmodeActive ? DarkColumnBorder : LightColumnBorder;
+            return IsDarkmodeActive ? ThemeColors.DarkColumnBorder : ThemeColors.LightColumnBorder;
         }
     }
 
