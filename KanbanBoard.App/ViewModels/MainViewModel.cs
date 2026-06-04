@@ -91,9 +91,7 @@ public class MainViewModel : INotifyPropertyChanged
             return SortCards(Cards.Where(card => card.Status == CardStatus.Done));
         }
     }
-    
-    
-
+      
 
     public CardItem? SelectedCard
     {

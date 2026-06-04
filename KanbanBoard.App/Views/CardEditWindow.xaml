@@ -6,59 +6,85 @@
         xmlns:local="clr-namespace:KanbanBoard.App.Views"
         mc:Ignorable="d"
         Title="Karte bearbeiten" Height="540" Width="400">
-    <Grid>
+    <Grid Background="{Binding Theme.WindowBackground}">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="12*"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Horizontal">
             <TextBlock Text="DETAILS"
-               FontWeight="Bold"
-               FontSize="16"
-               VerticalAlignment="Center" 
-               Margin="20,0,0,0"/>
+                       Foreground="{Binding Theme.TextColor}"
+                       FontWeight="Bold"
+                       FontSize="16"
+                       VerticalAlignment="Center" 
+                       Margin="20,0,0,0"/>
         </StackPanel>
 
         <StackPanel Grid.Row="1" Margin="10,0,10,10">
-            <TextBlock Text="Titel" FontWeight="Bold"/>
+            <TextBlock Text="Titel" 
+                       Foreground="{Binding Theme.TextColor}"
+                       FontWeight="Bold"/>
             <TextBox Text="{Binding Card.Title, UpdateSourceTrigger=PropertyChanged}"
-             Margin="0,5,0,10"/>
+                     Background="{Binding Theme.ColumnBackground}"
+                     BorderBrush="{Binding Theme.ColumnBorder}"
+                     Foreground="{Binding Theme.TextColor}"
+                     Margin="0,5,0,10"/>
 
-            <TextBlock Text="Status" FontWeight="Bold"/>
+            <TextBlock Text="Status" 
+                       Foreground="{Binding Theme.TextColor}"
+                       FontWeight="Bold"/>
             <ComboBox ItemsSource="{Binding StatusValues}"
-             SelectedItem="{Binding Card.Status}"
-             Margin="0,5,0,10"/>
+                      SelectedItem="{Binding Card.Status}"
+                      Margin="0,5,0,10"/>
 
-            <TextBlock Text="Beschreibung" FontWeight="Bold"/>
+            <TextBlock Text="Beschreibung" 
+                       Foreground="{Binding Theme.TextColor}"
+                       FontWeight="Bold"/>
             <TextBox Text="{Binding Card.Description, UpdateSourceTrigger=PropertyChanged}"
-             AcceptsReturn="True"
-             Height="100"
-             TextWrapping="Wrap"
-             Margin="0,5,0,10"/>
+                     Background="{Binding Theme.ColumnBackground}"
+                     BorderBrush="{Binding Theme.ColumnBorder}"
+                     Foreground="{Binding Theme.TextColor}"
+                     AcceptsReturn="True"
+                     Height="100"
+                     TextWrapping="Wrap"
+                     Margin="0,5,0,10"/>
 
-            <TextBlock Text="Tags" FontWeight="Bold"/>
+            <TextBlock Text="Tags" 
+                       Foreground="{Binding Theme.TextColor}"
+                       FontWeight="Bold"/>
             <TextBox Text="{Binding TagsText, UpdateSourceTrigger=PropertyChanged}"
-             Margin="0,5,0,20"/>
+                     Background="{Binding Theme.ColumnBackground}"
+                     BorderBrush="{Binding Theme.ColumnBorder}"
+                     Foreground="{Binding Theme.TextColor}"
+                     Margin="0,5,0,20"/>
 
-            <TextBlock Text="Fällig am" FontWeight="Bold"/>
+            <TextBlock Text="Fällig am"
+                       Foreground="{Binding Theme.TextColor}"
+                       FontWeight="Bold"/>
             <DatePicker SelectedDate="{Binding Card.DueDate}"
                         Width="130"
                         HorizontalAlignment="Left"
-             Padding="5,0,5,0"
-             Margin="0,5,0,20"/>
+                        Padding="5,0,5,0"
+                        Margin="0,5,0,20"/>
 
 
-            <TextBlock Text="Erstellt am" FontWeight="Bold"/>
+            <TextBlock Text="Erstellt am" 
+                       Foreground="{Binding Theme.TextColor}"
+                       FontWeight="Bold"/>
             <TextBlock Text="{Binding Card.CreatedAt, StringFormat='{}{0:dd.MM.yyyy HH:mm}'}"
+                       Foreground="{Binding Theme.TextColor}"
                        Width="130"
                        HorizontalAlignment="Left"
-             Margin="0,5,0,10"/>
+                       Margin="0,5,0,10"/>
 
-            <TextBlock Text="Zuletzt geändert" FontWeight="Bold"/>
+            <TextBlock Text="Zuletzt geändert"
+                       Foreground="{Binding Theme.TextColor}"
+                       FontWeight="Bold"/>
             <TextBlock Text="{Binding Card.UpdatedAt, StringFormat='{}{0:dd.MM.yyyy HH:mm}'}"
+                       Foreground="{Binding Theme.TextColor}"
                        Width="130"
                        HorizontalAlignment="Left"
-             Margin="0,5,0,0"/>
+                       Margin="0,5,0,0"/>
         </StackPanel>
     </Grid>
 </Window>

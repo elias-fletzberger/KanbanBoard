@@ -1,8 +1,7 @@
-﻿using KanbanBoard.Core.Models;
-using System;
-using System.ComponentModel;
-using System.Linq;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using KanbanBoard.App.Theme;
+using KanbanBoard.Core.Models;
 
 namespace KanbanBoard.App.ViewModels;
 
@@ -12,24 +11,16 @@ namespace KanbanBoard.App.ViewModels;
 /// </summary>
 public class CardEditViewModel : INotifyPropertyChanged
 {
-    private string _tagsText = string.Empty;
-    public Array StatusValues => Enum.GetValues(typeof(CardStatus));
-
-    public CardItem Card { get; }
-
-    public CardEditViewModel(CardItem card)
-    {
-        Card = card;
-        _tagsText = string.Join(", ", Card.Tags);
-    }
-
-
     public event PropertyChangedEventHandler? PropertyChanged;
 
     private void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
 
+
+    private string _tagsText = string.Empty;
+    public Array StatusValues => Enum.GetValues(typeof(CardStatus));
+    
     public string TagsText
     {
         get
@@ -50,5 +41,18 @@ public class CardEditViewModel : INotifyPropertyChanged
                 .Where(tag => !string.IsNullOrWhiteSpace(tag))
                 .ToList();
         }
+    }
+
+
+    public CardItem Card { get; }
+    public ThemeService Theme { get; }
+
+
+
+    public CardEditViewModel(CardItem card, ThemeService theme)
+    {
+        Card = card;
+        _tagsText = string.Join(", ", Card.Tags);
+        Theme = theme;
     }
 }

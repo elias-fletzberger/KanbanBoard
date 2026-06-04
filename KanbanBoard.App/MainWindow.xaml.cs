@@ -1,11 +1,11 @@
-﻿using KanbanBoard.App.ViewModels;
-using KanbanBoard.App.DragAndDrop;
-using KanbanBoard.App.Views;
-using KanbanBoard.Core.Models;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
+using KanbanBoard.App.ViewModels;
+using KanbanBoard.App.DragAndDrop;
+using KanbanBoard.App.Views;
+using KanbanBoard.Core.Models;
 
 
 namespace KanbanBoard.App;
@@ -111,9 +111,12 @@ public partial class MainWindow : Window
         {
             if (listBox.SelectedItem is CardItem card)
             {
-                var window = new CardEditWindow(card);
-                window.Owner = this;
-                window.ShowDialog();
+                if (DataContext is MainViewModel vm)
+                {
+                    var window = new CardEditWindow(card, vm.Theme);
+                    window.Owner = this;
+                    window.ShowDialog();
+                }
             }
         }
     }

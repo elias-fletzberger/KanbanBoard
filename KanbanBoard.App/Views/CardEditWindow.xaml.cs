@@ -1,6 +1,7 @@
-﻿using KanbanBoard.Core.Models;
+﻿using System.Windows;
 using KanbanBoard.App.ViewModels;
-using System.Windows;
+using KanbanBoard.App.Theme;
+using KanbanBoard.Core.Models;
 
 
 namespace KanbanBoard.App.Views;
@@ -10,9 +11,9 @@ namespace KanbanBoard.App.Views;
 /// </summary>
 public partial class CardEditWindow : Window
 {
-    public CardEditWindow(CardItem card)
+    public CardEditWindow(CardItem card, ThemeService theme)
     {
         InitializeComponent();
-        DataContext = new CardEditViewModel(card);
+        DataContext = new CardEditViewModel(card, theme);
     }
 }
