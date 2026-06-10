@@ -9,19 +9,19 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="icons\arrow-down-up.png" />
-    <None Remove="icons\caret-down-fill.png" />
-    <None Remove="icons\caret-up-fill.png" />
-    <None Remove="icons\moon-fill.png" />
-    <None Remove="icons\moon-stars.png" />
-    <None Remove="icons\moon.png" />
-    <None Remove="icons\new_icon_black.png" />
-    <None Remove="icons\new_icon_white.png" />
-    <None Remove="icons\plus-square-fill.png" />
-    <None Remove="icons\plus-square.png" />
-    <None Remove="icons\sun.png" />
-    <None Remove="icons\trash3-fill.png" />
-    <None Remove="icons\trash3.png" />
+    <None Remove="Icons\arrow-down-up.png" />
+    <None Remove="Icons\caret-down-fill.png" />
+    <None Remove="Icons\caret-up-fill.png" />
+    <None Remove="Icons\moon-fill.png" />
+    <None Remove="Icons\moon-stars.png" />
+    <None Remove="Icons\moon.png" />
+    <None Remove="Icons\new_icon_black.png" />
+    <None Remove="Icons\new_icon_white.png" />
+    <None Remove="Icons\plus-square-fill.png" />
+    <None Remove="Icons\plus-square.png" />
+    <None Remove="Icons\sun.png" />
+    <None Remove="Icons\trash3-fill.png" />
+    <None Remove="Icons\trash3.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -34,25 +34,25 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="icons\caret-down-fill.png">
+    <Resource Include="Icons\caret-down-fill.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="icons\caret-up-fill.png">
+    <Resource Include="Icons\caret-up-fill.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="icons\moon-stars.png">
+    <Resource Include="Icons\moon-stars.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="icons\moon.png">
+    <Resource Include="Icons\moon.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="icons\plus-square.png">
+    <Resource Include="Icons\plus-square.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="icons\sun.png">
+    <Resource Include="Icons\sun.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="icons\trash3.png">
+    <Resource Include="Icons\trash3.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

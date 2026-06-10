@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Media;
+using KanbanBoard.App.Icons;
 
 namespace KanbanBoard.App.Theme;
 
@@ -37,18 +38,13 @@ public class ThemeService : INotifyPropertyChanged
 
 
 
-    public string DarkmodeIcon
+    public Geometry DarkmodeIcon
     {
         get
         {
-            if (IsDarkmodeActive)
-            {
-                return "/icons/sun.png";
-            }
-            else
-            {
-                return "/icons/moon-stars.png";
-            }
+            return IsDarkmodeActive
+                ? AppIcons.Sun
+                : AppIcons.MoonStars;
         }
     }
 

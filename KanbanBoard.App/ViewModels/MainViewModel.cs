@@ -3,7 +3,9 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using System.Windows.Threading;
+using System.Windows.Media;
 using KanbanBoard.App.Commands;
+using KanbanBoard.App.Icons;
 using KanbanBoard.App.Theme;
 using KanbanBoard.Core.Interfaces;
 using KanbanBoard.Core.Models;
@@ -170,18 +172,13 @@ public class MainViewModel : INotifyPropertyChanged
         }
     }
 
-    public string SortDirectionIcon
+    public Geometry SortDirectionIcon
     {
         get
         {
-            if (IsSortDescending)
-            {
-                return "/icons/caret-down-fill.png";
-            }
-            else
-            {
-                return "/icons/caret-up-fill.png";
-            }
+            return IsSortDescending
+                ? AppIcons.CaretDown
+                : AppIcons.CaretUp;
         }
     }
 

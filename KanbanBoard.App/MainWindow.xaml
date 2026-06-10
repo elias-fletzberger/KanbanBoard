@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KanbanBoard.App"
+        xmlns:icons="clr-namespace:KanbanBoard.App.Icons"
         xmlns:models="clr-namespace:KanbanBoard.Core.Models;assembly=KanbanBoard.Core"
         mc:Ignorable="d"
         Title="KanbanBoard" Height="600" Width="1000">
@@ -82,8 +83,7 @@
                                             Value="{Binding Theme.TextColor}"/>
                                 </Style>
                             </Grid.Resources>
-                            <Path Data="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
-                            <Path Data="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+                            <Path Data="{x:Static icons:AppIcons.PlusSquare}"/>
                         </Grid>
                     </Viewbox>
                 </Button>
@@ -103,7 +103,7 @@
                                             Value="{Binding Theme.TextColor}"/>
                                 </Style>
                             </Grid.Resources>
-                            <Path Data="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5"/>
+                            <Path Data="{x:Static icons:AppIcons.Trash}"/>
                         </Grid>
                     </Viewbox>
                 </Button>
@@ -128,9 +128,18 @@
                         FocusVisualStyle="{x:Null}"
                         Command="{Binding ChangeSortDirectionCommand}"
                         ToolTip="ascending / descending">
-                    <StackPanel>
-                        <Image Source="{Binding SortDirectionIcon}"/>
-                    </StackPanel>
+                    <Viewbox Width="16" Height="16"
+                             HorizontalAlignment="Center">
+                        <Grid Width="16" Height="16">
+                            <Grid.Resources>
+                                <Style TargetType="Path">
+                                    <Setter Property="Fill"
+                                            Value="{Binding Theme.TextColor}"/>
+                                </Style>
+                            </Grid.Resources>
+                            <Path Data="{Binding SortDirectionIcon}"/>
+                        </Grid>
+                    </Viewbox>
                 </Button>
             </StackPanel>
         </Border>
@@ -138,15 +147,23 @@
         <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Right"
                     Margin="0,5,30,5">
-            <Button Width="26" Height="26"
+            <Button Width="32" Height="32"
                     BorderThickness="0"
                     Background="Transparent"
                     FocusVisualStyle="{x:Null}"
                     Command="{Binding ChangeDarkmodeCommand}"
                     ToolTip="Darkmode / Whitemode">
-                <StackPanel>
-                    <Image Source="{Binding Theme.DarkmodeIcon}"/>
-                </StackPanel>
+                <Viewbox Width="20" Height="20">
+                    <Grid Width="16" Height="16">
+                        <Grid.Resources>
+                            <Style TargetType="Path">
+                                <Setter Property="Fill"
+                                        Value="{Binding Theme.TextColor}"/>
+                            </Style>
+                        </Grid.Resources>
+                        <Path Data="{Binding Theme.DarkmodeIcon}"/>
+                    </Grid>
+                </Viewbox>
             </Button>
         </StackPanel>
 
