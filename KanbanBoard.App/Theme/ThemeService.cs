@@ -38,62 +38,35 @@ public class ThemeService : INotifyPropertyChanged
 
 
 
-    public Geometry DarkmodeIcon
-    {
-        get
-        {
-            return IsDarkmodeActive
-                ? AppIcons.Sun
-                : AppIcons.MoonStars;
-        }
-    }
-
-    public Brush WindowBackground
-    {
-        get
-        {
-            return IsDarkmodeActive ? ThemeColors.DarkBackground : ThemeColors.LightBackground;
-        }
-    }
-    public Brush TextColor
-    {
-        get
-        {
-            return IsDarkmodeActive ? ThemeColors.DarkTextColor : ThemeColors.LightTextColor;
-        }
-    }
-    public Brush ToolbarBackground
-    {
-        get
-        {
-            return IsDarkmodeActive ? ThemeColors.DarkToolbarBackground : ThemeColors.LightToolbarBackground;
-        }
-    }
-    public Brush ToolbarBorder
-    {
-        get
-        {
-            return IsDarkmodeActive ? ThemeColors.DarkToolbarBorder : ThemeColors.LightToolbarBorder;
-        }
-    }
-    public Brush ColumnBackground
-    {
-        get
-        {
-            return IsDarkmodeActive ? ThemeColors.DarkColumnBackground : ThemeColors.LightColumnBackground;
-        }
-    }
-    public Brush ColumnBorder
-    {
-        get
-        {
-            return IsDarkmodeActive ? ThemeColors.DarkColumnBorder : ThemeColors.LightColumnBorder;
-        }
-    }
+    public Geometry DarkmodeIcon =>
+        IsDarkmodeActive
+            ? AppIcons.Sun
+            : AppIcons.MoonStars;
+    public Brush WindowBackground =>
+        IsDarkmodeActive
+            ? ThemeColors.DarkBackground
+            : ThemeColors.LightBackground;
+    public Brush TextColor =>
+        IsDarkmodeActive
+            ? ThemeColors.DarkTextColor
+            : ThemeColors.LightTextColor;
+    public Brush ToolbarBackground =>
+        IsDarkmodeActive
+            ? ThemeColors.DarkToolbarBackground
+            : ThemeColors.LightToolbarBackground;
+    public Brush ToolbarBorder =>
+        IsDarkmodeActive
+            ? ThemeColors.DarkToolbarBorder
+            : ThemeColors.LightToolbarBorder;
+    public Brush ColumnBackground =>
+        IsDarkmodeActive
+            ? ThemeColors.DarkColumnBackground
+            : ThemeColors.LightColumnBackground;
+    public Brush ColumnBorder =>
+        IsDarkmodeActive
+            ? ThemeColors.DarkColumnBorder
+            : ThemeColors.LightColumnBorder;
 
 
-    public void ToggleTheme()
-    {
-        IsDarkmodeActive = !IsDarkmodeActive;
-    }
+    public void ToggleTheme() => IsDarkmodeActive = !IsDarkmodeActive;
 }
