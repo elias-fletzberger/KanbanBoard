@@ -10,18 +10,11 @@
 
   <ItemGroup>
     <None Remove="Icons\arrow-down-up.png" />
-    <None Remove="Icons\caret-down-fill.png" />
-    <None Remove="Icons\caret-up-fill.png" />
     <None Remove="Icons\moon-fill.png" />
-    <None Remove="Icons\moon-stars.png" />
-    <None Remove="Icons\moon.png" />
     <None Remove="Icons\new_icon_black.png" />
     <None Remove="Icons\new_icon_white.png" />
     <None Remove="Icons\plus-square-fill.png" />
-    <None Remove="Icons\plus-square.png" />
-    <None Remove="Icons\sun.png" />
     <None Remove="Icons\trash3-fill.png" />
-    <None Remove="Icons\trash3.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,30 +24,6 @@
 
   <ItemGroup>
     <Folder Include="Converts\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="Icons\caret-down-fill.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Icons\caret-up-fill.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Icons\moon-stars.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Icons\moon.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Icons\plus-square.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Icons\sun.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Icons\trash3.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
   </ItemGroup>
 
 </Project>
