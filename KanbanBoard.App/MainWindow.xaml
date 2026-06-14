@@ -48,6 +48,7 @@
                 </DataTrigger>
             </DataTemplate.Triggers>
         </DataTemplate>
+
     </Window.Resources>
 
     <Grid x:Name="RootGrid"
@@ -108,25 +109,20 @@
                     </Viewbox>
                 </Button>
 
-                <ComboBox Width="100"
+                <ComboBox Width="90"
                           Height="28"
-                          FontSize="14"
-                          FontWeight="Bold"
-                          BorderThickness="0"
                           ItemsSource="{Binding SortModes}"
                           SelectedItem="{Binding SelectedSortMode}"
+                          BorderThickness="0.8,0.8,0,0.8"
+                          Style="{StaticResource ThemedComboBoxStyle}"
                           ToolTip="sort cards">
-                    <ComboBox.ItemContainerStyle>
-                        <Style TargetType="ComboBoxItem">
-                            <Setter Property="FontSize" Value="12"/>
-                            <Setter Property="FontWeight" Value="Normal"/>
-                        </Style>
-                    </ComboBox.ItemContainerStyle>
                 </ComboBox>
                 <Button Width="16" Height="28"
-                        BorderThickness="0"
                         FocusVisualStyle="{x:Null}"
                         Command="{Binding ChangeSortDirectionCommand}"
+                        Background="{Binding Theme.ColumnBackground}"
+                        BorderBrush="{Binding Theme.TextColor}"
+                        BorderThickness="0,0.8,0.8,0.8"
                         ToolTip="ascending / descending">
                     <Viewbox Width="16" Height="16"
                              HorizontalAlignment="Center">

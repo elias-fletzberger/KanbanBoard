@@ -35,6 +35,8 @@
                        FontWeight="Bold"/>
             <ComboBox ItemsSource="{Binding StatusValues}"
                       SelectedItem="{Binding Card.Status}"
+                      Background="{Binding Theme.ColumnBackground}"
+                      Foreground="{Binding Theme.TextColor}"
                       Margin="0,5,0,10"/>
 
             <TextBlock Text="Beschreibung" 
