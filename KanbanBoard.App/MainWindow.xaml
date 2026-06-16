@@ -49,6 +49,14 @@
             </DataTemplate.Triggers>
         </DataTemplate>
 
+        <Style x:Key="ToolbarComboBoxStyle"
+               TargetType="ComboBox"
+               BasedOn="{StaticResource ThemedComboBoxStyle}">
+            <Setter Property="BorderThickness" Value="0.8,0.8,0,0.8"/>
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Height" Value="28"/>
+            <Setter Property="Tag" Value="116"/>
+        </Style>
     </Window.Resources>
 
     <Grid x:Name="RootGrid"
@@ -109,12 +117,9 @@
                     </Viewbox>
                 </Button>
 
-                <ComboBox Width="90"
-                          Height="28"
-                          ItemsSource="{Binding SortModes}"
+                <ComboBox ItemsSource="{Binding SortModes}"
                           SelectedItem="{Binding SelectedSortMode}"
-                          BorderThickness="0.8,0.8,0,0.8"
-                          Style="{StaticResource ThemedComboBoxStyle}"
+                          Style="{StaticResource ToolbarComboBoxStyle}"
                           ToolTip="sort cards">
                 </ComboBox>
                 <Button Width="16" Height="28"

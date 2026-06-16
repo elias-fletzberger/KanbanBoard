@@ -2,11 +2,12 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <Style x:Key="ThemedComboBoxStyle" TargetType="ComboBox">
-        <Setter Property="Background" Value="{Binding Theme.ColumnBackground}"/>
-        <Setter Property="BorderBrush" Value="{Binding Theme.TextColor}"/>
+        <Setter Property="Background" Value="{Binding Theme.ComboboxBackground}"/>
+        <Setter Property="BorderBrush" Value="{Binding Theme.ComboboxBorder}"/>
         <Setter Property="Foreground" Value="{Binding Theme.TextColor}"/>
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Tag" Value="100"/>
 
         <Setter Property="Template">
             <Setter.Value>
@@ -44,8 +45,8 @@
                            PopupAnimation="Slide">
                             <Border Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="1"
-                                MinWidth="{Binding ActualWidth, RelativeSource={RelativeSource TemplatedParent}}">
+                                BorderThickness="0.8"
+                                MinWidth="{Binding Tag, RelativeSource={RelativeSource TemplatedParent}}">
                                 <ScrollViewer>
                                     <ItemsPresenter/>
                                 </ScrollViewer>
