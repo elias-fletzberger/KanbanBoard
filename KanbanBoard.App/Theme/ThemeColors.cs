@@ -12,6 +12,8 @@ public static class ThemeColors
     public static readonly Brush DarkColumnBorder = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#555555"));
     public static readonly Brush DarkComboboxBackground = DarkColumnBackground;
     public static readonly Brush DarkComboboxBorder = DarkTextColor;
+    public static readonly Brush DarkComboboxHoverBackground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#405555"));
+
 
     public static readonly Brush LightBackground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#f7f7f7"));
     public static readonly Brush LightTextColor = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#505050"));
@@ -21,4 +23,5 @@ public static class ThemeColors
     public static readonly Brush LightColumnBorder = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#e0e0e0"));
     public static readonly Brush LightComboboxBackground = LightColumnBackground;
     public static readonly Brush LightComboboxBorder = LightTextColor;
+    public static readonly Brush LightComboboxHoverBackground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#f0f0f0"));
 }

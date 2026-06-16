@@ -45,7 +45,7 @@
                            PopupAnimation="Slide">
                             <Border Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="0.8"
+                                BorderThickness="1"
                                 MinWidth="{Binding Tag, RelativeSource={RelativeSource TemplatedParent}}">
                                 <ScrollViewer>
                                     <ItemsPresenter/>
@@ -53,7 +53,50 @@
                             </Border>
                         </Popup>
                     </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="ComboBorder"
+                                    Property="Background"
+                                    Value="{Binding Theme.ComboboxHoverBackground}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Setter Property="ItemContainerStyle">
+            <Setter.Value>
+                <Style TargetType="ComboBoxItem">
+                    <Setter Property="FontSize" Value="12"/>
+                    <Setter Property="FontWeight" Value="Normal"/>
+
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ComboBoxItem">
+                                <Border x:Name="ItemBorder"
+                                        Background="{Binding DataContext.Theme.ComboboxBackground, RelativeSource={RelativeSource AncestorType=ComboBox}}"
+                                        Padding="6">
+                                    <ContentPresenter/>
+                                </Border>
+
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsHighlighted" Value="True">
+                                        <Setter TargetName="ItemBorder"
+                                                Property="Background"
+                                                Value="{Binding DataContext.Theme.ComboboxHoverBackground, RelativeSource={RelativeSource AncestorType=ComboBox}}"/>
+                                    </Trigger>
+
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter TargetName="ItemBorder"
+                                                Property="Background"
+                                                Value="{Binding DataContext.Theme.ComboboxHoverBackground, RelativeSource={RelativeSource AncestorType=ComboBox}}"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
             </Setter.Value>
         </Setter>
     </Style>

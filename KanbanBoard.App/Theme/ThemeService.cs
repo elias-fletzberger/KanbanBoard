@@ -35,6 +35,7 @@ public class ThemeService : INotifyPropertyChanged
             OnPropertyChanged(nameof(ColumnBorder));
             OnPropertyChanged(nameof(ComboboxBackground));
             OnPropertyChanged(nameof(ComboboxBorder));
+            OnPropertyChanged(nameof(ComboboxHoverBackground));
         }
     }
 
@@ -76,6 +77,10 @@ public class ThemeService : INotifyPropertyChanged
         IsDarkmodeActive
             ? ThemeColors.DarkComboboxBorder
             : ThemeColors.LightComboboxBorder;
+    public Brush ComboboxHoverBackground =>
+        IsDarkmodeActive
+            ? ThemeColors.DarkComboboxHoverBackground
+            : ThemeColors.LightComboboxHoverBackground;
 
     public void ToggleTheme() => IsDarkmodeActive = !IsDarkmodeActive;
 }

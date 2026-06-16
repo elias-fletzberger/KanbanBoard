@@ -52,7 +52,7 @@
         <Style x:Key="ToolbarComboBoxStyle"
                TargetType="ComboBox"
                BasedOn="{StaticResource ThemedComboBoxStyle}">
-            <Setter Property="BorderThickness" Value="0.8,0.8,0,0.8"/>
+            <Setter Property="BorderThickness" Value="1,1,0,1"/>
             <Setter Property="Width" Value="100"/>
             <Setter Property="Height" Value="28"/>
             <Setter Property="Tag" Value="116"/>
@@ -127,7 +127,7 @@
                         Command="{Binding ChangeSortDirectionCommand}"
                         Background="{Binding Theme.ColumnBackground}"
                         BorderBrush="{Binding Theme.TextColor}"
-                        BorderThickness="0,0.8,0.8,0.8"
+                        BorderThickness="0,1,1,1"
                         ToolTip="ascending / descending">
                     <Viewbox Width="16" Height="16"
                              HorizontalAlignment="Center">
