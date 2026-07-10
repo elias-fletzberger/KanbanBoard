@@ -5,88 +5,151 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KanbanBoard.App.Views"
         mc:Ignorable="d"
-        Title="Karte bearbeiten" Height="540" Width="400">
+        Title="Karte bearbeiten" Height="500" Width="400">
+    <Window.Resources>
+        <Style x:Key="StatusComboBoxStyle"
+               TargetType="ComboBox"
+               BasedOn="{StaticResource ThemedComboBoxStyle}">
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Height" Value="24"/>
+            <Setter Property="Tag" Value="100"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="BorderBrush" Value="{Binding Theme.ColumnBorder}"/>
+            <Setter Property="BorderThickness" Value="2"/>
+        </Style>
+    </Window.Resources>
+    
     <Grid Background="{Binding Theme.WindowBackground}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="12*"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Orientation="Horizontal">
-            <TextBlock Text="DETAILS"
-                       Foreground="{Binding Theme.TextColor}"
-                       FontWeight="Bold"
-                       FontSize="16"
-                       VerticalAlignment="Center" 
-                       Margin="20,0,0,0"/>
-        </StackPanel>
 
-        <StackPanel Grid.Row="1" Margin="10,0,10,10">
-            <TextBlock Text="Titel" 
-                       Foreground="{Binding Theme.TextColor}"
-                       FontWeight="Bold"/>
+        <!-- Titel Bar -->
+        <Border Grid.Row="0"
+                Background="{Binding Theme.ToolbarBackground}"
+                BorderBrush="{Binding Theme.ToolbarBorder}"
+                BorderThickness="0,0,0,3">
             <TextBox Text="{Binding Card.Title, UpdateSourceTrigger=PropertyChanged}"
+                     Background="Transparent"
+                     BorderBrush="Transparent"
+                     BorderThickness="0"
+                     Foreground="{Binding Theme.TextColor}"
+                     FontSize="20"
+                     FontWeight="Bold"
+                     ToolTip="titel"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Center"
+                     Margin="15,0,0,0"/>
+        </Border>
+
+        <Grid Grid.Row="1" Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Description Box -->
+            <TextBox Grid.Row="0"
+                     Text="{Binding Card.Description, UpdateSourceTrigger=PropertyChanged}"
                      Background="{Binding Theme.ColumnBackground}"
                      BorderBrush="{Binding Theme.ColumnBorder}"
+                     BorderThickness="2"
                      Foreground="{Binding Theme.TextColor}"
-                     Margin="0,5,0,10"/>
-
-            <TextBlock Text="Status" 
-                       Foreground="{Binding Theme.TextColor}"
-                       FontWeight="Bold"/>
-            <ComboBox ItemsSource="{Binding StatusValues}"
-                      SelectedItem="{Binding Card.Status}"
-                      Background="{Binding Theme.ColumnBackground}"
-                      Foreground="{Binding Theme.TextColor}"
-                      Margin="0,5,0,10"/>
-
-            <TextBlock Text="Beschreibung" 
-                       Foreground="{Binding Theme.TextColor}"
-                       FontWeight="Bold"/>
-            <TextBox Text="{Binding Card.Description, UpdateSourceTrigger=PropertyChanged}"
-                     Background="{Binding Theme.ColumnBackground}"
-                     BorderBrush="{Binding Theme.ColumnBorder}"
-                     Foreground="{Binding Theme.TextColor}"
+                     FontSize="13"
                      AcceptsReturn="True"
-                     Height="100"
                      TextWrapping="Wrap"
-                     Margin="0,5,0,10"/>
+                     ToolTip="description"
+                     Padding="5"
+                     Margin="10"/>
 
-            <TextBlock Text="Tags" 
-                       Foreground="{Binding Theme.TextColor}"
-                       FontWeight="Bold"/>
-            <TextBox Text="{Binding TagsText, UpdateSourceTrigger=PropertyChanged}"
+            <!-- Tags Box -->
+            <TextBox Grid.Row="1"
+                     Text="{Binding TagsText, UpdateSourceTrigger=PropertyChanged}"
                      Background="{Binding Theme.ColumnBackground}"
                      BorderBrush="{Binding Theme.ColumnBorder}"
+                     BorderThickness="2"
                      Foreground="{Binding Theme.TextColor}"
-                     Margin="0,5,0,20"/>
+                     FontSize="13"
+                     ToolTip="tags"
+                     MaxHeight="35"
+                     VerticalContentAlignment="Center"
+                     Padding="5,0,0,0"
+                     Margin="10"/>
 
-            <TextBlock Text="Fällig am"
-                       Foreground="{Binding Theme.TextColor}"
-                       FontWeight="Bold"/>
-            <DatePicker SelectedDate="{Binding Card.DueDate}"
-                        Width="130"
-                        HorizontalAlignment="Left"
-                        Padding="5,0,5,0"
-                        Margin="0,5,0,20"/>
+            <!-- Status-Button & Due Date -->
+            <Grid Grid.Row="2" Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                
+                <ComboBox Grid.Column="0"
+                          ItemsSource="{Binding StatusValues}"
+                          SelectedItem="{Binding Card.Status}"
+                          Style="{StaticResource StatusComboBoxStyle}"
+                          ToolTip="card status"
+                          HorizontalAlignment="Center"/>
 
+                <DatePicker Grid.Column="1"
+                            SelectedDate="{Binding Card.DueDate}"
+                            Background="{Binding Theme.ComboboxBackground}"
+                            BorderBrush="{Binding Theme.ColumnBorder}"
+                            BorderThickness="2"
+                            Foreground="{Binding Theme.TextColor}"
+                            Height="24"
+                            Width="100"
+                            ToolTip="due date"
+                            HorizontalAlignment="Center"/>
+            </Grid>
 
-            <TextBlock Text="Erstellt am" 
-                       Foreground="{Binding Theme.TextColor}"
-                       FontWeight="Bold"/>
-            <TextBlock Text="{Binding Card.CreatedAt, StringFormat='{}{0:dd.MM.yyyy HH:mm}'}"
-                       Foreground="{Binding Theme.TextColor}"
-                       Width="130"
-                       HorizontalAlignment="Left"
-                       Margin="0,5,0,10"/>
+            <!-- Info Dates (created at / updaterd at) -->
+            <Grid Grid.Row="3" Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
 
-            <TextBlock Text="Zuletzt geändert"
-                       Foreground="{Binding Theme.TextColor}"
-                       FontWeight="Bold"/>
-            <TextBlock Text="{Binding Card.UpdatedAt, StringFormat='{}{0:dd.MM.yyyy HH:mm}'}"
-                       Foreground="{Binding Theme.TextColor}"
-                       Width="130"
-                       HorizontalAlignment="Left"
-                       Margin="0,5,0,0"/>
-        </StackPanel>
+                <Border Grid.Column="0"
+                        Background="{Binding Theme.ColumnBackground}"
+                        BorderBrush="{Binding Theme.ColumnBorder}"
+                        BorderThickness="2"
+                        CornerRadius="8"
+                        Padding="5"
+                        Margin="10">
+                    <StackPanel HorizontalAlignment="Center">
+                        <TextBlock Text="created at" 
+                                   Foreground="{Binding Theme.TextColor}"
+                                   FontSize="11"
+                                   Margin="0,0,0,5"/>
+                        <TextBlock Text="{Binding Card.CreatedAt, StringFormat='{}{0:dd.MM.yyyy HH:mm}'}"
+                                   Foreground="{Binding Theme.TextColor}"
+                                   FontSize="13"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="1"
+                        Background="{Binding Theme.ColumnBackground}"
+                        BorderBrush="{Binding Theme.ColumnBorder}"
+                        BorderThickness="2"
+                        CornerRadius="8"
+                        Padding="5"
+                        Margin="10">
+                    <StackPanel HorizontalAlignment="Center">
+                        <TextBlock Text="updated at"
+                                   Foreground="{Binding Theme.TextColor}"
+                                   FontSize="11"
+                                   Margin="0,0,0,5"/>
+                        <TextBlock Text="{Binding Card.UpdatedAt, StringFormat='{}{0:dd.MM.yyyy HH:mm}'}"
+                                   Foreground="{Binding Theme.TextColor}"
+                                   FontSize="13"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+        </Grid>
     </Grid>
 </Window>
