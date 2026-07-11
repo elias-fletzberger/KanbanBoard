@@ -70,8 +70,8 @@
 
         <!-- Menu-Bar -->
         <Border Grid.Row="0"
-                Background="{Binding Theme.ToolbarBackground}"
-                BorderBrush="{Binding Theme.ToolbarBorder}"
+                Background="{Binding Theme.ToolBarBackground}"
+                BorderBrush="{Binding Theme.ToolBarBorder}"
                 BorderThickness="0,0,0,3">
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Center"

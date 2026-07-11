@@ -29,13 +29,16 @@ public class ThemeService : INotifyPropertyChanged
             OnPropertyChanged(nameof(DarkmodeIcon));
             OnPropertyChanged(nameof(WindowBackground));
             OnPropertyChanged(nameof(TextColor));
-            OnPropertyChanged(nameof(ToolbarBackground));
-            OnPropertyChanged(nameof(ToolbarBorder));
+            OnPropertyChanged(nameof(ToolBarBackground));
+            OnPropertyChanged(nameof(ToolBarBorder));
             OnPropertyChanged(nameof(ColumnBackground));
             OnPropertyChanged(nameof(ColumnBorder));
-            OnPropertyChanged(nameof(ComboboxBackground));
-            OnPropertyChanged(nameof(ComboboxBorder));
-            OnPropertyChanged(nameof(ComboboxHoverBackground));
+            OnPropertyChanged(nameof(ComboBoxBackground));
+            OnPropertyChanged(nameof(ComboBoxBorder));
+            OnPropertyChanged(nameof(ComboBoxHoverBackground));
+            OnPropertyChanged(nameof(DatePickerBackground));
+            OnPropertyChanged(nameof(DatePickerBorder));
+            OnPropertyChanged(nameof(DatePickerHoverBackground));
         }
     }
 
@@ -53,14 +56,14 @@ public class ThemeService : INotifyPropertyChanged
         IsDarkmodeActive
             ? ThemeColors.DarkTextColor
             : ThemeColors.LightTextColor;
-    public Brush ToolbarBackground =>
+    public Brush ToolBarBackground =>
         IsDarkmodeActive
-            ? ThemeColors.DarkToolbarBackground
-            : ThemeColors.LightToolbarBackground;
-    public Brush ToolbarBorder =>
+            ? ThemeColors.DarkToolBarBackground
+            : ThemeColors.LightToolBarBackground;
+    public Brush ToolBarBorder =>
         IsDarkmodeActive
-            ? ThemeColors.DarkToolbarBorder
-            : ThemeColors.LightToolbarBorder;
+            ? ThemeColors.DarkToolBarBorder
+            : ThemeColors.LightToolBarBorder;
     public Brush ColumnBackground =>
         IsDarkmodeActive
             ? ThemeColors.DarkColumnBackground
@@ -69,18 +72,30 @@ public class ThemeService : INotifyPropertyChanged
         IsDarkmodeActive
             ? ThemeColors.DarkColumnBorder
             : ThemeColors.LightColumnBorder;
-    public Brush ComboboxBackground =>
+    public Brush ComboBoxBackground =>
         IsDarkmodeActive
-            ? ThemeColors.DarkComboboxBackground
-            : ThemeColors.LightComboboxBackground;
-    public Brush ComboboxBorder =>
+            ? ThemeColors.DarkComboBoxBackground
+            : ThemeColors.LightComboBoxBackground;
+    public Brush ComboBoxBorder =>
         IsDarkmodeActive
-            ? ThemeColors.DarkComboboxBorder
-            : ThemeColors.LightComboboxBorder;
-    public Brush ComboboxHoverBackground =>
+            ? ThemeColors.DarkComboBoxBorder
+            : ThemeColors.LightComboBoxBorder;
+    public Brush ComboBoxHoverBackground =>
         IsDarkmodeActive
-            ? ThemeColors.DarkComboboxHoverBackground
-            : ThemeColors.LightComboboxHoverBackground;
+            ? ThemeColors.DarkComboBoxHoverBackground
+            : ThemeColors.LightComboBoxHoverBackground;
+    public Brush DatePickerBackground =>
+        IsDarkmodeActive
+            ? ThemeColors.DarkDatePickerBackground
+            : ThemeColors.LightDatePickerBackground;
+    public Brush DatePickerBorder =>
+        IsDarkmodeActive
+            ? ThemeColors.DarkDatePickerBorder 
+            : ThemeColors.LightDatePickerBorder;
+    public Brush DatePickerHoverBackground =>
+        IsDarkmodeActive
+            ? ThemeColors.DarkDatePickerHoverBackground
+            : ThemeColors.LightDatePickerHoverBackground;
 
     public void ToggleTheme() => IsDarkmodeActive = !IsDarkmodeActive;
 }

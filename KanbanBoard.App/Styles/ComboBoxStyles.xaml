@@ -2,8 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <Style x:Key="ThemedComboBoxStyle" TargetType="ComboBox">
-        <Setter Property="Background" Value="{Binding Theme.ComboboxBackground}"/>
-        <Setter Property="BorderBrush" Value="{Binding Theme.ComboboxBorder}"/>
+        <Setter Property="Background" Value="{Binding Theme.ComboBoxBackground}"/>
+        <Setter Property="BorderBrush" Value="{Binding Theme.ComboBoxBorder}"/>
         <Setter Property="Foreground" Value="{Binding Theme.TextColor}"/>
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="FontWeight" Value="Bold"/>
@@ -75,7 +75,7 @@
                         <Setter.Value>
                             <ControlTemplate TargetType="ComboBoxItem">
                                 <Border x:Name="ItemBorder"
-                                        Background="{Binding DataContext.Theme.ComboboxBackground, RelativeSource={RelativeSource AncestorType=ComboBox}}"
+                                        Background="{Binding DataContext.Theme.ComboBoxBackground, RelativeSource={RelativeSource AncestorType=ComboBox}}"
                                         Padding="6">
                                     <ContentPresenter/>
                                 </Border>
@@ -84,13 +84,13 @@
                                     <Trigger Property="IsHighlighted" Value="True">
                                         <Setter TargetName="ItemBorder"
                                                 Property="Background"
-                                                Value="{Binding DataContext.Theme.ComboboxHoverBackground, RelativeSource={RelativeSource AncestorType=ComboBox}}"/>
+                                                Value="{Binding DataContext.Theme.ComboBoxHoverBackground, RelativeSource={RelativeSource AncestorType=ComboBox}}"/>
                                     </Trigger>
 
                                     <Trigger Property="IsSelected" Value="True">
                                         <Setter TargetName="ItemBorder"
                                                 Property="Background"
-                                                Value="{Binding DataContext.Theme.ComboboxHoverBackground, RelativeSource={RelativeSource AncestorType=ComboBox}}"/>
+                                                Value="{Binding DataContext.Theme.ComboBoxHoverBackground, RelativeSource={RelativeSource AncestorType=ComboBox}}"/>
                                     </Trigger>
                                 </ControlTemplate.Triggers>
                             </ControlTemplate>
