@@ -43,10 +43,26 @@ public static class AppIcons
     public static Geometry Sun => _sun;
     
 
-    // Sort_Caret
+    // Sort_Caret_Icon
     private static readonly Geometry _caretDown = Geometry.Parse("M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z");
     public static Geometry CaretDown => _caretDown;
 
     private static readonly Geometry _caretUp = Geometry.Parse("m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z");
     public static Geometry CaretUp => _caretUp;
+
+
+    // calendar_Icon
+    private static readonly Geometry _calendarPoint = Geometry.Parse("M11 7.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5z");
+    private static readonly Geometry _calendarBorder = Geometry.Parse("M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1z");
+    private static readonly Geometry _calendarBar = Geometry.Parse("M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5z");
+    private static readonly Geometry _calendar = new GeometryGroup
+    {
+        Children =
+        {
+            _calendarPoint,
+            _calendarBorder,
+            _calendarBar
+        }
+    };
+    public static Geometry Calendar => _calendar;
 }
