@@ -39,6 +39,8 @@ public class ThemeService : INotifyPropertyChanged
             OnPropertyChanged(nameof(DatePickerBackground));
             OnPropertyChanged(nameof(DatePickerBorder));
             OnPropertyChanged(nameof(DatePickerHoverBackground));
+            OnPropertyChanged(nameof(CalendarBackground));
+            OnPropertyChanged(nameof(CalendarBorder));
         }
     }
 
@@ -96,6 +98,14 @@ public class ThemeService : INotifyPropertyChanged
         IsDarkmodeActive
             ? ThemeColors.DarkDatePickerHoverBackground
             : ThemeColors.LightDatePickerHoverBackground;
+    public Brush CalendarBackground =>
+        IsDarkmodeActive
+            ? ThemeColors.DarkCalendarBackground
+            : ThemeColors.LightCalendarBackground;
+    public Brush CalendarBorder =>
+        IsDarkmodeActive
+            ? ThemeColors.DarkCalendarBorder
+            : ThemeColors.LightCalendarBorder;
 
     public void ToggleTheme() => IsDarkmodeActive = !IsDarkmodeActive;
 }

@@ -18,8 +18,11 @@ public static class ThemeColors
     public static readonly Brush DarkComboBoxHoverBackground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#405555"));
 
     public static readonly Brush DarkDatePickerBackground = DarkColumnBackground;
-    public static readonly Brush DarkDatePickerBorder = DarkTextColor;
+    public static readonly Brush DarkDatePickerBorder = DarkColumnBorder;
     public static readonly Brush DarkDatePickerHoverBackground = DarkComboBoxHoverBackground;
+
+    public static readonly Brush DarkCalendarBackground = DarkColumnBackground;
+    public static readonly Brush DarkCalendarBorder = DarkColumnBorder;
 
 
 
@@ -38,6 +41,9 @@ public static class ThemeColors
     public static readonly Brush LightComboBoxHoverBackground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#f0f0f0"));
 
     public static readonly Brush LightDatePickerBackground = LightColumnBackground;
-    public static readonly Brush LightDatePickerBorder = LightTextColor;
+    public static readonly Brush LightDatePickerBorder = LightColumnBorder;
     public static readonly Brush LightDatePickerHoverBackground = LightComboBoxHoverBackground;
+
+    public static readonly Brush LightCalendarBackground = LightColumnBackground;
+    public static readonly Brush LightCalendarBorder = LightColumnBorder;
 }

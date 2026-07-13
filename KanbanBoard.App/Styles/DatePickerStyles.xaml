@@ -33,9 +33,9 @@
                                 Grid.Column="1"
                                 Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="1,0,0,0"
+                                BorderThickness="0,1.5,1.5,1.5"
                                 Focusable="False">
-                            <Viewbox Width="18"
+                            <Viewbox Width="17"
                                      Height="24"
                                      HorizontalAlignment="Center"
                                      VerticalAlignment="Center">
@@ -50,12 +50,15 @@
                                AllowsTransparency="True"
                                Focusable="False">
                             <Calendar x:Name="PART_Calendar"
+                                      Style="{TemplateBinding CalendarStyle}"
                                       SelectedDate="{Binding SelectedDate, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"/>
                         </Popup>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+
+        <Setter Property="CalendarStyle" Value="{DynamicResource ThemedCalendarStyle}"/>
     </Style>
 
 
@@ -64,8 +67,34 @@
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Foreground" Value="{Binding Theme.TextColor}"/>
         <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="Padding" Value="5,0"/>
+        <Setter Property="Padding" Value="7,0"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="DatePickerTextBox">
+                    <Grid>
+                        <TextBox x:Name="PART_TextBox"
+                                 Text="{Binding Text, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 Background="{TemplateBinding Background}"
+                                 Foreground="{TemplateBinding Foreground}"
+                                 BorderThickness="0"
+                                 Padding="{TemplateBinding Padding}"
+                                 VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                 FocusVisualStyle="{x:Null}"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ThemedCalendarStyle"
+           TargetType="Calendar">
+
+        <Setter Property="Background" Value="{Binding Theme.CalendarBackground}"/>
+        <Setter Property="Foreground" Value="{Binding Theme.TextColor}"/>
+        <Setter Property="BorderBrush" Value="{Binding Theme.CalendarBorder}"/>
+        <Setter Property="BorderThickness" Value="2"/>
     </Style>
 </ResourceDictionary>
