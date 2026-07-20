@@ -96,5 +96,65 @@
         <Setter Property="Foreground" Value="{Binding Theme.TextColor}"/>
         <Setter Property="BorderBrush" Value="{Binding Theme.CalendarBorder}"/>
         <Setter Property="BorderThickness" Value="2"/>
+
+        <Setter Property="CalendarItemStyle" Value="{DynamicResource ThemedCalendarItemStyle}"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Calendar">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+
+                        <StackPanel x:Name="PART_Root">
+                            <CalendarItem x:Name="PART_CalendarItem"
+                                          Style="{TemplateBinding CalendarItemStyle}"
+                                          Background="{TemplateBinding Background}"
+                                          BorderBrush="{TemplateBinding BorderBrush}"
+                                          Foreground="{TemplateBinding Foreground}"/>
+                        </StackPanel>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ThemedCalendarItemStyle"
+           TargetType="CalendarItem">
+        
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="CalendarItem">
+                    <Grid x:Name="PART_Root">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="32"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Grid.Column="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="32"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="32"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <Button x:Name="PART_PreviousButton" Grid.Column="0" Content="◀" Focusable="False"/>
+                            
+                            <Button x:Name="PART_HeaderButton"
+                                    Grid.Column="1"
+                                    Focusable="False">
+                                <TextBlock Text="{Binding DisplayDate, RelativeSource={RelativeSource TemplatedParent}, StringFormat='{}{0:MMMM yyyy}'}"/>
+                            </Button>
+
+                            <Button x:Name="PART_NextButton" Grid.Column="2" Content="▶" Focusable="False"/>
+                        </Grid>
+
+                        <Grid x:Name="PART_MonthView" Grid.Row="1"/>
+
+                        <Grid x:Name="PART_YearView" Grid.Row="1" Visibility="Collapsed"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 </ResourceDictionary>
