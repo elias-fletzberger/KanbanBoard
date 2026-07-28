@@ -97,16 +97,46 @@
         <Setter Property="BorderBrush" Value="{Binding Theme.CalendarBorder}"/>
         <Setter Property="BorderThickness" Value="2"/>
 
-        <Setter Property="CalendarDayButtonStyle" Value="{StaticResource ThemedCalendarDayButtonStyle}"/>
+        <Setter Property="CalendarItemStyle" Value="{DynamicResource ThemedCalendarItemStyle}"/>
+        <Setter Property="CalendarDayButtonStyle" Value="{DynamicResource ThemedCalendarDayButtonStyle}"/>
+        
+    </Style>
+
+    <Style x:Key="ThemedCalendarItemStyle" TargetType="CalendarItem">
+
+        <Setter Property="Background" Value="{Binding DataContext.Theme.CalendarBackground, RelativeSource={RelativeSource AncestorType=Calendar}}"/>
+        <Setter Property="Foreground" Value="{Binding DataContext.Theme.TextColor, RelativeSource={RelativeSource AncestorType=Calendar}}"/>
+        <Setter Property="BorderBrush" Value="{Binding DataContext.Theme.CalendarBorder, RelativeSource={RelativeSource AncestorType=Calendar}}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        
     </Style>
 
     <Style x:Key="ThemedCalendarDayButtonStyle" TargetType="CalendarDayButton">
 
-        <Setter Property="Background" Value="{Binding DataContext.Theme.CalendarBackground, RelativeSource={RelativeSource AncestorType=Calendar}}"/>
-        <Setter Property="Foreground" Value="{Binding DataContext.Theme.CalendarForeground, RelativeSource={RelativeSource AncestorType=Calendar}}"/>
+        <Setter Property="Background" Value="{Binding Background, RelativeSource={RelativeSource AncestorType=Calendar}}"/>
+        <Setter Property="Foreground" Value="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Calendar}}"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="MinWidth" Value="24"/>
+        <Setter Property="MinHeight" Value="22"/>
+        <Setter Property="Margin" Value="1"/>
+        <Setter Property="Padding" Value="1"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
 
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="CalendarDayButton">
+                    <Border x:Name="DayBorder"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Margin="{TemplateBinding Margin}">
+
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="{TemplateBinding Padding}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
+    
 </ResourceDictionary>
