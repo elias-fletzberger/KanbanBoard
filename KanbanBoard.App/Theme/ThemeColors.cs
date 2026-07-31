@@ -23,6 +23,9 @@ public static class ThemeColors
 
     public static readonly Brush DarkCalendarBackground = DarkColumnBackground;
     public static readonly Brush DarkCalendarBorder = DarkColumnBorder;
+    public static readonly Brush DarkCalendarHoverBackground = DarkComboBoxHoverBackground;
+    public static readonly Brush DarkCalendarSelectedBackground = DarkComboBoxHoverBackground;
+    public static readonly Brush DarkCalendarDayTodayBorder = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#406565"));
 
 
 
@@ -46,4 +49,7 @@ public static class ThemeColors
 
     public static readonly Brush LightCalendarBackground = LightColumnBackground;
     public static readonly Brush LightCalendarBorder = LightColumnBorder;
+    public static readonly Brush LightCalendarHoverBackground = LightComboBoxHoverBackground;
+    public static readonly Brush LightCalendarSelectedBackground = LightComboBoxHoverBackground;
+    public static readonly Brush LightCalendarDayTodayBorder = LightComboBoxHoverBackground;
 }

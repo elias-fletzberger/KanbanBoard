@@ -134,6 +134,40 @@
 
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="{TemplateBinding Padding}"/>
                     </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsInactive" Value="True">
+                            <Setter TargetName="DayBorder" Property="Opacity" Value="0.4"/>
+                        </Trigger>
+
+                        <Trigger Property="IsToday" Value="True">
+                            <Setter TargetName="DayBorder"
+                                    Property="BorderBrush"
+                                    Value="{Binding DataContext.Theme.CalendarDayTodayBorder, RelativeSource={RelativeSource AncestorType=Calendar}}"/>
+
+                            <Setter TargetName="DayBorder" Property="BorderThickness" Value="2"/>
+                        </Trigger>
+                        
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="DayBorder" 
+                                    Property="Background"
+                                    Value="{Binding DataContext.Theme.CalendarHoverBackground, RelativeSource={RelativeSource AncestorType=Calendar}}"/>
+                        </Trigger>
+
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="DayBorder"
+                                    Property="Background"
+                                    Value="{Binding DataContext.Theme.CalendarSelectedBackground, RelativeSource={RelativeSource AncestorType=Calendar}}"/>
+
+                            <Setter TargetName="DayBorder"
+                                    Property="BorderBrush"
+                                    Value="{Binding DataContext.Theme.CalendarBorder, RelativeSource={RelativeSource AncestorType=Calendar}}"/>
+
+                            <Setter TargetName="DayBorder"
+                                    Property="BorderThickness"
+                                    Value="1.5"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
