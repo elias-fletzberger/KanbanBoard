@@ -15,7 +15,7 @@ public class ThemeService : INotifyPropertyChanged
 
 
 
-    private bool _isDarkmodeActive = false;
+    private bool _isDarkmodeActive;
 
 
     public bool IsDarkmodeActive

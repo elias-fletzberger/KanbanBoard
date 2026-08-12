@@ -1,9 +1,9 @@
-﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Windows.Input;
-using System.Windows.Threading;
+﻿using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Threading;
+using System.Runtime.CompilerServices;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using KanbanBoard.App.Commands;
 using KanbanBoard.App.Icons;
 using KanbanBoard.App.Theme;
@@ -27,7 +27,7 @@ public class MainViewModel : INotifyPropertyChanged
         => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
 
- 
+
     private readonly IBoardRepository _repository;
     private readonly DispatcherTimer _autoSaveTimer;
     private CardItem? _selectedCard;
@@ -201,12 +201,13 @@ public class MainViewModel : INotifyPropertyChanged
 
 
 
-    public MainViewModel()
+    public MainViewModel(ThemeService theme)
     {
+        Theme = theme ?? throw new ArgumentNullException(nameof(theme));
+
         _repository = new JsonBoardRepository();
         var board = _repository.Load();
         Cards = new ObservableCollection<CardItem>(board.Cards);
-        Theme = new ThemeService();
 
 
         if (!Cards.Any())
