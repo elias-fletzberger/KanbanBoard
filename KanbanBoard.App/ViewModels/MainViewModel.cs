@@ -27,7 +27,8 @@ public class MainViewModel : INotifyPropertyChanged
         => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
 
-
+    private readonly ISettingsService _settingsService;
+    private readonly AppSettings _settings;
     private readonly IBoardRepository _repository;
     private readonly DispatcherTimer _autoSaveTimer;
     private CardItem? _selectedCard;
@@ -198,12 +199,14 @@ public class MainViewModel : INotifyPropertyChanged
     }
     
     public ThemeService Theme { get; }
+    
 
 
-
-    public MainViewModel(ThemeService theme)
+    public MainViewModel(ThemeService theme, AppSettings settings, ISettingsService settingsService)
     {
         Theme = theme ?? throw new ArgumentNullException(nameof(theme));
+        _settings = settings ?? throw new ArgumentNullException(nameof(settings));
+        _settingsService = settingsService ?? throw new ArgumentNullException(nameof(settingsService));
 
         _repository = new JsonBoardRepository();
         var board = _repository.Load();
@@ -226,7 +229,7 @@ public class MainViewModel : INotifyPropertyChanged
         CreateCardCommand = new RelayCommand(execute => CreateCard());
         DeleteCardCommand = new RelayCommand(execute => DeleteCard(), canExecute => SelectedCard != null);
         ChangeSortDirectionCommand = new RelayCommand(execute => ChangeSortDirection());
-        ChangeDarkmodeCommand = new RelayCommand(execute => ChangeDarkmode());
+        ChangeDarkmodeCommand = new RelayCommand(execute => ChangeTheme());
 
         _autoSaveTimer = new DispatcherTimer();
         _autoSaveTimer.Interval = TimeSpan.FromSeconds(1);
@@ -292,8 +295,14 @@ public class MainViewModel : INotifyPropertyChanged
         IsSortDescending = !IsSortDescending;
         RefreshBoardColumns();
     }
-    private void ChangeDarkmode()
+    private void ChangeTheme()
     {
         Theme.ToggleTheme();
+
+        _settings.ColorMode = Theme.IsDarkmodeActive 
+            ? ColorMode.Dark
+            : ColorMode.Light;
+
+        _settingsService.Save(_settings);
     }
 }

@@ -22,7 +22,7 @@ public partial class App : Application
         ThemeService theme = new ThemeService();
         theme.IsDarkmodeActive = settings.ColorMode == ColorMode.Dark;
 
-        MainViewModel viewModel = new MainViewModel(theme);
+        MainViewModel viewModel = new MainViewModel(theme, settings, settingsService);
 
         MainWindow window = new MainWindow();
         window.DataContext = viewModel;
