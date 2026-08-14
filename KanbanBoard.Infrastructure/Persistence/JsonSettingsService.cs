@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using KanbanBoard.Core.Interfaces;
 using KanbanBoard.Core.Models;
 
@@ -13,7 +14,14 @@ public class JsonSettingsService : ISettingsService
     private static readonly string _folderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "KanbanBoard");
     private readonly string _filePath = Path.Combine(_folderPath, "settings.json");
 
-    private readonly JsonSerializerOptions _jsonOptions = new() { WriteIndented = true };
+    private readonly JsonSerializerOptions _jsonOptions = new()
+    {
+        WriteIndented = true,
+        Converters =
+        {
+            new JsonStringEnumConverter()
+        }
+    };
 
     public AppSettings Load()
     {
@@ -30,7 +38,7 @@ public class JsonSettingsService : ISettingsService
                 return new AppSettings();
             }
 
-            AppSettings? settings = JsonSerializer.Deserialize<AppSettings>(settingsJson);
+            AppSettings? settings = JsonSerializer.Deserialize<AppSettings>(settingsJson, _jsonOptions);
             if (settings == null)
             {
                 return new AppSettings();
