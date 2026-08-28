@@ -49,6 +49,11 @@ public class JsonSettingsService : ISettingsService
                 return new AppSettings();
             }
 
+            if (!Enum.IsDefined(settings.CardSortMode))
+            {
+                return new AppSettings();
+            }
+
             return settings;
         }
         catch (JsonException ex)
