@@ -34,7 +34,7 @@ public class MainViewModel : INotifyPropertyChanged
     private CardItem? _selectedCard;
     private string _tagsText;
     private bool _isSortDescending = true;
-    private CardSortMode _selectedSortMode = CardSortMode.CreatedAt;
+    private CardSortMode _selectedSortMode;
  
 
     public Array StatusValues => Enum.GetValues(typeof(CardStatus));
@@ -207,7 +207,7 @@ public class MainViewModel : INotifyPropertyChanged
         Theme = theme ?? throw new ArgumentNullException(nameof(theme));
         _settings = settings ?? throw new ArgumentNullException(nameof(settings));
         _settingsService = settingsService ?? throw new ArgumentNullException(nameof(settingsService));
-
+        _selectedSortMode = settings.CardSortMode;
         _repository = new JsonBoardRepository();
         var board = _repository.Load();
         Cards = new ObservableCollection<CardItem>(board.Cards);

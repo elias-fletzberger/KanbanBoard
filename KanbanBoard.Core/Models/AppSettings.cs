@@ -7,4 +7,6 @@ namespace KanbanBoard.Core.Models;
 public class AppSettings
 {
     public ColorMode ColorMode { get; set; } = ColorMode.Light;
+
+    public CardSortMode CardSortMode { get; set; } = CardSortMode.CreatedAt;
 }
