@@ -195,6 +195,9 @@ public class MainViewModel : INotifyPropertyChanged
             
             OnPropertyChanged();
             RefreshBoardColumns();
+
+            _settings.CardSortMode = _selectedSortMode;
+            _settingsService.Save(_settings);
         }
     }
     
