@@ -1,9 +1,7 @@
-﻿using System.Text.Json;
-using System.Globalization;
+﻿using System.Globalization;
+using System.Text.Json;
 using Microsoft.Data.Sqlite;
 using KanbanBoard.Core.Models;
-using System.Reflection.Metadata.Ecma335;
-
 
 namespace KanbanBoard.Infrastructure.Persistence;
 
@@ -35,16 +33,16 @@ public class SqliteBoardRepository
                 connection.Open();
 
                 string sqlCommand = @"
-                    CREATE TABLE IF NOT EXISTS Cards 
+                    CREATE TABLE IF NOT EXISTS cards 
                     (
-                        Id TEXT PRIMARY KEY,
-                        Title TEXT NOT NULL,
-                        Status TEXT NOT NULL,
-                        Description TEXT,
-                        Tags TEXT,
-                        CreatedAt TEXT NOT NULL,
-                        UpdatedAt TEXT NOT NULL,
-                        DueDate TEXT
+                        id TEXT PRIMARY KEY,
+                        title TEXT NOT NULL,
+                        status TEXT NOT NULL,
+                        description TEXT,
+                        tags TEXT,
+                        createdAt TEXT NOT NULL,
+                        updatedAt TEXT NOT NULL,
+                        dueDate TEXT
                     );";
 
                 using (var command = new SqliteCommand(sqlCommand, connection))
@@ -73,15 +71,15 @@ public class SqliteBoardRepository
 
             string sqlQuery = @"
                     SELECT
-                        Id,
-                        Title,
-                        Status,
-                        Description,
-                        Tags,
-                        CreatedAt,
-                        UpdatedAt,
-                        DueDate
-                        FROM Cards;";
+                        id,
+                        title,
+                        status,
+                        description,
+                        tags,
+                        createdAt,
+                        updatedAt,
+                        dueDate
+                        FROM cards;";
 
             using (var query = new SqliteCommand(sqlQuery, connection))
             {
@@ -169,6 +167,110 @@ public class SqliteBoardRepository
                     return board;
                 }
             }
+        }
+    }
+
+    public void SaveAll(Board board)
+    {
+        try
+        {
+            Directory.CreateDirectory(_folderPath);
+            string connectionString = $"Data Source={_filePath}";
+
+            using (var connection = new SqliteConnection(connectionString))
+            {
+                connection.Open();
+
+                using (var transaction = connection.BeginTransaction())
+                {
+                    string sqlDeleteCommand = @"
+                    DELETE FROM cards;";
+
+                    string sqlInsertCommand = @"
+                    INSERT INTO cards
+                    (
+                        id,
+                        title,
+                        status,
+                        description,
+                        tags,
+                        createdAt,
+                        updatedAt,
+                        dueDate
+                    )
+                    VALUES
+                    (
+                        @id,
+                        @title,
+                        @status,
+                        @description,
+                        @tags,
+                        @createdAt,
+                        @updatedAt,
+                        @dueDate
+                    );";
+
+                    using (var command = new SqliteCommand(sqlDeleteCommand, connection))
+                    {
+                        command.Transaction = transaction;
+                        command.ExecuteNonQuery();
+                    }
+
+                    using (var command = new SqliteCommand(sqlInsertCommand, connection))
+                    {
+                        command.Transaction = transaction;
+
+                        var idParameter = command.Parameters.Add("@id", SqliteType.Text);
+                        var titleParameter = command.Parameters.Add("@title", SqliteType.Text);
+                        var statusParameter = command.Parameters.Add("@status", SqliteType.Text);
+                        var descriptionParameter = command.Parameters.Add("@description", SqliteType.Text);
+                        var tagsParameter = command.Parameters.Add("@tags", SqliteType.Text);
+                        var createdAtParameter = command.Parameters.Add("@createdAt", SqliteType.Text);
+                        var updatedAtParameter = command.Parameters.Add("@updatedAt", SqliteType.Text);
+                        var dueDateParameter = command.Parameters.Add("@dueDate", SqliteType.Text);
+
+                        foreach (var card in board.Cards)
+                        {
+                            idParameter.Value = card.Id.ToString();
+
+                            titleParameter.Value = card.Title;
+
+                            statusParameter.Value = card.Status.ToString();
+
+                            if (card.Description is not null) descriptionParameter.Value = card.Description;
+                            else descriptionParameter.Value = DBNull.Value;
+
+                            if (card.Tags is not null) tagsParameter.Value = JsonSerializer.Serialize(card.Tags);
+                            else tagsParameter.Value = DBNull.Value;
+
+                            createdAtParameter.Value = card.CreatedAt.ToString("yyyy-MM-ddTHH:mm:ss", CultureInfo.InvariantCulture);
+
+                            updatedAtParameter.Value= card.UpdatedAt.ToString("yyyy-MM-ddTHH:mm:ss", CultureInfo.InvariantCulture);
+
+                            if (card.DueDate.HasValue)
+                                dueDateParameter.Value = card.DueDate.Value.ToString("yyyy-MM-ddTHH:mm:ss", CultureInfo.InvariantCulture);
+
+                            else dueDateParameter.Value= DBNull.Value;
+
+                            command.ExecuteNonQuery();
+                        }
+                    }
+
+                    transaction.Commit();
+                }
+            }
+        }
+        catch(SqliteException ex)
+        {
+            Console.WriteLine($"SQLite save error: {ex.Message}");
+        }
+        catch (IOException ex)
+        {
+            Console.WriteLine($"SQLite save error: {ex.Message}");
+        }
+        catch (UnauthorizedAccessException ex)
+        {
+            Console.WriteLine($"No permission to write file: {ex.Message}");
         }
     }
 }
