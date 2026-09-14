@@ -2,6 +2,7 @@
 using System.Text.Json;
 using Microsoft.Data.Sqlite;
 using KanbanBoard.Core.Models;
+using KanbanBoard.Core.Interfaces;
 
 namespace KanbanBoard.Infrastructure.Persistence;
 
@@ -10,7 +11,7 @@ namespace KanbanBoard.Infrastructure.Persistence;
 /// SQLite-based implementation for persisting board data
 /// in the user's application data directory.
 /// </summary>
-public class SqliteBoardRepository
+public class SqliteBoardRepository : IBoardRepository
 {
     private static readonly string _folderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "KanbanBoard");
     private readonly string _filePath = Path.Combine(_folderPath, "kanbanboard.db");
@@ -170,7 +171,7 @@ public class SqliteBoardRepository
         }
     }
 
-    public void SaveAll(Board board)
+    public void Save(Board board)
     {
         try
         {

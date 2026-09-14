@@ -211,7 +211,8 @@ public class MainViewModel : INotifyPropertyChanged
         _settings = settings ?? throw new ArgumentNullException(nameof(settings));
         _settingsService = settingsService ?? throw new ArgumentNullException(nameof(settingsService));
         _selectedSortMode = settings.CardSortMode;
-        _repository = new JsonBoardRepository();
+        //_repository = new JsonBoardRepository();
+        _repository = new SqliteBoardRepository();
         var board = _repository.Load();
         Cards = new ObservableCollection<CardItem>(board.Cards);
 
@@ -220,10 +221,7 @@ public class MainViewModel : INotifyPropertyChanged
         {
             CardItem card;
             card = new CardItem();
-            card.Title = "Erste Testkarte";
-            Cards.Add(card);
-            card = new CardItem();
-            card.Title = "Zweite Testkarte";
+            card.Title = "Erste Karte";
             Cards.Add(card);
             SaveCurrentBoard();
         }
