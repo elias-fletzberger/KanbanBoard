@@ -17,12 +17,21 @@ public partial class App : Application
         base.OnStartup(e);
 
         ISettingsService settingsService = new JsonSettingsService();
+        IBoardRepository sqliteRepository = new SqliteBoardRepository();
+        IBoardRepository jsonRepository = new JsonBoardRepository();
+
+
         var settings = settingsService.Load();
 
         ThemeService theme = new ThemeService();
         theme.IsDarkmodeActive = settings.ColorMode == ColorMode.Dark;
 
-        MainViewModel viewModel = new MainViewModel(theme, settings, settingsService);
+
+        BoardMigrationService migrationService = new BoardMigrationService(sqliteRepository, jsonRepository);
+        migrationService.MigrateJsonToSqlite();
+
+        MainViewModel viewModel = new MainViewModel(theme, settings, settingsService, sqliteRepository);
+
 
         MainWindow window = new MainWindow();
         window.DataContext = viewModel;

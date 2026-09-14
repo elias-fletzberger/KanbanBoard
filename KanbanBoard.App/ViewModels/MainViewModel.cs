@@ -205,14 +205,13 @@ public class MainViewModel : INotifyPropertyChanged
     
 
 
-    public MainViewModel(ThemeService theme, AppSettings settings, ISettingsService settingsService)
+    public MainViewModel(ThemeService theme, AppSettings settings, ISettingsService settingsService, IBoardRepository repository)
     {
         Theme = theme ?? throw new ArgumentNullException(nameof(theme));
         _settings = settings ?? throw new ArgumentNullException(nameof(settings));
         _settingsService = settingsService ?? throw new ArgumentNullException(nameof(settingsService));
         _selectedSortMode = settings.CardSortMode;
-        //_repository = new JsonBoardRepository();
-        _repository = new SqliteBoardRepository();
+        _repository = repository ?? throw new ArgumentNullException(nameof(repository)); ;
         var board = _repository.Load();
         Cards = new ObservableCollection<CardItem>(board.Cards);
 
