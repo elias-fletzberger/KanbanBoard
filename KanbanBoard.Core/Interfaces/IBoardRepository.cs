@@ -1,5 +1,4 @@
-﻿
-using KanbanBoard.Core.Models;
+﻿using KanbanBoard.Core.Models;
 
 namespace KanbanBoard.Core.Interfaces;
 

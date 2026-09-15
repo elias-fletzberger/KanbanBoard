@@ -1,6 +1,4 @@
-﻿
-using System;
-using System.Text.Json;
+﻿using System.Text.Json;
 using KanbanBoard.Core.Interfaces;
 using KanbanBoard.Core.Models;
 

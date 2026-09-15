@@ -1,5 +1,4 @@
-﻿
-namespace KanbanBoard.Core.Models;
+﻿namespace KanbanBoard.Core.Models;
 
 public enum CardSortMode
 {

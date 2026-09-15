@@ -9,7 +9,6 @@ using KanbanBoard.App.Icons;
 using KanbanBoard.App.Theme;
 using KanbanBoard.Core.Interfaces;
 using KanbanBoard.Core.Models;
-using KanbanBoard.Infrastructure.Persistence;
 
 namespace KanbanBoard.App.ViewModels;
 
@@ -211,7 +210,7 @@ public class MainViewModel : INotifyPropertyChanged
         _settings = settings ?? throw new ArgumentNullException(nameof(settings));
         _settingsService = settingsService ?? throw new ArgumentNullException(nameof(settingsService));
         _selectedSortMode = settings.CardSortMode;
-        _repository = repository ?? throw new ArgumentNullException(nameof(repository)); ;
+        _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         var board = _repository.Load();
         Cards = new ObservableCollection<CardItem>(board.Cards);
 

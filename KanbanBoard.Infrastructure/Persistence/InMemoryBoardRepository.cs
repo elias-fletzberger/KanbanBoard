@@ -1,5 +1,4 @@
-﻿
-using KanbanBoard.Core.Interfaces;
+﻿using KanbanBoard.Core.Interfaces;
 using KanbanBoard.Core.Models;
 
 namespace KanbanBoard.Infrastructure.Persistence;
