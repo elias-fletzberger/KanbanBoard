@@ -3,11 +3,11 @@
 ![.NET](https://img.shields.io/badge/.NET-8.0-blue)
 ![Platform](https://img.shields.io/badge/platform-Windows-lightgrey)
 ![License](https://img.shields.io/badge/license-MIT-green)
+![SQLite](https://img.shields.io/badge/Database-Sqlite-39477F?logo=sqlite&logoColor=white)
 
-Ein einfaches Kanban-Board als Desktop-Anwendung, entwickelt mit C# und WPF.
+Eine Desktop-Kanban-Anwendung, entwickelt mit C#, .NET 8 und WPF.
 
-Das Projekt dient dazu, grundlegende Konzepte der Anwendungsentwicklung zu üben,
-z. B. Benutzeroberflächen, Datenstruktur, MVVM Architektur, Zustandsverwaltung und Unit tests.
+Das Projekt dient dazu, zentrale Konzepte moderner Desktop-Anwendungsentwicklung praktisch umzusetzen – darunter MVVM, Datenpersistenz mit SQLite, Repository Pattern, Zustandsverwaltung, Drag & Drop sowie eine anpassbare Benutzeroberfläche mit Light- und Dark-Theme.
 
 ![KanbanBoard Screenshot](docs/screenshots/main-window_5.png)
 
