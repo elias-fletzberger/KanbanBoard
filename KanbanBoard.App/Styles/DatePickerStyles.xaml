@@ -332,27 +332,30 @@
                                 </Grid>
 
                                 <!-- Monats- und Jahresauswahl -->
-                                <Grid x:Name="PART_YearView"
-                                      Grid.Row="1"
-                                      Grid.ColumnSpan="3"
-                                      Margin="4"
-                                      HorizontalAlignment="Center"
-                                      Visibility="Hidden">
+                                <Border Grid.Row="1"
+                                        Grid.ColumnSpan="3"
+                                        Margin="4"
+                                        Padding="0,10,0,20">
+                                    <Grid x:Name="PART_YearView"
+                                          VerticalAlignment="Stretch"
+                                          HorizontalAlignment="Center"
+                                          Visibility="Hidden">
 
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                    </Grid.ColumnDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
 
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                    </Grid.RowDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
 
-                                </Grid>
+                                    </Grid>
+                                </Border>
                             </Grid>
                         </Border>
 
