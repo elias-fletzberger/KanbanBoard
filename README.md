@@ -40,7 +40,7 @@ Das Projekt dient dazu, zentrale Konzepte moderner Desktop-Anwendungsentwicklung
 - **Git / GitHub** – Versionsverwaltung
 
 
-## Architektur & Projektstruktur
+## Architektur
 
 Das Projekt ist in mehrere Bereiche aufgeteilt, um Benutzeroberfläche, Anwendungslogik und Datenpersistenz voneinander zu trennen.
 
