@@ -7,9 +7,9 @@
 ![License](https://img.shields.io/badge/License-MIT-4C8C4A)
 
 
-Eine Desktop-Kanban-Anwendung, entwickelt mit C#, .NET 8 und WPF.
+Eine Desktop-Kanban-Anwendung zur übersichtlichen Verwaltung von Aufgaben, entwickelt mit C#, .NET 8 und WPF.
 
-Das Projekt dient dazu, zentrale Konzepte moderner Desktop-Anwendungsentwicklung praktisch umzusetzen – darunter MVVM, Datenpersistenz mit SQLite, Repository Pattern, Zustandsverwaltung, Drag & Drop sowie eine anpassbare Benutzeroberfläche mit Light- und Dark-Theme.
+Das Projekt dient dazu, zentrale Konzepte moderner Desktop-Anwendungsentwicklung praktisch umzusetzen. Dazu gehören unter anderem eine strukturierte UI-Logik nach MVVM, lokale Datenpersistenz mit SQLite, das Repository Pattern, Drag & Drop sowie eine anpassbare Benutzeroberfläche mit Light- und Dark-Theme.
 
 
 ![KanbanBoard Screenshot](docs/screenshots/main-window-dark.png)
