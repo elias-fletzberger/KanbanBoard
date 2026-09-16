@@ -12,7 +12,7 @@ Eine Desktop-Kanban-Anwendung, entwickelt mit C#, .NET 8 und WPF.
 Das Projekt dient dazu, zentrale Konzepte moderner Desktop-Anwendungsentwicklung praktisch umzusetzen – darunter MVVM, Datenpersistenz mit SQLite, Repository Pattern, Zustandsverwaltung, Drag & Drop sowie eine anpassbare Benutzeroberfläche mit Light- und Dark-Theme.
 
 
-![KanbanBoard Screenshot](docs/screenshots/drag-drop.png)
+![KanbanBoard Screenshot](docs/screenshots/main-window-dark.png)
 
 
 ## Features
@@ -27,7 +27,7 @@ Das Projekt dient dazu, zentrale Konzepte moderner Desktop-Anwendungsentwicklung
   - Fälligkeitsdatum
 - Karten nach `CreatedAt`, `UpdatedAt` oder `DueDate` sortieren
 - Automatisches Speichern von Änderungen
-- Light- und Dark-Theme
+- Light- und Dark-Theme mit gespeicherter Theme-Auswahl
 - Separates Bearbeitungsfenster für Karten
 
 
@@ -66,7 +66,7 @@ Die Persistenz ist über das `IBoardRepository` vom restlichen Anwendungscode en
 - Automatische Migration bestehender JSON-Boarddaten nach SQLite
 - Persistenzzugriffe über Repository-Implementierungen
 
-Beim Start der Anwendung wird geprüft, ob bereits SQLite-Daten vorhanden sind. Falls nicht, können bestehende Board-Daten aus der vorherigen JSON-Persistenz einmalig übernommen werden.
+Beim Start der Anwendung wird geprüft, ob bereits SQLite-Daten vorhanden sind. Falls nicht, werden vorhandene Board-Daten aus der vorherigen JSON-Persistenz automatisch einmalig nach SQLite migriert.
 
 
 ## Bedienung / Screenshots
@@ -101,12 +101,11 @@ Die gewählte Darstellung wird in den Anwendungseinstellungen gespeichert.
 
 ## Projektstatus / Roadmap
 
-Der aktuelle Stand umfasst die grundlegenden Funktionen des Kanban-Boards inklusive Drag & Drop, Themes, Sortierung, Autosave und lokaler SQLite-Persistenz.
+Der aktuelle Stand umfasst die zentralen Funktionen des Kanban-Boards inklusive Drag & Drop, Themes, Sortierung, Autosave und lokaler SQLite-Persistenz.
 
 Geplante Weiterentwicklungen:
 
 - Datenbankzugriffe auf gezielte `INSERT`-, `UPDATE`- und `DELETE`-Operationen umstellen
-- Persistenzschicht weiter verfeinern
 - Tags funktional erweitern, z. B. für Filterung oder Suche
 - Unit-Tests für zentrale Logik ergänzen
 - Weitere kleinere UI- und UX-Verbesserungen
@@ -115,4 +114,4 @@ Geplante Weiterentwicklungen:
 ## Lizenz / Icons
 
 - Lizenz: MIT
-- Icons: Bootstrap Icons – https://icons.getbootstrap.com/
+- Icons: [Bootstrap Icons](https://icons.getbootstrap.com/)
