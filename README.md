@@ -1,59 +1,118 @@
 # Kanban Board (WPF Desktop App)
 
 ![.NET](https://img.shields.io/badge/.NET-8.0-blue)
+![Framework](https://img.shields.io/badge/Framework-WPF-orange)
+![SQLite](https://img.shields.io/badge/Database-Sqlite-39477F?logo=sqlite&logoColor=white)
 ![Platform](https://img.shields.io/badge/platform-Windows-lightgrey)
 ![License](https://img.shields.io/badge/license-MIT-green)
-![SQLite](https://img.shields.io/badge/Database-Sqlite-39477F?logo=sqlite&logoColor=white)
+
 
 Eine Desktop-Kanban-Anwendung, entwickelt mit C#, .NET 8 und WPF.
 
 Das Projekt dient dazu, zentrale Konzepte moderner Desktop-Anwendungsentwicklung praktisch umzusetzen – darunter MVVM, Datenpersistenz mit SQLite, Repository Pattern, Zustandsverwaltung, Drag & Drop sowie eine anpassbare Benutzeroberfläche mit Light- und Dark-Theme.
 
-![KanbanBoard Screenshot](docs/screenshots/main-window_5.png)
 
-## Funktionen
+![KanbanBoard Screenshot](docs/screenshots/drag-drop.png)
 
-- Karten erstellen und löschen
-- Details einer Karte ändern (Titel, Status, Beschreibung, Fälligkeitsdatum)
-- MVVM Architektur
-- Repository Pattern für Datenpersistenz
-- Beschreibung für Karten erstellbar
-- Tags können Karten hinzugefügt werden
-- Lokale Datenspeicherung (in JSON)
-- Kanban Layout (ToDo / Doing / Done)
-- Drag & Drop Bedienung der Karten
-- Menübar für aktuelle und neue Buttons
-- seperates Fenster zur Bearbeitung von Karten
-- Sortierung der Karten in den Spalten nach CreatedAt / UpdatedAt / DueDate
 
-![DragDrop Screenshot](docs/screenshots/DragDrop_cards.png)
+## Features
 
-## Projektstruktur
+- Karten erstellen, bearbeiten und löschen
+- Karten zwischen **To Do**, **Doing** und **Done** verschieben
+- Drag & Drop mit visueller Vorschau
+- Kartendetails bearbeiten:
+  - Titel
+  - Status
+  - Beschreibung
+  - Fälligkeitsdatum
+- Karten nach `CreatedAt`, `UpdatedAt` oder `DueDate` sortieren
+- Automatisches Speichern von Änderungen
+- Light- und Dark-Theme
+- Separates Bearbeitungsfenster für Karten
 
-Das Projekt ist in mehrere Schichten unterteilt:
 
-- **App** → WPF UI, ViewModels and Commands
-- **Core**  → Domain models and repository interfaces
-- **Infrastructure** → Data persistence implementations
-- **Tests** → Unit tests für zentrale Funktionen
-  
 ## Technologien
 
-- C#
-- .NET 8
-- WPF
+- **C# / .NET 8** – Anwendungslogik
+- **WPF** – Desktop-Oberfläche
+- **SQLite / Microsoft.Data.Sqlite** – lokale Persistenz der Board-Daten
+- **System.Text.Json** – Speicherung von Anwendungseinstellungen und Migration bestehender JSON-Daten
+- **Git / GitHub** – Versionsverwaltung
 
-## Geplante Erweiterungen / Updates
-   
-- UI
-  - Darkmode
-  - Hover-Effekte für Karten + Cursor Änderung
-  - Spalten bei DragOver hervorheben
 
-<br>
-<br>
+## Architektur & Projektstruktur
 
-#### Hinweis
-Icons by Bootstrap Icons
-<br>
-https://icons.getbootstrap.com/
+Das Projekt ist in mehrere Bereiche aufgeteilt, um Benutzeroberfläche, Anwendungslogik und Datenpersistenz voneinander zu trennen.
+
+- **KanbanBoard.App** – WPF-Oberfläche, ViewModels, Commands und Theme-Verwaltung
+- **KanbanBoard.Core** – zentrale Modelle, Enums und Interfaces
+- **KanbanBoard.Infrastructure** – Implementierungen für Datenpersistenz und Migration
+
+Verwendete Architektur- und Designkonzepte:
+
+- MVVM-orientierte Trennung von UI und Logik
+- Repository Pattern über `IBoardRepository`
+- Dependency Injection über Konstruktoren
+- `INotifyPropertyChanged` für Datenbindung und UI-Aktualisierung
+
+
+## Persistenz
+
+Die Board-Daten werden lokal in einer SQLite-Datenbank gespeichert.  
+Die Persistenz ist über das `IBoardRepository` vom restlichen Anwendungscode entkoppelt.
+
+- **SQLite** für Karten- und Board-Daten
+- **JSON** für Anwendungseinstellungen
+- Automatische Migration bestehender JSON-Boarddaten nach SQLite
+- Persistenzzugriffe über Repository-Implementierungen
+
+Beim Start der Anwendung wird geprüft, ob bereits SQLite-Daten vorhanden sind. Falls nicht, können bestehende Board-Daten aus der vorherigen JSON-Persistenz einmalig übernommen werden.
+
+
+## Bedienung / Screenshots
+
+### Kanban-Board
+
+![Kanban Board im Darkmode](docs/screenshots/main-window-dark.png)
+
+Das Board ist in die Bereiche **To Do**, **Doing** und **Done** aufgeteilt.
+Karten können erstellt, bearbeitet, sortiert und zwischen den Spalten verschoben werden.
+
+### Karte bearbeiten
+
+![Karte bearbeiten](docs/screenshots/card-edit.png)
+
+Über ein separates Bearbeitungsfenster können Titel, Status, Beschreibung und Fälligkeitsdatum einer Karte angepasst werden.
+
+### Drag & Drop
+
+![Drag & Drop](docs/screenshots/drag-drop.png)
+
+Karten können per Drag & Drop zwischen den einzelnen Status-Spalten verschoben werden.
+Während des Verschiebens wird die Zielposition visuell hervorgehoben.
+
+### Light-Theme
+
+![Kanban Board im Light-Theme](docs/screenshots/main-window-light.png)
+
+Neben dem Dark-Theme steht auch ein Light-Theme zur Verfügung.
+Die gewählte Darstellung wird in den Anwendungseinstellungen gespeichert.
+
+
+## Projektstatus / Roadmap
+
+Der aktuelle Stand umfasst die grundlegenden Funktionen des Kanban-Boards inklusive Drag & Drop, Themes, Sortierung, Autosave und lokaler SQLite-Persistenz.
+
+Geplante Weiterentwicklungen:
+
+- Datenbankzugriffe auf gezielte `INSERT`-, `UPDATE`- und `DELETE`-Operationen umstellen
+- Persistenzschicht weiter verfeinern
+- Tags funktional erweitern, z. B. für Filterung oder Suche
+- Unit-Tests für zentrale Logik ergänzen
+- Weitere kleinere UI- und UX-Verbesserungen
+
+
+## Lizenz / Icons
+
+- Lizenz: MIT
+- Icons: Bootstrap Icons – https://icons.getbootstrap.com/
