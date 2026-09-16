@@ -1,10 +1,10 @@
 # Kanban Board (WPF Desktop App)
 
-![.NET](https://img.shields.io/badge/.NET-8.0-blue)
-![Framework](https://img.shields.io/badge/Framework-WPF-orange)
-![SQLite](https://img.shields.io/badge/Database-Sqlite-39477F?logo=sqlite&logoColor=white)
-![Platform](https://img.shields.io/badge/platform-Windows-lightgrey)
-![License](https://img.shields.io/badge/license-MIT-green)
+![.NET](https://img.shields.io/badge/.NET-8.0-512BD4?logo=dotnet&logoColor=white)
+![Framework](https://img.shields.io/badge/Framework-WPF-5C2D91)
+![SQLite](https://img.shields.io/badge/Database-SQLite-003B57?logo=sqlite&logoColor=white)
+![Platform](https://img.shields.io/badge/Platform-Windows-0078D4?logo=windows&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-4C8C4A)
 
 
 Eine Desktop-Kanban-Anwendung, entwickelt mit C#, .NET 8 und WPF.
