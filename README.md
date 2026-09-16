@@ -40,6 +40,8 @@ Das Projekt dient dazu, zentrale Konzepte moderner Desktop-Anwendungsentwicklung
 - **Git / GitHub** – Versionsverwaltung
 
 
+---
+
 ## Architektur
 
 Das Projekt ist in mehrere Bereiche aufgeteilt, um Benutzeroberfläche, Anwendungslogik und Datenpersistenz voneinander zu trennen.
@@ -68,6 +70,8 @@ Die Persistenz ist über das `IBoardRepository` vom restlichen Anwendungscode en
 
 Beim Start der Anwendung wird geprüft, ob bereits SQLite-Daten vorhanden sind. Falls nicht, werden vorhandene Board-Daten aus der vorherigen JSON-Persistenz automatisch einmalig nach SQLite migriert.
 
+
+---
 
 ## Bedienung / Screenshots
 
@@ -98,6 +102,8 @@ Während des Verschiebens wird die Zielposition visuell hervorgehoben.
 Neben dem Dark-Theme steht auch ein Light-Theme zur Verfügung.
 Die gewählte Darstellung wird in den Anwendungseinstellungen gespeichert.
 
+
+---
 
 ## Projektstatus / Roadmap
 
