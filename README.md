@@ -14,7 +14,7 @@ Das Projekt dient dazu, zentrale Konzepte moderner Desktop-Anwendungsentwicklung
 
 ![KanbanBoard Screenshot](docs/screenshots/main-window-dark.png)
 
-
+<br>
 ## Features
 
 - Karten erstellen, bearbeiten und löschen
@@ -30,7 +30,7 @@ Das Projekt dient dazu, zentrale Konzepte moderner Desktop-Anwendungsentwicklung
 - Light- und Dark-Theme mit gespeicherter Theme-Auswahl
 - Separates Bearbeitungsfenster für Karten
 
-
+<br>
 ## Technologien
 
 - **C# / .NET 8** – Anwendungslogik
@@ -39,7 +39,7 @@ Das Projekt dient dazu, zentrale Konzepte moderner Desktop-Anwendungsentwicklung
 - **System.Text.Json** – Speicherung von Anwendungseinstellungen und Migration bestehender JSON-Daten
 - **Git / GitHub** – Versionsverwaltung
 
-
+<br>
 ---
 
 ## Architektur
@@ -57,7 +57,7 @@ Verwendete Architektur- und Designkonzepte:
 - Dependency Injection über Konstruktoren
 - `INotifyPropertyChanged` für Datenbindung und UI-Aktualisierung
 
-
+<br>
 ## Persistenz
 
 Die Board-Daten werden lokal in einer SQLite-Datenbank gespeichert.  
@@ -70,7 +70,7 @@ Die Persistenz ist über das `IBoardRepository` vom restlichen Anwendungscode en
 
 Beim Start der Anwendung wird geprüft, ob bereits SQLite-Daten vorhanden sind. Falls nicht, werden vorhandene Board-Daten aus der vorherigen JSON-Persistenz automatisch einmalig nach SQLite migriert.
 
-
+<br>
 ---
 
 ## Bedienung / Screenshots
@@ -82,12 +82,14 @@ Beim Start der Anwendung wird geprüft, ob bereits SQLite-Daten vorhanden sind. 
 Das Board ist in die Bereiche **To Do**, **Doing** und **Done** aufgeteilt.
 Karten können erstellt, bearbeitet, sortiert und zwischen den Spalten verschoben werden.
 
+<br>
 ### Karte bearbeiten
 
 ![Karte bearbeiten](docs/screenshots/card-edit.png)
 
 Über ein separates Bearbeitungsfenster können Titel, Status, Beschreibung und Fälligkeitsdatum einer Karte angepasst werden.
 
+<br>
 ### Drag & Drop
 
 ![Drag & Drop](docs/screenshots/drag-drop.png)
@@ -95,6 +97,7 @@ Karten können erstellt, bearbeitet, sortiert und zwischen den Spalten verschobe
 Karten können per Drag & Drop zwischen den einzelnen Status-Spalten verschoben werden.
 Während des Verschiebens wird die Zielposition visuell hervorgehoben.
 
+<br>
 ### Light-Theme
 
 ![Kanban Board im Light-Theme](docs/screenshots/main-window-light.png)
@@ -102,7 +105,7 @@ Während des Verschiebens wird die Zielposition visuell hervorgehoben.
 Neben dem Dark-Theme steht auch ein Light-Theme zur Verfügung.
 Die gewählte Darstellung wird in den Anwendungseinstellungen gespeichert.
 
-
+<br>
 ---
 
 ## Projektstatus / Roadmap
@@ -116,7 +119,8 @@ Geplante Weiterentwicklungen:
 - Unit-Tests für zentrale Logik ergänzen
 - Weitere kleinere UI- und UX-Verbesserungen
 
-
+<br>
+<br>
 ## Lizenz / Icons
 
 - Lizenz: MIT
