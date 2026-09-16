@@ -15,6 +15,7 @@ Das Projekt dient dazu, zentrale Konzepte moderner Desktop-Anwendungsentwicklung
 ![KanbanBoard Screenshot](docs/screenshots/main-window-dark.png)
 
 <br>
+
 ## Features
 
 - Karten erstellen, bearbeiten und löschen
