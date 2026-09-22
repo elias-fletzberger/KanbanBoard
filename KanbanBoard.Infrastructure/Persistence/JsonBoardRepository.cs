@@ -48,7 +48,7 @@ public class JsonBoardRepository : IBoardRepository
         
     }
 
-    public void Save(Board board)
+    public void SaveAll(Board board)
     {
         Directory.CreateDirectory(_folderPath);
 
@@ -66,4 +66,10 @@ public class JsonBoardRepository : IBoardRepository
             Console.WriteLine($"No permission to write file: {ex.Message}");
         }
     }
+
+
+    // Temporary implementations for interface compatibility.
+    public void Add(CardItem card) { }
+    public void Update(CardItem card) { }
+    public void Delete(Guid id) { }
 }

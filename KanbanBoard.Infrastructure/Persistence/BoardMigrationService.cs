@@ -32,6 +32,6 @@ public class BoardMigrationService
 
         if (!jsonBoard.Cards.Any()) return;
 
-        _sqliteRepository.Save(jsonBoard);
+        _sqliteRepository.SaveAll(jsonBoard);
     }
 }

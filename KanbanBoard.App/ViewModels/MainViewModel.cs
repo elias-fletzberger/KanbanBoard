@@ -261,7 +261,7 @@ public class MainViewModel : INotifyPropertyChanged
     {
         var board = new Board();
         board.Cards = Cards.ToList();
-        _repository.Save(board);
+        _repository.SaveAll(board);
     }
 
     private void ScheduleAutoSave()

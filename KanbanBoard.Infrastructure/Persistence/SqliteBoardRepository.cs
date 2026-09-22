@@ -171,7 +171,7 @@ public class SqliteBoardRepository : IBoardRepository
         }
     }
 
-    public void Save(Board board)
+    public void SaveAll(Board board)
     {
         try
         {
@@ -274,4 +274,8 @@ public class SqliteBoardRepository : IBoardRepository
             Console.WriteLine($"No permission to write file: {ex.Message}");
         }
     }
+
+    public void Add(CardItem card) { }
+    public void Update(CardItem card) { }
+    public void Delete(Guid id) { }
 }
