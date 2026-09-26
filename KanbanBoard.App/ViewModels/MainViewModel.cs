@@ -243,7 +243,7 @@ public class MainViewModel : INotifyPropertyChanged
         Cards.Add(card);
         RefreshBoardColumns();
         SelectedCard = card;
-        SaveCurrentBoard();
+        _repository.Add(card);
     }
 
     private void DeleteCard()
