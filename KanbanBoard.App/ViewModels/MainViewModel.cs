@@ -253,18 +253,11 @@ public class MainViewModel : INotifyPropertyChanged
     {
         if (SelectedCard != null)
         {
+            _repository.Delete(SelectedCard.Id);
             Cards.Remove(SelectedCard);
             RefreshBoardColumns();
             SelectedCard = null;
-            SaveCurrentBoard();
         }
-    }
-
-    private void SaveCurrentBoard()
-    {
-        var board = new Board();
-        board.Cards = Cards.ToList();
-        _repository.SaveAll(board);
     }
 
     private void ScheduleAutoSave()

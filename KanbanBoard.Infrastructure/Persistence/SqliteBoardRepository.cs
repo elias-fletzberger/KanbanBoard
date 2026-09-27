@@ -440,5 +440,49 @@ public class SqliteBoardRepository : IBoardRepository
         }
     }
 
-    public void Delete(Guid id) { }
+    public void Delete(Guid id)
+    {
+        try
+        {
+            string connectionString = $"Data Source={_filePath}";
+
+
+            using (var connection = new SqliteConnection(connectionString))
+            {
+                connection.Open();
+
+                string sqlDeleteCommand = @"
+                    DELETE FROM cards
+                    WHERE id = @id;";
+
+                using (var command = new SqliteCommand(sqlDeleteCommand, connection))
+                {
+                    var idParameter = command.Parameters.Add("@id", SqliteType.Text);
+
+
+                    idParameter.Value = id.ToString();
+
+
+                    int affectedRows = command.ExecuteNonQuery();
+
+                    if (affectedRows == 0)
+                    {
+                        Console.WriteLine($"SQLite error: no card to delete found.");
+                    }
+                }
+            }
+        }
+        catch (SqliteException ex)
+        {
+            Console.WriteLine($"SQLite delete error: {ex.Message}");
+        }
+        catch (IOException ex)
+        {
+            Console.WriteLine($"SQLite delete error: {ex.Message}");
+        }
+        catch (UnauthorizedAccessException ex)
+        {
+            Console.WriteLine($"No permission to write file: {ex.Message}");
+        }
+    }
 }
