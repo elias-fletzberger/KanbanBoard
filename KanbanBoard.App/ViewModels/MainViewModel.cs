@@ -34,7 +34,8 @@ public class MainViewModel : INotifyPropertyChanged
     private string _tagsText;
     private bool _isSortDescending = true;
     private CardSortMode _selectedSortMode;
- 
+    private CardItem? _pendingCardUpdate;
+
 
     public Array StatusValues => Enum.GetValues(typeof(CardStatus));
     public Array SortModes => Enum.GetValues(typeof(CardSortMode));
@@ -221,7 +222,9 @@ public class MainViewModel : INotifyPropertyChanged
             card = new CardItem();
             card.Title = "Erste Karte";
             Cards.Add(card);
-            SaveCurrentBoard();
+            RefreshBoardColumns();
+            SelectedCard = card;
+            _repository.Add(card);
         }
                 
 
@@ -273,13 +276,22 @@ public class MainViewModel : INotifyPropertyChanged
     private void AutoSaveTimer_Tick(object? sender, EventArgs e)
     {
         _autoSaveTimer.Stop();
-        SaveCurrentBoard();        
+        if (_pendingCardUpdate != null)
+        {
+            _repository.Update(_pendingCardUpdate);
+            _pendingCardUpdate = null;
+        }
     }
 
     private void SelectedCard_PropertyChanged(object? sender, PropertyChangedEventArgs e)
     {
         RefreshBoardColumns();
-        ScheduleAutoSave();        
+
+        if (sender is CardItem card)
+        {
+            _pendingCardUpdate = card;
+            ScheduleAutoSave();
+        }
     }
 
     private void RefreshBoardColumns()
@@ -294,6 +306,7 @@ public class MainViewModel : INotifyPropertyChanged
         IsSortDescending = !IsSortDescending;
         RefreshBoardColumns();
     }
+
     private void ChangeTheme()
     {
         Theme.ToggleTheme();

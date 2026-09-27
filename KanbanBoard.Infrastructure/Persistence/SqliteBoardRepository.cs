@@ -362,6 +362,83 @@ public class SqliteBoardRepository : IBoardRepository
         }
     }
 
-    public void Update(CardItem card) { }
+    public void Update(CardItem card)
+    {
+        try
+        {
+            string connectionString = $"Data Source={_filePath}";
+
+
+            using (var connection = new SqliteConnection(connectionString))
+            {
+                connection.Open();
+
+                string sqlUpdateCommand = @"
+                    UPDATE cards
+                    SET
+                        title = @title,
+                        status = @status,
+                        description = @description,
+                        tags = @tags,
+                        createdAt = @createdAt,
+                        updatedAt = @updatedAt,
+                        dueDate = @dueDate
+                    WHERE id = @id;";
+
+                using (var command = new SqliteCommand(sqlUpdateCommand, connection))
+                {
+                    var idParameter = command.Parameters.Add("@id", SqliteType.Text);
+                    var titleParameter = command.Parameters.Add("@title", SqliteType.Text);
+                    var statusParameter = command.Parameters.Add("@status", SqliteType.Text);
+                    var descriptionParameter = command.Parameters.Add("@description", SqliteType.Text);
+                    var tagsParameter = command.Parameters.Add("@tags", SqliteType.Text);
+                    var createdAtParameter = command.Parameters.Add("@createdAt", SqliteType.Text);
+                    var updatedAtParameter = command.Parameters.Add("@updatedAt", SqliteType.Text);
+                    var dueDateParameter = command.Parameters.Add("@dueDate", SqliteType.Text);
+
+
+                    idParameter.Value = card.Id.ToString();
+
+                    titleParameter.Value = card.Title;
+
+                    statusParameter.Value = card.Status.ToString();
+
+                    if (card.Description is not null) descriptionParameter.Value = card.Description;
+                    else descriptionParameter.Value = DBNull.Value;
+
+                    if (card.Tags is not null) tagsParameter.Value = JsonSerializer.Serialize(card.Tags);
+                    else tagsParameter.Value = DBNull.Value;
+
+                    createdAtParameter.Value = card.CreatedAt.ToString(DateTimeFormat, CultureInfo.InvariantCulture);
+
+                    updatedAtParameter.Value = card.UpdatedAt.ToString(DateTimeFormat, CultureInfo.InvariantCulture);
+
+                    if (card.DueDate.HasValue)
+                        dueDateParameter.Value = card.DueDate.Value.ToString(DateTimeFormat, CultureInfo.InvariantCulture);
+                    else dueDateParameter.Value = DBNull.Value;
+
+                    int affectedRows = command.ExecuteNonQuery();
+
+                    if (affectedRows == 0)
+                    {
+                        Console.WriteLine($"SQLite error: no card to update found.");
+                    }
+                }
+            }
+        }
+        catch (SqliteException ex)
+        {
+            Console.WriteLine($"SQLite update error: {ex.Message}");
+        }
+        catch (IOException ex)
+        {
+            Console.WriteLine($"SQLite update error: {ex.Message}");
+        }
+        catch (UnauthorizedAccessException ex)
+        {
+            Console.WriteLine($"No permission to write file: {ex.Message}");
+        }
+    }
+
     public void Delete(Guid id) { }
 }
