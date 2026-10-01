@@ -69,6 +69,7 @@ Die Persistenz ist über das `IBoardRepository` vom restlichen Anwendungscode en
 
 - **SQLite** für Karten- und Board-Daten
 - **JSON** für Anwendungseinstellungen
+- Gezielt ausgeführte `INSERT`-, `UPDATE`- und `DELETE`-Operationen für einzelne Karten
 - Automatische Migration bestehender JSON-Boarddaten nach SQLite
 - Persistenzzugriffe über Repository-Implementierungen
 
@@ -123,7 +124,7 @@ Der aktuelle Stand umfasst die zentralen Funktionen des Kanban-Boards inklusive 
 
 Geplante Weiterentwicklungen:
 
-- Datenbankzugriffe auf gezielte `INSERT`-, `UPDATE`- und `DELETE`-Operationen umstellen
+- Änderungsüberwachung und Autosave weiter robuster gestalten
 - Tags funktional erweitern, z. B. für Filterung oder Suche
 - Unit-Tests für zentrale Logik ergänzen
 - Weitere kleinere UI- und UX-Verbesserungen
